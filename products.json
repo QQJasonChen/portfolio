@@ -534,9 +534,9 @@
         "note": "Making the comparison possible was the whole job. Once every site reported the same way, prioritisation stopped being an argument."
       },
       {
-        "h": "Built the tool my colleagues chose to keep using",
-        "p": "As a design engineer I kept watching the team lose hours to manual lithography imaging analysis. Nobody asked me to fix it. I built Python tooling with a proper GUI on top, cutting analysis time by 50%; 20+ engineers adopted it and it is still in use.",
-        "note": "Shipping software to colleagues is a harder test than shipping to strangers. Strangers churn quietly; colleagues can walk to your desk, tell you it is worse than the spreadsheet, and go back to it. They did not."
+        "h": "I build the tool rather than file the complaint",
+        "p": "As a design engineer I kept watching the team lose hours to manual lithography imaging analysis, so I built Python tooling with a proper GUI on top — 50% less analysis time, adopted by 20+ engineers, still in use. It was not the first and it was not the last: issue tracking, NPI analysis, whatever the current team was doing by hand.",
+        "note": "Shipping software to colleagues is a harder test than shipping to strangers. Strangers churn quietly; colleagues can walk to your desk, tell you it is worse than the spreadsheet, and go back to it. That is the test I care about passing."
       },
       {
         "h": "Deploying across cultures, not just across sites",
