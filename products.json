@@ -130,6 +130,44 @@
       "video": ""
     },
     {
+      "id": "examace",
+      "name": "Dutch Exam Ace",
+      "subtitle": "Dutch integration-exam platform",
+      "tier": "live",
+      "status": "Live · free core + paid pack",
+      "tagline": "I built it to pass the Dutch integration exam myself. I passed. Then other candidates started using it.",
+      "role": "Solo — product, backend, AI grading, monetisation",
+      "problem": "The Dutch integration exam (Inburgeringsexamen) is compulsory for residency, and almost no preparation material exists in Chinese. Candidates study from Dutch-language material for an exam they are taking precisely because they do not yet speak Dutch.",
+      "what": "A full preparation platform covering all four exam skills plus KNM: 50+ past-paper questions, 14 writing templates, 1,000+ high-frequency words, mock speaking exams, and AI grading for both writing and speaking against the CEFR A2 / DUO criteria. Core content is permanently free; a paid resource pack funds it.",
+      "hard": "Grading speech and writing in a language the learner is failing at, and having the score be trustworthy. Early versions were too generous, which is worse than useless — a candidate who thinks they are ready walks into the real exam and fails. Rebuilding the speaking scorer to report real fluency signals honestly took several rounds.",
+      "highlights": [
+        "AI grading for writing and speaking aligned to the official DUO A2 criteria, not a generic language score.",
+        "Made the speaking scorer honest after finding it inflated results — a generous score is worse than no score when someone is deciding whether to book the real exam.",
+        "Free core with a paid resource pack (44 listening notes + 1,000-page handbook, EUR 49 early-bird against EUR 159 list) — the product funds itself.",
+        "Rate limiting fails closed on the AI endpoints, so a traffic spike degrades access rather than the bill."
+      ],
+      "business": "Permanently free core, funded by a paid resource pack at EUR 49 early-bird (EUR 159 list). Revenue-positive on AI costs.",
+      "stack": [
+        "TypeScript",
+        "React",
+        "Supabase",
+        "OpenAI",
+        "Whisper",
+        "Stripe"
+      ],
+      "links": [
+        {
+          "label": "Open site",
+          "href": "https://dutch-exam-ace.com"
+        }
+      ],
+      "cover": "posters/examace.jpg",
+      "gallery": [
+        "posters/examace.jpg"
+      ],
+      "video": ""
+    },
+    {
       "id": "playphrase",
       "name": "Dutch PlayPhrase",
       "subtitle": "Learn Dutch from real video, not textbooks",
