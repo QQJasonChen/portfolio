@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# 推上線前自動送審——但只在「內容真的變了」的時候。
+#
+# 為什麼是 pre-push 而不是 pre-commit：
+#   commit 是給自己的，push 才是內容真的要被別人看到的那一刻。
+#   而且 commit 一天可能十幾次，push 通常不會。
+#
+# 為什麼不擋推送：
+#   Codex 一輪 3–8 分鐘。擋在那裡的 hook，你三天內就會 --no-verify 繞過它，
+#   然後它就等於不存在。背景跑、跑完通知，才活得久。
+#
+# 跳過：SKIP_REVIEW=1 git push
+set -euo pipefail
+
+[ "${SKIP_REVIEW:-0}" = "1" ] && { echo "⏭  跳過審查（SKIP_REVIEW=1）"; exit 0; }
+
+REPO="$(git rev-parse --show-toplevel)"
+cd "$REPO"
+
+# 只有這些檔案變動才值得燒一次 API——改 CSS 或修錯字不跑
+WATCH='products\.json|casestudy\.html'
+RANGE="origin/main..HEAD"
+git rev-parse --verify origin/main >/dev/null 2>&1 || RANGE="HEAD"
+
+if ! git diff --name-only "$RANGE" 2>/dev/null | grep -qE "$WATCH"; then
+  echo "⏭  內容未變動，略過審查"
+  exit 0
+fi
+
+echo "🔍 內容有變動 → 背景送審（不擋這次推送）"
+[ -x scripts/review.sh ] && ( ./scripts/review.sh >/dev/null 2>&1 & ) &
+exit 0
