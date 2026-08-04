@@ -76,15 +76,16 @@
   .pr .note{margin:11px 0 0;padding-left:14px;border-left:2px solid var(--line-2);
     color:var(--ink-3);font-size:14px;line-height:1.6;max-width:68ch}
 
-  .also{list-style:none;margin:0;padding:0;display:grid;gap:0}
-  .also li{border-top:1px solid var(--line)}
-  .also li:last-child{border-bottom:1px solid var(--line)}
-  .also a{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;padding:14px 2px;
-    text-decoration:none;color:inherit;transition:.15s}
-  .also a:hover{color:var(--accent)}
-  .also b{font-size:16px;font-weight:800;letter-spacing:-.012em;min-width:190px}
-  .also span{font-size:14.5px;color:var(--ink-2)}
-  .also a:hover span{color:var(--ink)}
+  .mini{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+  .mcard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
+    border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:.18s}
+  .mcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .mshot{aspect-ratio:16/10;background:var(--surface-2);overflow:hidden}
+  .mshot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .mb{padding:13px 15px 15px}
+  .mb b{display:block;font-size:15px;font-weight:800;letter-spacing:-.012em;margin-bottom:4px}
+  .mb span{font-size:13px;color:var(--ink-2);line-height:1.5}
+  .mcard:hover .mb b{color:var(--accent)}
 
   /* ── deep dive ── */
   .cs{display:block;text-decoration:none;color:inherit;margin:0 0 64px;padding:30px 32px;
@@ -197,7 +198,7 @@
 
   <section class="band" style="padding-top:0">
     <div class="sh"><h2 id="al-k"></h2><p id="al-n"></p></div>
-    <ul class="also" id="also"></ul>
+    <div class="mini" id="also"></div>
   </section>
 
   <div class="rule"></div>
@@ -324,7 +325,10 @@ fetch('products.json').then(r => r.json()).then(d => {
     $('#al-k').textContent = al.kicker;
     $('#al-n').textContent = al.note;
     $('#also').innerHTML = al.items.map(i =>
-      `<li><a href="${esc(i.href)}" target="_blank" rel="noopener"><b>${esc(i.name)}</b><span>${esc(i.what)} ↗</span></a></li>`).join('');
+      `<a class="mcard" href="${esc(i.href)}" target="_blank" rel="noopener">
+         <div class="mshot">${i.cover ? `<img src="${esc(i.cover)}" alt="${esc(i.name)}" loading="lazy">` : ''}</div>
+         <div class="mb"><b>${esc(i.name)}</b><span>${esc(i.what)}</span></div>
+       </a>`).join('');
   }
   document.querySelectorAll('.card').forEach(c => c.addEventListener('click', () => open_(c.dataset.id)));
   // 判斷 → 證據：原則裡的產品名可以直接開該產品的詳情

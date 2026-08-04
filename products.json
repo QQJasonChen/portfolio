@@ -190,32 +190,37 @@
   },
   "also": {
     "kicker": "Also shipped",
-    "note": "Same loop, smaller scope — listed rather than explained.",
+    "note": "Same loop, smaller scope.",
     "items": [
       {
         "name": "Yike",
         "what": "AI journal analysis over months of entries — patterns you cannot see from inside one day",
-        "href": "https://qqjasonchen.github.io/yike/"
+        "href": "https://qqjasonchen.github.io/yike/",
+        "cover": "posters/yike.jpg"
       },
       {
         "name": "Dutch PlayPhrase",
         "what": "700,000 real Dutch subtitle lines, searchable and playable in context",
-        "href": "https://dutch-playphrase-production.up.railway.app/"
+        "href": "https://dutch-playphrase-production.up.railway.app/",
+        "cover": "posters/playphrase.jpg"
       },
       {
         "name": "Language Practice Hub",
         "what": "17 worked past papers for the Dutch A2 speaking exam",
-        "href": "https://qqjasonchen.github.io/language-practice-hub/"
+        "href": "https://qqjasonchen.github.io/language-practice-hub/",
+        "cover": "posters/lph.jpg"
       },
       {
         "name": "Yicheng",
         "what": "A work log that records what the work taught you",
-        "href": "https://qqjasonchen.github.io/yicheng/"
+        "href": "https://qqjasonchen.github.io/yicheng/",
+        "cover": "posters/yicheng.jpg"
       },
       {
         "name": "Gongdu",
         "what": "Real-time check-in wall for an early-rising reading group",
-        "href": "https://qqjasonchen.github.io/gongdu/"
+        "href": "https://qqjasonchen.github.io/gongdu/",
+        "cover": "posters/gongdu.jpg"
       }
     ]
   }
