@@ -90,7 +90,14 @@
   .cname h3{margin:0; font-size:19px; font-weight:800; letter-spacing:-.015em}
   .cname small{font-size:12px; color:var(--ink-3); font-weight:600}
   .ctag{margin:0; font-size:13.5px; color:var(--accent); font-weight:600; line-height:1.45}
-  .cstack{display:flex; flex-wrap:wrap; gap:5px; margin-top:auto; padding-top:9px}
+  /* 卡片正面就要撐得住——多數讀者不會點進去 */
+  .qa{display:grid; gap:9px; padding:12px 0 2px; border-top:1px solid var(--line); margin-top:3px}
+  .qa p{margin:0; font-size:13.2px; line-height:1.58; color:var(--ink-2)}
+  .qa b{
+    display:block; font-size:10.5px; font-weight:800; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--ink-3); margin-bottom:2px;
+  }
+  .cstack{display:flex; flex-wrap:wrap; gap:5px; margin-top:auto; padding-top:12px}
   .t{font-size:10.5px; font-weight:700; color:var(--ink-3); border:1px solid var(--line); padding:2.5px 8px; border-radius:5px}
   .more{font-size:12.5px; color:var(--ink-3); font-weight:700}
   .card:hover .more{color:var(--accent)}
@@ -119,7 +126,13 @@
   .sheet-body .sub{margin:0 0 14px; color:var(--ink-3); font-size:13.5px; font-weight:600}
   .sheet-body .tag{margin:0 0 16px; font-size:16px; color:var(--accent); font-weight:700}
   .sheet-body .pitch{margin:0 0 22px; color:var(--ink-2); font-size:15.5px; max-width:66ch}
-  .hl{margin:0 0 22px; padding:0; list-style:none; display:grid; gap:11px}
+  .blk{margin:0 0 22px}
+  .blk h4{
+    margin:0 0 7px; font-size:11px; font-weight:800; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--accent);
+  }
+  .blk p{margin:0; color:var(--ink-2); font-size:15px; line-height:1.68; max-width:68ch}
+  .hl{margin:0; padding:0; list-style:none; display:grid; gap:11px}
   .hl li{position:relative; padding-left:22px; color:var(--ink-2); font-size:14.5px; max-width:70ch}
   .hl li::before{content:"→"; position:absolute; left:0; color:var(--accent); font-weight:800}
   .gal{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:9px; margin:0 0 22px}
@@ -199,8 +212,12 @@ function card(p) {
     <div class="cbody">
       <div class="cname"><h3>${esc(p.name)}</h3><small>${esc(p.subtitle)}</small></div>
       <p class="ctag">${esc(p.tagline)}</p>
-      <div class="cstack">${(p.stack || []).slice(0, 4).map(s => `<span class="t">${esc(s)}</span>`).join('')}</div>
-      <span class="more">Read the walkthrough →</span>
+      <div class="qa">
+        <p><b>Problem</b>${esc(p.problem)}</p>
+        <p><b>Hardest part</b>${esc(p.hard)}</p>
+      </div>
+      <div class="cstack">${(p.stack || []).slice(0, 5).map(s => `<span class="t">${esc(s)}</span>`).join('')}</div>
+      <span class="more">Full breakdown, numbers and screenshots →</span>
     </div>
   </button>`;
 }
@@ -217,13 +234,25 @@ function openSheet(id) {
       <h3>${esc(p.name)}</h3>
       <p class="sub">${esc(p.subtitle)} · ${esc(p.status)}</p>
       <p class="tag">${esc(p.tagline)}</p>
-      <p class="pitch">${esc(p.pitch)}</p>
-      ${(p.highlights || []).length ? `<ul class="hl">${p.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
-      ${(p.gallery || []).length > 1 ? `<div class="gal">${p.gallery.map(g =>
-        `<img src="${esc(g)}" alt="${esc(p.name)}" loading="lazy" onclick="window.open('${esc(g)}','_blank')">`).join('')}</div>` : ''}
+
+      <section class="blk"><h4>The problem</h4><p>${esc(p.problem)}</p></section>
+      <section class="blk"><h4>What it is</h4><p>${esc(p.what)}</p></section>
+      <section class="blk"><h4>What was hard</h4><p>${esc(p.hard)}</p></section>
+
+      ${(p.highlights || []).length ? `<section class="blk"><h4>Engineering detail</h4>
+        <ul class="hl">${p.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul></section>` : ''}
+
+      ${p.business ? `<section class="blk"><h4>Business model</h4><p>${esc(p.business)}</p></section>` : ''}
+
+      ${(p.gallery || []).length > 1 ? `<section class="blk"><h4>Screens</h4>
+        <div class="gal">${p.gallery.map(g =>
+          `<img src="${esc(g)}" alt="${esc(p.name)} screen" loading="lazy" onclick="window.open('${esc(g)}','_blank')">`).join('')}</div>
+      </section>` : ''}
+
       <div class="meta">
-        <div><dt>Role</dt>${esc(p.role)}</div>
+        <div><dt>My role</dt>${esc(p.role)}</div>
         <div><dt>Stack</dt>${(p.stack || []).join(' · ')}</div>
+        <div><dt>Status</dt>${esc(p.status)}</div>
       </div>
       <div class="cta">${(p.links || []).map(l =>
         `<a href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('')}</div>
