@@ -24,7 +24,7 @@
       "hard": "Two things. First, wake-word detection that runs on-device, works while audio is playing through the same speaker, and does not fire during normal conversation. Second, keeping AI cost viable when every listener processes the same episodes.",
       "highlights": [
         "Custom on-device wake word instead of Siri, so playback is never interrupted. Validated against 127,000 characters of real Chinese podcast transcripts: false triggers went from 38 to 0 after switching from single-character matching to a debounced multi-word matcher.",
-        "Cross-tenant transcript cache keyed on feed URL plus episode ID: one episode costs AI money once, no matter how many users process it. 86% cache hit rate, 7.07× reuse, US$0.82 per episode all-in.",
+        "Cross-tenant transcript cache keyed on feed URL plus episode ID: one episode costs AI money once, no matter how many users process it. 86% cache hit rate, 7.07× reuse, US$0.82 per episode all-in, measured over production traffic.",
         "Spaced repetition (SM-2) on captured highlights — no competing podcast app ships this.",
         "Ran an adversarial pre-submission review with a second AI agent. It caught two real App Store rejection risks I had written myself: a described feature the iOS build did not have, and a privacy label that under-declared audio collection."
       ],
@@ -142,7 +142,7 @@
       "hard": "Search relevance across a corpus this size where the useful result is not the best keyword match but the clearest, most natural-sounding utterance. Plus keeping playback instant when clips live on someone else's infrastructure.",
       "highlights": [
         "Full learning loop rather than a lookup toy: search → listen → save to notebook → spaced review → mock exam.",
-        "Together with Woordjes and the practice hub, this is the most complete Dutch exam-prep resource available to Chinese-speaking learners — a market no existing product serves.",
+        "One of three Dutch exam-prep products I built for the same underserved audience: Chinese-speaking candidates preparing for the integration exam. I built them because I was sitting that exam myself and could not find material in my own language.",
         "Deployment lesson learned the hard way: pushing to git does not deploy, and container env changes need an explicit redeploy. Both are now written into the repo's runbook."
       ],
       "business": "Free while the corpus grows. The exam-prep layer is the natural paid tier.",
@@ -212,7 +212,7 @@
       "highlights": [
         "Picture-response questions always ship with the actual image. A written description of a picture is not practice.",
         "Free teaser version is public; the complete set is the paid product, kept out of version control so it cannot leak by accident.",
-        "Part of the most complete Dutch exam-prep set available to Chinese-speaking candidates."
+        "One of three Dutch products built for the same audience — vocabulary, listening from real video, and speaking papers."
       ],
       "business": "Free preview publicly; the full 17-paper set is sold as a paid resource.",
       "stack": [
@@ -400,6 +400,13 @@
   "approach": [
     {
       "n": "01",
+      "title": "The tool that mattered most is the one my colleagues actually adopted",
+      "body": "At work I kept watching issues fall through the gaps between sites — everyone reported differently, so nobody could see what was actually critical. Nobody asked me to fix it. I built the tracking tool myself, alongside the delivery work.",
+      "evidence": "It is now used department-wide by 20+ engineers at ASML. Shipping software that colleagues choose to keep using is a harder test than shipping to strangers on an app store — they can simply go back to email.",
+      "proof": []
+    },
+    {
+      "n": "02",
       "title": "I make AI agents review each other, and I verify before I trust them",
       "body": "I run Claude and Codex on the same repository under one written protocol: reviewer is never the author, and only the reviewer can close a ticket. Before trusting the second agent I ran a four-stage validation on it — including a deliberate trap asking it to close its own ticket with a plausible excuse.",
       "evidence": "It refused, citing the rule by line number. That result told me the document-level constraint was sufficient and saved me from building an enforcement layer I had already scoped.",
@@ -408,7 +415,7 @@
       ]
     },
     {
-      "n": "02",
+      "n": "03",
       "title": "The most valuable review is the one that catches me",
       "body": "On the submission before App Store review, the second agent audited work I had written myself.",
       "evidence": "It found two real rejection risks: a feature described in the store listing that the iOS build did not actually have, and a privacy label declaring no audio collection while a paid feature uploaded recordings. Both were mine. Both were caught before submission.",
@@ -417,16 +424,16 @@
       ]
     },
     {
-      "n": "03",
+      "n": "04",
       "title": "AI cost is an architecture decision, not a billing surprise",
       "body": "Per-user AI processing does not survive contact with growth. I keyed a cross-tenant cache on content identity rather than user identity, so an episode costs money once no matter how many people process it.",
-      "evidence": "86% cache hit rate, 7.07× reuse, US$0.82 all-in per hour of audio — measured, not estimated. Unit economics verified against the paid tier before pricing it.",
+      "evidence": "86% cache hit rate, 7.07× reuse, US$0.82 all-in per episode — measured over production traffic, not estimated. Unit economics verified against the paid tier before pricing it.",
       "proof": [
         "tingzhai"
       ]
     },
     {
-      "n": "04",
+      "n": "05",
       "title": "I measure the thing I am afraid of, on real data",
       "body": "A voice trigger that fires during normal speech is worse than no voice trigger. Rather than tuning by feel, I replayed 127,000 characters of real podcast transcripts through the matcher.",
       "evidence": "First run: 38 false triggers. After removing single-character matches and adding a debounce, zero — on the same corpus. The same discipline re-levelled a 10,000-word JLPT deck against a 44,000-word frequency corpus.",
@@ -436,7 +443,7 @@
       ]
     },
     {
-      "n": "05",
+      "n": "06",
       "title": "Deciding not to build is part of the job",
       "body": "Keeping a voice mode alive on a locked screen was technically possible and I had the design ready. I worked through who would actually use it and what it cost in battery.",
       "evidence": "Two existing paths already covered both real scenarios, so I did not build it and wrote down why. The same call killed an agent-enforcement layer after testing showed it was unnecessary.",
@@ -445,7 +452,7 @@
       ]
     },
     {
-      "n": "06",
+      "n": "07",
       "title": "Claims get verified against reality, including my own",
       "body": "Every status on this page was checked against a live endpoint or the App Store API on the day it was published — not written from memory.",
       "evidence": "That habit exists because a status board I maintained once said four features were shipped when the branch had never been merged. A board that lies is worse than no board, because you act on it.",
