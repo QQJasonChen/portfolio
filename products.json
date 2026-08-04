@@ -54,7 +54,9 @@
       ],
       "video": "",
       "card": "I built it to pass the Dutch integration exam myself. I passed. It has drawn 9,858 visitors since January.",
-      "journey": "I could not find Dutch exam material in my own language → built the platform → passed the exam → 9,858 visitors since January."
+      "journey": "I could not find Dutch exam material in my own language → built the platform → passed the exam → 9,858 visitors since January.",
+      "impact": "9,858 visitors this year · I passed the exam using it · organic search only",
+      "roleShort": "Product · backend · AI grading pipeline · access model"
     },
     {
       "id": "tingzhai",
@@ -101,7 +103,9 @@
       ],
       "video": "",
       "card": "Hands busy? Say \"note\" out loud and the last 60 seconds is captured, transcribed and filed.",
-      "journey": "I kept losing the one good idea per episode because my hands were busy → built voice capture that never interrupts playback → three App Store releases."
+      "journey": "I kept losing the one good idea per episode because my hands were busy → built voice capture that never interrupts playback → three App Store releases.",
+      "impact": "On the App Store, v1.7 · US$0.82 per episode at 86% cache hit",
+      "roleShort": "Product · backend · iOS · App Store submission"
     },
     {
       "id": "vocab",
@@ -148,7 +152,9 @@
         "posters/g/tango-4.jpg"
       ],
       "video": "",
-      "journey": "I was failing my own Dutch vocabulary → built the deck I needed → then proved the engine generalised by shipping it again in Japanese."
+      "journey": "I was failing my own Dutch vocabulary → built the deck I needed → then proved the engine generalised by shipping it again in Japanese.",
+      "impact": "Two languages on the App Store off one engine · 95% shared code",
+      "roleShort": "Product · content strategy · iOS · App Store submission"
     }
   ],
   "approach": [
@@ -223,5 +229,16 @@
         "cover": "posters/gongdu.jpg"
       }
     ]
+  },
+  "how": {
+    "kicker": "How I build",
+    "steps": [
+      "Find a pain I actually have",
+      "Ship something rough, fast",
+      "Watch what people really do",
+      "Fix what turns out to be wrong",
+      "Repeat"
+    ],
+    "note": "Every product below came out of this loop. The fourth step is the one most side projects skip — it is also the only one that produces anything worth reading about."
   }
 }

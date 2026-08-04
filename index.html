@@ -87,6 +87,13 @@
   .mb span{font-size:13px;color:var(--ink-2);line-height:1.5}
   .mcard:hover .mb b{color:var(--accent)}
 
+  .flow{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0 0 14px;padding:0;counter-reset:f}
+  .flow li{flex:1 1 180px;position:relative;padding:13px 15px;background:var(--surface);
+    border:1px solid var(--line);border-radius:11px;font-size:13.2px;font-weight:600;line-height:1.45}
+  .flow li::before{counter-increment:f;content:counter(f);display:block;font-size:10px;font-weight:800;
+    color:var(--accent);margin-bottom:4px;letter-spacing:.08em}
+  .flow-note{margin:0;font-size:13.5px;color:var(--ink-3);max-width:70ch;line-height:1.6}
+
   /* ── deep dive ── */
   .cs{display:block;text-decoration:none;color:inherit;margin:0 0 64px;padding:30px 32px;
     border:1px solid var(--line-2);border-radius:16px;background:var(--surface);transition:.18s}
@@ -121,7 +128,11 @@
   .jn{margin:4px 0 0;padding:12px 15px;background:var(--accent-bg);border-radius:10px;
     font-size:13.5px;line-height:1.6;color:var(--ink);max-width:56ch;
     border-left:2px solid var(--accent)}
-  .cs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;padding-top:0}
+  .ri{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:8px 0 0}
+  .ri dt{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-3);padding-top:1px}
+  .ri dd{margin:0;font-size:12.8px;line-height:1.5;color:var(--ink-2)}
+  .cs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;padding-top:0}
   .t{font-size:10.5px;font-weight:700;color:var(--ink-3);border:1px solid var(--line);padding:2.5px 8px;border-radius:5px}
   .more{font-size:12.5px;font-weight:700;color:var(--ink-3)}
   .card:hover .more{color:var(--accent)}
@@ -191,6 +202,12 @@
 
   <div class="rule"></div>
 
+  <section class="band" id="howsec" style="padding-bottom:0">
+    <div class="sh"><h2 id="hw-k"></h2></div>
+    <ol class="flow" id="flow"></ol>
+    <p class="flow-note" id="hw-n"></p>
+  </section>
+
   <section class="band">
     <div class="sh"><h2>Pain point → shipped</h2><p>The three with real users behind them</p></div>
     <div class="grid" id="g-ai"></div>
@@ -247,6 +264,8 @@ function card(p) {
       <div class="cn"><h3>${esc(p.name)}</h3><small>${esc(p.subtitle)}</small></div>
       <p class="ctag">${esc(p.tagline)}</p>
       ${p.journey ? `<p class="jn">${esc(p.journey)}</p>` : ''}
+      ${p.roleShort ? `<dl class="ri"><dt>My role</dt><dd>${esc(p.roleShort)}</dd>
+        <dt>Impact</dt><dd>${esc(p.impact)}</dd></dl>` : ''}
       <div class="cs">${(p.stack || []).slice(0, 4).map(s => `<span class="t">${esc(s)}</span>`).join('')}</div>
     </div>
   </button>`;
@@ -295,6 +314,13 @@ fetch('products.json').then(r => r.json()).then(d => {
     ['9,858', 'visitors on the exam platform this year'],
     ['2.7', 'pages per visit — they work, not bounce'],
   ].map(([v, l]) => `<div class="num"><b>${v}</b><span>${l}</span></div>`).join('');
+
+  const hw = d.how;
+  if (hw) {
+    $('#hw-k').textContent = hw.kicker;
+    $('#hw-n').textContent = hw.note;
+    $('#flow').innerHTML = hw.steps.map(s => `<li>${esc(s)}</li>`).join('');
+  } else { $('#howsec')?.remove(); }
 
   const cs = d.casestudy;
   if (cs) {
