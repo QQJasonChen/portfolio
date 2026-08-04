@@ -5,8 +5,9 @@
   "owner": {
     "name": "QQ Chen",
     "role": "AI Project Lead",
-    "headline": "I turn AI capability into products that pass review, control cost, and survive real users.",
-    "blurb": "Eleven products shipped solo in a year — three through App Store review, eight live on the web. But the products are the evidence, not the point. What follows is how I run AI work: what I measure, what I refuse to ship, and how I got a second AI agent to catch the mistakes I made.",
+    "headline": "I deliver enterprise projects by day. At night I ship AI products — eleven this year, three through App Store review.",
+    "blurb": "Most people who can run a complex delivery programme have never shipped a product themselves. Most people who ship products have never carried enterprise delivery risk. I do both, and the second one is unpaid — I build these on evenings and weekends because this is the work I want to be doing full time.",
+    "why": "Everything below was built outside working hours. That constraint is the point: with a few hours a night you cannot afford to guess, so every decision here had to be measured, cut, or justified. The habits that produced it are the ones I would bring to leading AI projects.",
     "github": "https://github.com/QQJasonChen"
   },
   "products": [
@@ -401,37 +402,57 @@
       "n": "01",
       "title": "I make AI agents review each other, and I verify before I trust them",
       "body": "I run Claude and Codex on the same repository under one written protocol: reviewer is never the author, and only the reviewer can close a ticket. Before trusting the second agent I ran a four-stage validation on it — including a deliberate trap asking it to close its own ticket with a plausible excuse.",
-      "evidence": "It refused, citing the rule by line number. That result told me the document-level constraint was sufficient and saved me from building an enforcement layer I had already scoped."
+      "evidence": "It refused, citing the rule by line number. That result told me the document-level constraint was sufficient and saved me from building an enforcement layer I had already scoped.",
+      "proof": [
+        "tingzhai"
+      ]
     },
     {
       "n": "02",
       "title": "The most valuable review is the one that catches me",
       "body": "On the submission before App Store review, the second agent audited work I had written myself.",
-      "evidence": "It found two real rejection risks: a feature described in the store listing that the iOS build did not actually have, and a privacy label declaring no audio collection while a paid feature uploaded recordings. Both were mine. Both were caught before submission."
+      "evidence": "It found two real rejection risks: a feature described in the store listing that the iOS build did not actually have, and a privacy label declaring no audio collection while a paid feature uploaded recordings. Both were mine. Both were caught before submission.",
+      "proof": [
+        "tingzhai"
+      ]
     },
     {
       "n": "03",
       "title": "AI cost is an architecture decision, not a billing surprise",
       "body": "Per-user AI processing does not survive contact with growth. I keyed a cross-tenant cache on content identity rather than user identity, so an episode costs money once no matter how many people process it.",
-      "evidence": "86% cache hit rate, 7.07× reuse, US$0.82 all-in per hour of audio — measured, not estimated. Unit economics verified against the paid tier before pricing it."
+      "evidence": "86% cache hit rate, 7.07× reuse, US$0.82 all-in per hour of audio — measured, not estimated. Unit economics verified against the paid tier before pricing it.",
+      "proof": [
+        "tingzhai"
+      ]
     },
     {
       "n": "04",
       "title": "I measure the thing I am afraid of, on real data",
       "body": "A voice trigger that fires during normal speech is worse than no voice trigger. Rather than tuning by feel, I replayed 127,000 characters of real podcast transcripts through the matcher.",
-      "evidence": "First run: 38 false triggers. After removing single-character matches and adding a debounce, zero — on the same corpus. The same discipline re-levelled a 10,000-word JLPT deck against a 44,000-word frequency corpus."
+      "evidence": "First run: 38 false triggers. After removing single-character matches and adding a debounce, zero — on the same corpus. The same discipline re-levelled a 10,000-word JLPT deck against a 44,000-word frequency corpus.",
+      "proof": [
+        "tingzhai",
+        "tango"
+      ]
     },
     {
       "n": "05",
       "title": "Deciding not to build is part of the job",
       "body": "Keeping a voice mode alive on a locked screen was technically possible and I had the design ready. I worked through who would actually use it and what it cost in battery.",
-      "evidence": "Two existing paths already covered both real scenarios, so I did not build it and wrote down why. The same call killed an agent-enforcement layer after testing showed it was unnecessary."
+      "evidence": "Two existing paths already covered both real scenarios, so I did not build it and wrote down why. The same call killed an agent-enforcement layer after testing showed it was unnecessary.",
+      "proof": [
+        "tingzhai"
+      ]
     },
     {
       "n": "06",
       "title": "Claims get verified against reality, including my own",
       "body": "Every status on this page was checked against a live endpoint or the App Store API on the day it was published — not written from memory.",
-      "evidence": "That habit exists because a status board I maintained once said four features were shipped when the branch had never been merged. A board that lies is worse than no board, because you act on it."
+      "evidence": "That habit exists because a status board I maintained once said four features were shipped when the branch had never been merged. A board that lies is worse than no board, because you act on it.",
+      "proof": [
+        "tingzhai",
+        "playphrase"
+      ]
     }
   ]
 }

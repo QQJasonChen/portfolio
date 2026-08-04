@@ -11,16 +11,17 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.92em' font-size='88'>◆</text></svg>">
 <style>
   :root{
-    --bg:#0a0b0f; --surface:#12141b; --surface-2:#191c25; --line:#242833; --line-2:#31374a;
-    --ink:#f6f7f9; --ink-2:#a8afbf; --ink-3:#6d7488;
-    --accent:#ff7a2f; --accent-bg:rgba(255,122,47,.11);
+    --bg:#08090c; --surface:#101218; --surface-2:#171a21; --line:#1e222c; --line-2:#2b3140;
+    --ink:#f7f8fa; --ink-2:#9aa2b3; --ink-3:#636b7e;
+    --accent:#ff7a2f; --accent-bg:rgba(255,122,47,.1);
     --ok:#35b869;
-    --maxw:1180px; --r:15px;
+    --maxw:1120px; --r:14px;
+    --s1:8px; --s2:16px; --s3:28px; --s4:48px; --s5:80px; --s6:120px;
   }
   @media (prefers-color-scheme: light){
     :root{
-      --bg:#fcfbf9; --surface:#fff; --surface-2:#f4f3f0; --line:#e7e4de; --line-2:#d6d2ca;
-      --ink:#0f1116; --ink-2:#4f5566; --ink-3:#858b9b;
+      --bg:#fdfcfa; --surface:#fff; --surface-2:#f5f4f1; --line:#eae7e1; --line-2:#d8d4cc;
+      --ink:#0d0f14; --ink-2:#4b5162; --ink-3:#828998;
       --accent:#cf4a13; --accent-bg:rgba(207,74,19,.07); --ok:#1c8347;
     }
   }
@@ -34,15 +35,17 @@
   .rule{height:1px;background:var(--line);margin:0}
 
   /* ── hero ── */
-  .hero{padding:96px 0 56px}
+  .hero{padding:var(--s6) 0 var(--s5)}
   .kicker{display:flex;align-items:center;gap:9px;margin-bottom:22px;
     font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
   .kicker i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:p 2.4s infinite}
   @keyframes p{0%,100%{opacity:1}50%{opacity:.3}}
-  h1{margin:0 0 24px;font-size:clamp(34px,5.6vw,60px);line-height:1.06;
-    letter-spacing:-.035em;font-weight:800;max-width:17ch}
+  h1{margin:0 0 26px;font-size:clamp(31px,4.9vw,52px);line-height:1.1;
+    letter-spacing:-.034em;font-weight:800;max-width:21ch}
   h1 em{font-style:normal;color:var(--accent)}
-  .lede{margin:0 0 38px;max-width:64ch;font-size:clamp(16px,2vw,18px);color:var(--ink-2);line-height:1.72}
+  .lede{margin:0 0 26px;max-width:60ch;font-size:clamp(16.5px,2vw,18.5px);color:var(--ink-2);line-height:1.74}
+  .why{margin:0 0 var(--s4);max-width:60ch;font-size:15px;line-height:1.7;color:var(--ink-3);
+    padding-left:16px;border-left:2px solid var(--line-2)}
   .nums{display:flex;flex-wrap:wrap;gap:34px}
   .num b{display:block;font-size:clamp(26px,3.6vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.05}
   .num span{font-size:12px;color:var(--ink-3);letter-spacing:.02em}
@@ -62,6 +65,9 @@
   .pr .n{font-size:12px;font-weight:800;color:var(--ink-3);letter-spacing:.08em;padding-top:5px}
   .pr h3{margin:0 0 9px;font-size:clamp(17px,2.2vw,20px);font-weight:800;letter-spacing:-.015em;line-height:1.35;max-width:34ch}
   .pr .body{margin:0 0 11px;color:var(--ink-2);font-size:15px;line-height:1.68;max-width:70ch}
+  .pf{margin:11px 0 0;font-size:12.5px;color:var(--ink-3)}
+  .lnk{background:none;border:none;padding:0;font:inherit;font-weight:700;color:var(--accent);
+    cursor:pointer;text-decoration:underline;text-underline-offset:3px}
   .pr .ev{margin:0;padding:11px 15px;background:var(--accent-bg);border-left:2px solid var(--accent);
     border-radius:0 8px 8px 0;color:var(--ink);font-size:14.2px;line-height:1.62;max-width:70ch}
 
@@ -135,6 +141,7 @@
     <div class="kicker"><i></i> AI Project Lead · open to roles</div>
     <h1 id="hl"></h1>
     <p class="lede" id="lede"></p>
+    <p class="why" id="why"></p>
     <div class="nums" id="nums"></div>
   </header>
 
@@ -225,8 +232,9 @@ $('#dlg').addEventListener('click', e => {
 fetch('products.json').then(r => r.json()).then(d => {
   DATA = d;
   const o = d.owner || {}, ps = d.products || [];
-  $('#hl').innerHTML = esc(o.headline).replace('pass review', '<em>pass review</em>');
+  $('#hl').innerHTML = esc(o.headline).replace('At night I ship AI products', '<em>At night I ship AI products</em>');
   $('#lede').textContent = o.blurb || '';
+  $('#why').textContent = o.why || '';
   $('#gh').href = o.github || '#';
 
   const n = t => ps.filter(p => p.tier === t).length;
@@ -244,6 +252,10 @@ fetch('products.json').then(r => r.json()).then(d => {
         <h3>${esc(a.title)}</h3>
         <p class="body">${esc(a.body)}</p>
         <p class="ev">${esc(a.evidence)}</p>
+        ${(a.proof || []).length ? `<p class="pf">Seen in ${a.proof.map(id => {
+          const t = (DATA.products.find(x => x.id === id) || {}).name || id;
+          return `<button class="lnk" data-id="${esc(id)}">${esc(t)}</button>`;
+        }).join(', ')}</p>` : ''}
       </div>
     </article>`).join('');
 
@@ -253,6 +265,9 @@ fetch('products.json').then(r => r.json()).then(d => {
     el.innerHTML = items.map(card).join('');
   }
   document.querySelectorAll('.card').forEach(c => c.addEventListener('click', () => open_(c.dataset.id)));
+  // 判斷 → 證據：原則裡的產品名可以直接開該產品的詳情
+  document.querySelectorAll('.lnk').forEach(b =>
+    b.addEventListener('click', e => { e.preventDefault(); open_(b.dataset.id); }));
 
   if (d._verified) $('#ver').textContent =
     'Every product status on this page was verified against a live endpoint or the App Store API on ' + d._verified.split(' ')[0] + '.';
