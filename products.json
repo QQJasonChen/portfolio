@@ -6,7 +6,7 @@
     "name": "QQ Chen",
     "role": "AI Project Lead",
     "headline": "I deliver enterprise projects by day. At night I ship AI products — eleven this year, three through App Store review.",
-    "blurb": "Most people who can run a complex delivery programme have never shipped a product themselves. Most people who ship products have never carried enterprise delivery risk. I do both, and the second one is unpaid — I build these on evenings and weekends because this is the work I want to be doing full time.",
+    "blurb": "Twelve products shipped solo in a year — three through App Store review, eight live on the web. The one I am proudest of is the Dutch exam platform: I built it to pass that exam myself, I passed, and 7,000 other candidates have used it in the last 90 days. Below is how I run this work — what I measure, what I refuse to ship, and how a second AI agent caught mistakes I had made.",
     "why": "Everything below was built outside working hours. That constraint is the point: with a few hours a night you cannot afford to guess, so every decision here had to be measured, cut, or justified. The habits that produced it are the ones I would bring to leading AI projects.",
     "github": "https://github.com/QQJasonChen"
   },
@@ -134,19 +134,21 @@
       "name": "Dutch Exam Ace",
       "subtitle": "Dutch integration-exam platform",
       "tier": "live",
-      "status": "Live · free core + paid pack",
-      "tagline": "I built it to pass the Dutch integration exam myself. I passed. Then other candidates started using it.",
+      "status": "Live · 7k visitors / 90 days",
+      "tagline": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since.",
       "role": "Solo — product, backend, AI grading, monetisation",
       "problem": "The Dutch integration exam (Inburgeringsexamen) is compulsory for residency, and almost no preparation material exists in Chinese. Candidates study from Dutch-language material for an exam they are taking precisely because they do not yet speak Dutch.",
       "what": "A full preparation platform covering all four exam skills plus KNM: 50+ past-paper questions, 14 writing templates, 1,000+ high-frequency words, mock speaking exams, and AI grading for both writing and speaking against the CEFR A2 / DUO criteria. Core content is permanently free; a paid resource pack funds it.",
       "hard": "Grading speech and writing in a language the learner is failing at, and having the score be trustworthy. Early versions were too generous, which is worse than useless — a candidate who thinks they are ready walks into the real exam and fails. Rebuilding the speaking scorer to report real fluency signals honestly took several rounds.",
       "highlights": [
+        "7,000 visitors and 18,900 page views in the last 90 days, for an audience as narrow as it gets: Chinese speakers sitting the Dutch integration exam.",
+        "Average visit is 3m28s across 2.7 pages — people arrive and study. Engagement, not just traffic.",
         "AI grading for writing and speaking aligned to the official DUO A2 criteria, not a generic language score.",
         "Made the speaking scorer honest after finding it inflated results — a generous score is worse than no score when someone is deciding whether to book the real exam.",
-        "Free core with a paid resource pack (44 listening notes + 1,000-page handbook, EUR 49 early-bird against EUR 159 list) — the product funds itself.",
-        "Rate limiting fails closed on the AI endpoints, so a traffic spike degrades access rather than the bill."
+        "Free core funded by a paid resource pack (EUR 49 early-bird against EUR 159 list), so AI cost is covered by the product itself.",
+        "Rate limiting fails closed on the AI endpoints: a traffic spike degrades access rather than the bill."
       ],
-      "business": "Permanently free core, funded by a paid resource pack at EUR 49 early-bird (EUR 159 list). Revenue-positive on AI costs.",
+      "business": "Permanently free core, funded by a paid resource pack at EUR 49 early-bird (EUR 159 list). Reaches its audience through organic search — no paid acquisition.",
       "stack": [
         "TypeScript",
         "React",

@@ -242,7 +242,7 @@ fetch('products.json').then(r => r.json()).then(d => {
   $('#nums').innerHTML = [
     [ps.length, 'products shipped solo'],
     [n('shipped'), 'through App Store review'],
-    [n('live') + n('shipped'), 'publicly usable today'],
+    ['7k', 'people used the exam platform (90 days)'],
     [stacks.size, 'technologies'],
   ].map(([v, l]) => `<div class="num"><b>${v}</b><span>${l}</span></div>`).join('');
 
