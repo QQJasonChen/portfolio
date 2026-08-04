@@ -1,0 +1,166 @@
+{
+  "_comment": "產品資料的唯一真相。index.html 讀這支檔案算圖。加新產品只改這裡。",
+  "_video": "video 欄位填 videos/xxx.mp4（短迴圈、靜音、10-20 秒），沒有就留空字串，卡片會顯示佔位。poster 同理。",
+  "_verified": "2026-08-04 逐一 curl / iTunes API 查證過狀態",
+
+  "products": [
+    {
+      "id": "tingzhai",
+      "name": "聽摘 TingZhai",
+      "tagline": "聽 Podcast 最可惜的是聽完什麼都留不住",
+      "role": "全端＋iOS，一人開發",
+      "pitch": "煮飯、開車時聽到金句，直接說一聲「筆記」就記下來——不用碰手機、不用喊 Siri、播放不中斷。AI 整理成看得懂的重點，再用間隔複習在你快忘記時推回來。",
+      "highlights": [
+        "免持模式：自建喚醒詞，真實中文語料 12.7 萬字壓測誤觸率 0",
+        "跨租戶快取讓同一集只花一次 AI 錢，命中率 86%",
+        "間隔複習 SRS——全市場競品都沒做"
+      ],
+      "stack": ["TypeScript", "Express", "SQLite", "SwiftUI", "OpenAI", "Groq"],
+      "links": [
+        { "label": "網站", "href": "https://mytingzhai.com" },
+        { "label": "App Store", "href": "https://apps.apple.com/tw/app/id6786615132" }
+      ],
+      "status": "上架中 · v1.7",
+      "video": "",
+      "poster": ""
+    },
+    {
+      "id": "mailuo",
+      "name": "脈絡 MaiLuo",
+      "tagline": "把一篇文章拆成看得見的思考脈絡",
+      "role": "全端，一人開發",
+      "pitch": "丟一份 Markdown 或 YouTube 連結進去，AI 拆成卡片、連出「有理由的邊」，再生成雙版導讀與語音。不是摘要，是把作者的推論路徑攤開來。",
+      "highlights": [
+        "每條連線都要說出為什麼連——沒有理由的邊不畫",
+        "雙版導讀：快讀版與深讀版並存",
+        "加料／健檢／借卡／圖解四個再加工動作"
+      ],
+      "stack": ["TypeScript", "Railway", "TTS"],
+      "links": [{ "label": "線上試用", "href": "https://mailuo-production.up.railway.app" }],
+      "status": "邀請制封測",
+      "video": "",
+      "poster": ""
+    },
+    {
+      "id": "yuqiao",
+      "name": "語橋 YuQiao",
+      "tagline": "AI 是一座會退場的橋",
+      "role": "全端，一晚實驗作品",
+      "pitch": "語言交換最大的障礙不是語言，是尷尬。AI 在中間接話、補詞、遞話題，等兩個人聊開了就自己退到旁邊。",
+      "highlights": [
+        "設計核心：AI 的成功指標是「被需要的次數下降」",
+        "即時語音對話室"
+      ],
+      "stack": ["TypeScript", "Railway", "Daily.co"],
+      "links": [{ "label": "線上試用", "href": "https://yuqiao-production.up.railway.app" }],
+      "status": "實驗中",
+      "video": "",
+      "poster": ""
+    },
+    {
+      "id": "huisheng",
+      "name": "迴聲 Miraa",
+      "tagline": "用回音法練外語口說",
+      "role": "全端＋iOS，一人開發",
+      "pitch": "聽三秒、跟著說、逐詞評分。20 輪迭代做出回音法、聽寫、SRS 與日文標註。",
+      "highlights": [
+        "逐詞發音評分，不是整句給一個分數",
+        "3 秒回音法 × 間隔複習",
+        "iOS 版已可 build"
+      ],
+      "stack": ["TypeScript", "Railway", "SwiftUI", "Whisper"],
+      "links": [{ "label": "線上試用（需邀請碼）", "href": "https://huisheng-production.up.railway.app" }],
+      "status": "邀請制封測",
+      "video": "",
+      "poster": ""
+    },
+    {
+      "id": "woordjes",
+      "name": "荷蘭文單字 Woordjes",
+      "tagline": "為了自己考荷蘭語 A2 而寫的背單字 App",
+      "role": "全端＋iOS，一人開發",
+      "pitch": "原創詞庫、免費、無廣告。從自己準備考試的痛點長出來，web 與 iOS 同步。",
+      "highlights": [
+        "具體名詞自動配圖（gpt-image，約 300 張）",
+        "詞頻分級，不用死背罕見字",
+        "web 與 iOS 共用同一套內容"
+      ],
+      "stack": ["JavaScript", "SwiftUI", "OpenAI"],
+      "links": [{ "label": "App Store", "href": "https://apps.apple.com/tw/app/id6782196904" }],
+      "status": "上架中 · v1.12",
+      "video": "",
+      "poster": ""
+    },
+    {
+      "id": "tango",
+      "name": "日語單字 Tango",
+      "tagline": "JLPT 分級照詞頻，不照直覺",
+      "role": "全端＋iOS，一人開發",
+      "pitch": "同一套背單字引擎換內容層長出的日文版。分級用 44K 詞頻表重算——越常用的字級數越低，把「進階漢字複合詞被塞進 N3」這種錯誤修掉。",
+      "highlights": [
+        "詞頻制重新分級，N1 洩漏歸零",
+        "文法卡與單字卡同一套 SRS"
+      ],
+      "stack": ["JavaScript", "SwiftUI"],
+      "links": [{ "label": "App Store", "href": "https://apps.apple.com/tw/app/id6784779535" }],
+      "status": "上架中 · v1.3",
+      "video": "",
+      "poster": ""
+    },
+    {
+      "id": "yike",
+      "name": "一刻手帳 Yike",
+      "tagline": "一天只寫一刻，種出一片樹林",
+      "role": "全端，一人開發",
+      "pitch": "不是待辦清單，是給「今天最重要的那一件事」留一個位置。寫下的每一刻長成一棵樹，樹林是你走過的證據——不是誘餌，是縱深。",
+      "highlights": [
+        "種樹是回顧的證據，不是遊戲化的餌",
+        "Gumroad 序號自動開通（Supabase edge function）"
+      ],
+      "stack": ["JavaScript", "Supabase", "PWA"],
+      "links": [{ "label": "線上使用", "href": "https://qqjasonchen.github.io/yike/" }],
+      "status": "公開使用中",
+      "video": "",
+      "poster": ""
+    },
+    {
+      "id": "yicheng",
+      "name": "一程工作誌 Yicheng",
+      "tagline": "專案 × 任務 × 學習，三軸工作日誌",
+      "role": "全端，一人開發",
+      "pitch": "Yike 的姊妹作。記的不只是做了什麼，還有這一程學到什麼。純本機儲存，資料不離開瀏覽器。",
+      "highlights": ["localStorage 純本機，零後端", "三軸結構：專案／任務／學習"],
+      "stack": ["JavaScript", "PWA"],
+      "links": [{ "label": "線上使用", "href": "https://qqjasonchen.github.io/yicheng/" }],
+      "status": "公開使用中",
+      "video": "",
+      "poster": ""
+    },
+    {
+      "id": "gongdu",
+      "name": "共讀打卡 gongdu",
+      "tagline": "早睡早起讀書會的揪團打卡",
+      "role": "全端，一人開發",
+      "pitch": "一個人讀書會斷，一群人就不會。即時同步的打卡牆，看得到夥伴今天起來了沒。",
+      "highlights": ["Supabase 即時同步", "日出主題：越早打卡畫面越亮"],
+      "stack": ["JavaScript", "Supabase"],
+      "links": [{ "label": "線上使用", "href": "https://qqjasonchen.github.io/gongdu/" }],
+      "status": "公開使用中",
+      "video": "",
+      "poster": ""
+    },
+    {
+      "id": "lph",
+      "name": "Language Practice Hub",
+      "tagline": "荷蘭語 A2 口說考古題與反射訓練",
+      "role": "內容＋工具，一人製作",
+      "pitch": "把自己準備 A2 口說的整套素材做成可練的講義：聽力轉口說、看圖回答、答題模板。",
+      "highlights": ["17 份考古題講義", "兩種題型分開設計，看圖題必附截圖"],
+      "stack": ["JavaScript", "Static"],
+      "links": [{ "label": "線上使用", "href": "https://qqjasonchen.github.io/language-practice-hub/" }],
+      "status": "公開使用中",
+      "video": "",
+      "poster": ""
+    }
+  ]
+}

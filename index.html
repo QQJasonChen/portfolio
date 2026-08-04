@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QQ Chen — AI 產品作品集</title>
+<meta name="description" content="10 個一人開發的 AI 產品：Podcast 筆記、語言學習、思考工具。每個都有實際使用影片。">
+<meta property="og:title" content="QQ Chen — AI 產品作品集">
+<meta property="og:description" content="10 個一人開發的 AI 產品，每個都有實際使用影片。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<style>
+  :root{
+    --bg:#0d0e12; --card:#16181f; --card-hover:#1c1f28;
+    --ink:#f2f3f5; --ink-soft:#9ba1ae; --ink-dim:#6b7280;
+    --line:#252833; --accent:#ff8a3d; --accent-soft:rgba(255,138,61,.14);
+    --radius:16px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#faf9f7; --card:#fff; --card-hover:#fff;
+           --ink:#16181f; --ink-soft:#5b6270; --ink-dim:#8b92a0;
+           --line:#e8e6e1; --accent:#d9541e; --accent-soft:rgba(217,84,30,.09); }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+
+  /* ── header ─────────────────────────── */
+  header{padding:72px 0 40px}
+  h1{
+    font-size:clamp(30px,5.5vw,46px); line-height:1.2; margin:0 0 14px;
+    letter-spacing:-.02em; font-weight:800;
+  }
+  h1 .hl{color:var(--accent)}
+  .sub{font-size:clamp(15px,2.2vw,18px); color:var(--ink-soft); margin:0 0 26px; max-width:62ch}
+  .stats{display:flex; flex-wrap:wrap; gap:10px}
+  .stat{
+    display:flex; align-items:baseline; gap:7px;
+    background:var(--card); border:1px solid var(--line);
+    padding:8px 14px; border-radius:999px; font-size:13px;
+  }
+  .stat b{font-size:17px; color:var(--accent); font-weight:800}
+  .stat span{color:var(--ink-soft)}
+
+  /* ── filters ────────────────────────── */
+  .filters{
+    display:flex; gap:8px; overflow-x:auto; padding:22px 0 4px;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  }
+  .filters::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto; background:var(--card); border:1px solid var(--line);
+    color:var(--ink-soft); padding:7px 15px; border-radius:999px;
+    font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap;
+    transition:.15s; font-family:inherit;
+  }
+  .chip:hover{color:var(--ink); border-color:var(--ink-dim)}
+  .chip[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent); color:var(--accent)}
+
+  /* ── grid ───────────────────────────── */
+  .grid{
+    display:grid; gap:22px; padding:26px 0 80px;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  }
+  article{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column; transition:.18s;
+  }
+  article:hover{border-color:var(--ink-dim); transform:translateY(-2px)}
+
+  /* 影片是主視覺 */
+  .media{
+    position:relative; aspect-ratio:16/10; background:#000;
+    border-bottom:1px solid var(--line); overflow:hidden;
+  }
+  .media video{width:100%; height:100%; object-fit:cover; display:block}
+  .media .placeholder{
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:8px;
+    background:linear-gradient(135deg,var(--card-hover),var(--card));
+    color:var(--ink-dim); font-size:13px; text-align:center; padding:20px;
+  }
+  .media .placeholder .icon{font-size:30px; opacity:.5}
+  .media .badge{
+    position:absolute; top:10px; right:10px; z-index:2;
+    background:rgba(0,0,0,.72); color:#fff; backdrop-filter:blur(8px);
+    font-size:11px; font-weight:700; padding:4px 10px; border-radius:999px;
+  }
+
+  .body{padding:18px 20px 20px; display:flex; flex-direction:column; gap:11px; flex:1}
+  h2{margin:0; font-size:19px; font-weight:800; letter-spacing:-.01em}
+  .tagline{margin:0; color:var(--accent); font-size:13.5px; font-weight:600}
+  .role{margin:0; color:var(--ink-dim); font-size:12px}
+  .pitch{margin:0; color:var(--ink-soft); font-size:14px}
+
+  details{border-top:1px solid var(--line); padding-top:11px; margin-top:2px}
+  summary{
+    cursor:pointer; color:var(--ink-soft); font-size:12.5px; font-weight:600;
+    list-style:none; user-select:none;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ "; color:var(--accent)}
+  details[open] summary::before{content:"▾ "}
+  details ul{margin:10px 0 0; padding-left:17px; color:var(--ink-soft); font-size:13px}
+  details li{margin-bottom:6px}
+
+  .stack{display:flex; flex-wrap:wrap; gap:5px}
+  .tag{
+    background:var(--accent-soft); color:var(--accent);
+    font-size:11px; font-weight:700; padding:3px 9px; border-radius:5px;
+  }
+  .links{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:11px}
+  .links a{
+    color:var(--ink); text-decoration:none; font-size:13px; font-weight:700;
+    border:1px solid var(--line); padding:7px 14px; border-radius:9px; transition:.15s;
+  }
+  .links a:hover{border-color:var(--accent); color:var(--accent)}
+
+  footer{
+    border-top:1px solid var(--line); padding:32px 0 60px;
+    color:var(--ink-dim); font-size:13px;
+  }
+  footer a{color:var(--ink-soft)}
+  .empty{padding:60px 20px; text-align:center; color:var(--ink-dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>一個人做的 <span class="hl">10 個 AI 產品</span></h1>
+    <p class="sub">
+      從 Podcast 筆記到語言學習工具，設計、後端、iOS、上架都自己來。
+      每個產品下面都是實際操作影片——不是簡報，是真的在跑。
+    </p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <nav class="filters" id="filters" aria-label="篩選"></nav>
+  <main class="grid" id="grid"></main>
+
+  <footer>
+    <p>作者 QQ Chen ｜ <a href="https://github.com/QQJasonChen">GitHub</a></p>
+    <p id="verified"></p>
+  </footer>
+
+</div>
+
+<script>
+const GRID = document.getElementById('grid');
+
+/** 影片可能還沒錄——沒有就顯示佔位，不要出現破圖 */
+function media(p) {
+  const badge = p.status ? `<span class="badge">${p.status}</span>` : '';
+  if (p.video) {
+    return `<div class="media">${badge}
+      <video src="${p.video}" ${p.poster ? `poster="${p.poster}"` : ''}
+             autoplay muted loop playsinline preload="metadata"></video>
+    </div>`;
+  }
+  return `<div class="media">${badge}
+    <div class="placeholder"><span class="icon">🎬</span><span>操作影片準備中</span></div>
+  </div>`;
+}
+
+function card(p) {
+  return `<article data-id="${p.id}" data-stack="${(p.stack||[]).join(',')}">
+    ${media(p)}
+    <div class="body">
+      <h2>${p.name}</h2>
+      <p class="tagline">${p.tagline}</p>
+      <p class="role">${p.role}</p>
+      <p class="pitch">${p.pitch}</p>
+      ${(p.highlights||[]).length ? `<details><summary>技術重點</summary><ul>${
+        p.highlights.map(h => `<li>${h}</li>`).join('')
+      }</ul></details>` : ''}
+      <div class="stack">${(p.stack||[]).map(s => `<span class="tag">${s}</span>`).join('')}</div>
+      <div class="links">${(p.links||[]).map(l =>
+        `<a href="${l.href}" target="_blank" rel="noopener">${l.label} ↗</a>`
+      ).join('')}</div>
+    </div>
+  </article>`;
+}
+
+fetch('products.json')
+  .then(r => r.json())
+  .then(data => {
+    const items = data.products || [];
+
+    // 統計：用真實資料算，不要寫死數字（寫死的遲早跟現實對不上）
+    const shipped = items.filter(p => /上架中/.test(p.status || '')).length;
+    const live    = items.filter(p => /使用中|上架中/.test(p.status || '')).length;
+    const stacks  = new Set(items.flatMap(p => p.stack || []));
+    document.getElementById('stats').innerHTML = [
+      [items.length, '個產品'], [shipped, '個 App Store 上架'],
+      [live, '個公開可用'], [stacks.size, '種技術'],
+    ].map(([n, l]) => `<span class="stat"><b>${n}</b><span>${l}</span></span>`).join('');
+
+    // 篩選：依技術棧
+    const all = ['全部', ...[...stacks].sort()];
+    document.getElementById('filters').innerHTML = all.map((s, i) =>
+      `<button class="chip" aria-pressed="${i === 0}" data-f="${s}">${s}</button>`
+    ).join('');
+
+    GRID.innerHTML = items.map(card).join('');
+
+    document.getElementById('filters').addEventListener('click', e => {
+      const btn = e.target.closest('.chip'); if (!btn) return;
+      document.querySelectorAll('.chip').forEach(c =>
+        c.setAttribute('aria-pressed', String(c === btn)));
+      const f = btn.dataset.f;
+      let shown = 0;
+      GRID.querySelectorAll('article').forEach(a => {
+        const hit = f === '全部' || a.dataset.stack.split(',').includes(f);
+        a.style.display = hit ? '' : 'none';
+        if (hit) shown++;
+      });
+      const old = GRID.querySelector('.empty'); if (old) old.remove();
+      if (!shown) GRID.insertAdjacentHTML('beforeend', '<p class="empty">沒有符合的產品</p>');
+    });
+
+    if (data._verified) {
+      document.getElementById('verified').textContent = '產品狀態最後查證：' + data._verified.split(' ')[0];
+    }
+  })
+  .catch(err => {
+    GRID.innerHTML = '<p class="empty">產品資料載入失敗——請確認 products.json 存在且格式正確。</p>';
+    console.error(err);
+  });
+</script>
+</body>
+</html>
