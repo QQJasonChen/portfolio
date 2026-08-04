@@ -76,6 +76,16 @@
   .pr .note{margin:11px 0 0;padding-left:14px;border-left:2px solid var(--line-2);
     color:var(--ink-3);font-size:14px;line-height:1.6;max-width:68ch}
 
+  .also{list-style:none;margin:0;padding:0;display:grid;gap:0}
+  .also li{border-top:1px solid var(--line)}
+  .also li:last-child{border-bottom:1px solid var(--line)}
+  .also a{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;padding:14px 2px;
+    text-decoration:none;color:inherit;transition:.15s}
+  .also a:hover{color:var(--accent)}
+  .also b{font-size:16px;font-weight:800;letter-spacing:-.012em;min-width:190px}
+  .also span{font-size:14.5px;color:var(--ink-2)}
+  .also a:hover span{color:var(--ink)}
+
   /* ── deep dive ── */
   .cs{display:block;text-decoration:none;color:inherit;margin:0 0 64px;padding:30px 32px;
     border:1px solid var(--line-2);border-radius:16px;background:var(--surface);transition:.18s}
@@ -164,18 +174,13 @@
   <div class="rule"></div>
 
   <section class="band">
-    <div class="sh"><h2>On the App Store</h2><p>Through review and live</p></div>
-    <div class="grid" id="g-shipped"></div>
+    <div class="sh"><h2>AI products</h2><p>Live, with real users</p></div>
+    <div class="grid" id="g-ai"></div>
   </section>
 
   <section class="band" style="padding-top:0">
-    <div class="sh"><h2>Live on the web</h2><p>Publicly usable today</p></div>
-    <div class="grid" id="g-live"></div>
-  </section>
-
-  <section class="band" style="padding-top:0">
-    <div class="sh"><h2>In beta</h2><p>Invite-only or experimental</p></div>
-    <div class="grid" id="g-beta"></div>
+    <div class="sh"><h2 id="al-k"></h2><p id="al-n"></p></div>
+    <ul class="also" id="also"></ul>
   </section>
 
   <div class="rule"></div>
@@ -258,7 +263,7 @@ $('#dlg').addEventListener('click', e => {
 fetch('products.json').then(r => r.json()).then(d => {
   DATA = d;
   const o = d.owner || {}, ps = d.products || [];
-  $('#hl').innerHTML = esc(o.headline).replace('all the way to users', '<em>all the way to users</em>');
+  $('#hl').innerHTML = esc(o.headline).replace('four AI products live', '<em>four AI products live</em>');
   $('#lede').textContent = o.blurb || '';
   $('#why').textContent = o.why || '';
   $('#gh').href = o.github || '#';
@@ -266,10 +271,10 @@ fetch('products.json').then(r => r.json()).then(d => {
   const n = t => ps.filter(p => p.tier === t).length;
   const stacks = new Set(ps.flatMap(p => p.stack || []));
   $('#nums').innerHTML = [
-    [ps.length, 'products shipped solo'],
-    [n('shipped'), 'through App Store review'],
-    ['7k', 'people used the exam platform (90 days)'],
-    [stacks.size, 'technologies'],
+    [ps.length + (d.also?.items?.length || 0), 'products shipped solo'],
+    [3, 'through App Store review'],
+    ['7k', 'used the exam platform (90 days)'],
+    ['3m28s', 'average visit — they study, not bounce'],
   ].map(([v, l]) => `<div class="num"><b>${v}</b><span>${l}</span></div>`).join('');
 
   const cs = d.casestudy;
@@ -294,10 +299,14 @@ fetch('products.json').then(r => r.json()).then(d => {
       </div>
     </article>`).join('');
 
-  for (const [tier, sel] of [['shipped', '#g-shipped'], ['live', '#g-live'], ['beta', '#g-beta']]) {
-    const items = ps.filter(p => p.tier === tier), el = $(sel);
-    if (!items.length) { el.closest('.band').remove(); continue; }
-    el.innerHTML = items.map(card).join('');
+  $('#g-ai').innerHTML = ps.map(card).join('');
+
+  const al = d.also;
+  if (al) {
+    $('#al-k').textContent = al.kicker;
+    $('#al-n').textContent = al.note;
+    $('#also').innerHTML = al.items.map(i =>
+      `<li><a href="${esc(i.href)}" target="_blank" rel="noopener"><b>${esc(i.name)}</b><span>${esc(i.what)} ↗</span></a></li>`).join('');
   }
   document.querySelectorAll('.card').forEach(c => c.addEventListener('click', () => open_(c.dataset.id)));
   // 判斷 → 證據：原則裡的產品名可以直接開該產品的詳情

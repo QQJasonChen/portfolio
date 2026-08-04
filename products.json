@@ -5,16 +5,61 @@
   "owner": {
     "name": "QQ Chen",
     "role": "AI Project Lead",
-    "headline": "I take AI ideas all the way to users — nine live products, three through App Store review.",
+    "headline": "I take AI ideas all the way to users — four AI products live, three through App Store review.",
     "blurb": "Built on evenings and weekends. Live links, real usage, and one project written up end to end.",
     "github": "https://github.com/QQJasonChen"
   },
   "products": [
     {
+      "id": "examace",
+      "name": "Dutch Exam Ace",
+      "subtitle": "Dutch integration-exam platform",
+      "tier": "ai",
+      "status": "Live · 7k visitors / 90 days",
+      "tagline": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since.",
+      "role": "Solo — product, backend, AI grading, monetisation",
+      "problem": "The Dutch integration exam (Inburgeringsexamen) is compulsory for residency, and almost no preparation material exists in Chinese. Candidates study from Dutch-language material for an exam they are taking precisely because they do not yet speak Dutch.",
+      "what": "A full preparation platform covering all four exam skills plus KNM: 50+ past-paper questions, 14 writing templates, 1,000+ high-frequency words, mock speaking exams, and AI grading for both writing and speaking against the CEFR A2 / DUO criteria. Core content is permanently free.",
+      "hard": "Grading speech and writing in a language the learner is failing at, and having the score be trustworthy. Early versions were too generous, which is worse than useless — a candidate who thinks they are ready walks into the real exam and fails. Rebuilding the speaking scorer to report real fluency signals honestly took several rounds.",
+      "highlights": [
+        "7,000 visitors and 18,900 page views in the last 90 days, for an audience as narrow as it gets: Chinese speakers sitting the Dutch integration exam.",
+        "Average visit is 3m28s across 2.7 pages — people arrive and study. Engagement, not just traffic.",
+        "AI grading for writing and speaking aligned to the official DUO A2 criteria, not a generic language score.",
+        "Made the speaking scorer honest after finding it inflated results — a generous score is worse than no score when someone is deciding whether to book the real exam.",
+        "Core content is free and stays free — the pieces that cost money to run are funded separately so the free path never degrades.",
+        "Rate limiting fails closed on the AI endpoints: a traffic spike degrades access rather than the bill."
+      ],
+      "business": "Core content is permanently free and always will be; an optional resource pack covers running costs. Reaches its audience entirely through organic search — no paid acquisition, no ads.",
+      "stack": [
+        "TypeScript",
+        "React",
+        "Supabase",
+        "OpenAI",
+        "Whisper",
+        "Supabase Auth"
+      ],
+      "links": [
+        {
+          "label": "Case study",
+          "href": "casestudy.html"
+        },
+        {
+          "label": "Open site",
+          "href": "https://dutch-exam-ace.com"
+        }
+      ],
+      "cover": "posters/examace.jpg",
+      "gallery": [
+        "posters/examace.jpg"
+      ],
+      "video": "",
+      "card": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since."
+    },
+    {
       "id": "tingzhai",
       "name": "TingZhai",
       "subtitle": "AI notes for podcast listeners",
-      "tier": "shipped",
+      "tier": "ai",
       "status": "App Store · v1.7",
       "tagline": "Hands busy? Say \"note\" out loud and the last 60 seconds is captured, transcribed and filed.",
       "role": "Solo — product, backend, iOS, App Store submission",
@@ -60,7 +105,7 @@
       "id": "woordjes",
       "name": "Woordjes",
       "subtitle": "Dutch vocabulary for exam candidates",
-      "tier": "shipped",
+      "tier": "ai",
       "status": "App Store · v1.12",
       "tagline": "2,000 high-frequency Dutch words, levelled A1/A2/B1, with spaced repetition.",
       "role": "Solo — product, backend, iOS, App Store submission",
@@ -98,7 +143,7 @@
       "id": "tango",
       "name": "Tango",
       "subtitle": "Japanese vocabulary, JLPT N5–N1",
-      "tier": "shipped",
+      "tier": "ai",
       "status": "App Store · v1.3",
       "tagline": "10,000 words levelled by corpus frequency instead of by intuition.",
       "role": "Solo — product, backend, iOS, App Store submission",
@@ -130,222 +175,6 @@
       ],
       "video": "",
       "card": "10,000 words levelled by corpus frequency instead of by intuition."
-    },
-    {
-      "id": "examace",
-      "name": "Dutch Exam Ace",
-      "subtitle": "Dutch integration-exam platform",
-      "tier": "live",
-      "status": "Live · 7k visitors / 90 days",
-      "tagline": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since.",
-      "role": "Solo — product, backend, AI grading, monetisation",
-      "problem": "The Dutch integration exam (Inburgeringsexamen) is compulsory for residency, and almost no preparation material exists in Chinese. Candidates study from Dutch-language material for an exam they are taking precisely because they do not yet speak Dutch.",
-      "what": "A full preparation platform covering all four exam skills plus KNM: 50+ past-paper questions, 14 writing templates, 1,000+ high-frequency words, mock speaking exams, and AI grading for both writing and speaking against the CEFR A2 / DUO criteria. Core content is permanently free.",
-      "hard": "Grading speech and writing in a language the learner is failing at, and having the score be trustworthy. Early versions were too generous, which is worse than useless — a candidate who thinks they are ready walks into the real exam and fails. Rebuilding the speaking scorer to report real fluency signals honestly took several rounds.",
-      "highlights": [
-        "7,000 visitors and 18,900 page views in the last 90 days, for an audience as narrow as it gets: Chinese speakers sitting the Dutch integration exam.",
-        "Average visit is 3m28s across 2.7 pages — people arrive and study. Engagement, not just traffic.",
-        "AI grading for writing and speaking aligned to the official DUO A2 criteria, not a generic language score.",
-        "Made the speaking scorer honest after finding it inflated results — a generous score is worse than no score when someone is deciding whether to book the real exam.",
-        "Core content is free and stays free — the pieces that cost money to run are funded separately so the free path never degrades.",
-        "Rate limiting fails closed on the AI endpoints: a traffic spike degrades access rather than the bill."
-      ],
-      "business": "Core content is permanently free and always will be; an optional resource pack covers running costs. Reaches its audience entirely through organic search — no paid acquisition, no ads.",
-      "stack": [
-        "TypeScript",
-        "React",
-        "Supabase",
-        "OpenAI",
-        "Whisper",
-        "Supabase Auth"
-      ],
-      "links": [
-        {
-          "label": "Case study",
-          "href": "casestudy.html"
-        },
-        {
-          "label": "Open site",
-          "href": "https://dutch-exam-ace.com"
-        }
-      ],
-      "cover": "posters/examace.jpg",
-      "gallery": [
-        "posters/examace.jpg"
-      ],
-      "video": "",
-      "card": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since."
-    },
-    {
-      "id": "playphrase",
-      "name": "Dutch PlayPhrase",
-      "subtitle": "Learn Dutch from real video, not textbooks",
-      "tier": "live",
-      "status": "Live · 700K subtitle lines",
-      "tagline": "Search 700,000 real Dutch subtitle lines and hear each one spoken in context.",
-      "role": "Solo — product, backend, search infrastructure",
-      "problem": "Textbook Dutch is not the Dutch anyone speaks. Learners can recite a phrase and still not recognise it at native speed, because they have only ever heard it read aloud slowly by one voice.",
-      "what": "A searchable index of 700,000 subtitle lines from Dutch video. Type a word or phrase and you get every clip where a real person says it, played back at native speed with the transcript aligned. Adds a vocabulary notebook with spaced review and A2/KNM mock exams on top.",
-      "hard": "Search relevance across a corpus this size where the useful result is not the best keyword match but the clearest, most natural-sounding utterance. Plus keeping playback instant when clips live on someone else's infrastructure.",
-      "highlights": [
-        "Full learning loop rather than a lookup toy: search → listen → save to notebook → spaced review → mock exam.",
-        "One of three Dutch exam-prep products I built for the same underserved audience: Chinese-speaking candidates preparing for the integration exam. I built them because I was sitting that exam myself and could not find material in my own language.",
-        "Deployment lesson learned the hard way: pushing to git does not deploy, and container env changes need an explicit redeploy. Both are now written into the repo's runbook."
-      ],
-      "business": "Free. The corpus is the moat; the exam-prep layer on top is where it goes next.",
-      "stack": [
-        "TypeScript",
-        "Railway",
-        "Full-text search",
-        "Tailwind"
-      ],
-      "links": [
-        {
-          "label": "Open app",
-          "href": "https://dutch-playphrase-production.up.railway.app/"
-        }
-      ],
-      "cover": "posters/playphrase.jpg",
-      "gallery": [
-        "posters/playphrase.jpg"
-      ],
-      "video": "",
-      "card": "Search 700,000 real Dutch subtitle lines and hear each one spoken in context."
-    },
-    {
-      "id": "lph",
-      "name": "Language Practice Hub",
-      "subtitle": "Dutch A2 speaking-exam prep",
-      "tier": "live",
-      "status": "Live · 17 worked papers",
-      "tagline": "Seventeen worked past papers for an exam almost nobody publishes material for.",
-      "role": "Solo — content, tooling",
-      "problem": "The Dutch A2 speaking exam has two very different question types and almost no published practice material in Chinese. Candidates walk in having never rehearsed the actual format.",
-      "what": "Seventeen worked past-paper sets with model answers and response templates, a 14-day sprint plan, and a daily review queue.",
-      "hard": "Structuring the content. Early drafts mixed the two question types together and were unusable — the two demand different preparation, so they had to be kept structurally separate throughout.",
-      "highlights": [
-        "Picture-response questions always ship with the actual image. A written description of a picture is not practice.",
-        "A free preview is public; the complete set is kept out of version control so it cannot leak by accident.",
-        "One of three Dutch products built for the same audience — vocabulary, listening from real video, and speaking papers."
-      ],
-      "business": "A free preview is public; the complete 17-paper set is distributed separately and deliberately kept out of version control so it cannot leak by accident.",
-      "stack": [
-        "JavaScript",
-        "Static"
-      ],
-      "links": [
-        {
-          "label": "Open site",
-          "href": "https://qqjasonchen.github.io/language-practice-hub/"
-        }
-      ],
-      "cover": "posters/lph.jpg",
-      "gallery": [
-        "posters/lph.jpg"
-      ],
-      "video": "",
-      "card": "Seventeen worked past papers for an exam almost nobody publishes material for."
-    },
-    {
-      "id": "yike",
-      "name": "Yike",
-      "subtitle": "A journal with room for exactly one thing",
-      "tier": "live",
-      "status": "Live · web and iOS",
-      "tagline": "One entry a day. Each one grows a tree; the forest is the evidence you showed up.",
-      "role": "Solo — product, backend, iOS",
-      "problem": "To-do apps optimise for volume, so people record everything and review nothing. What actually helps is a record of the one thing that mattered — but no product makes that the constraint.",
-      "what": "A journalling PWA and iOS app with a single slot per day. Each entry grows a tree, and the accumulated forest is a visual record of consistency over months.",
-      "hard": "Resisting gamification. Forest-style apps use the tree as bait to make you stay off your phone. Here the tree has to be evidence rather than a reward, or the whole premise collapses into another streak app.",
-      "highlights": [
-        "The tree is proof of depth, not a reward loop — a deliberate design decision made after studying how Forest uses the same visual.",
-        "Upgrades activate automatically through a Supabase edge function — no manual step, no support ticket.",
-        "Ships as an installable PWA and a native iOS build from one codebase."
-      ],
-      "business": "Free to use. Cross-device sync is an optional upgrade, activated automatically so nothing needs manual handling.",
-      "stack": [
-        "JavaScript",
-        "Supabase",
-        "PWA"
-      ],
-      "links": [
-        {
-          "label": "Open app",
-          "href": "https://qqjasonchen.github.io/yike/"
-        }
-      ],
-      "cover": "posters/yike.jpg",
-      "gallery": [
-        "posters/yike.jpg"
-      ],
-      "video": "",
-      "card": "One entry a day. Each one grows a tree; the forest is the evidence you showed up."
-    },
-    {
-      "id": "yicheng",
-      "name": "Yicheng",
-      "subtitle": "A work log that records what you learned",
-      "tier": "live",
-      "status": "Live · web",
-      "tagline": "Projects, tasks, and the thing the work taught you — the third axis most logs drop.",
-      "role": "Solo — product, frontend",
-      "problem": "Work logs record output. Six months later that tells you that you were busy, not that you got better. The learning is the part worth keeping and the part every tool omits.",
-      "what": "A three-axis log — project, task, and what it taught you — running entirely in the browser with no account and no server.",
-      "hard": "Nothing technically. The design constraint was the point: zero backend means there is no data to breach and no service to keep running, which is the right trade for a private journal.",
-      "highlights": [
-        "localStorage only — no account, no server, nothing to leak.",
-        "Three-axis structure instead of a flat task list, so the record answers 'what did I learn' and not only 'what did I do'."
-      ],
-      "business": "Free, private by construction. Companion to Yike rather than a separate product line.",
-      "stack": [
-        "JavaScript",
-        "PWA"
-      ],
-      "links": [
-        {
-          "label": "Open app",
-          "href": "https://qqjasonchen.github.io/yicheng/"
-        }
-      ],
-      "cover": "posters/yicheng.jpg",
-      "gallery": [
-        "posters/yicheng.jpg"
-      ],
-      "video": "",
-      "card": "Projects, tasks, and the thing the work taught you — the third axis most logs drop."
-    },
-    {
-      "id": "gongdu",
-      "name": "Gongdu",
-      "subtitle": "Group check-in for an early-rising reading club",
-      "tier": "live",
-      "status": "Live · web",
-      "tagline": "You can see whether your group is up yet. That turns out to be the entire mechanism.",
-      "role": "Solo — product, backend",
-      "problem": "Solo reading habits collapse in about two weeks. Group accountability fixes it, but group chat is the wrong surface — it is noisy and there is no glanceable state.",
-      "what": "A shared check-in wall that syncs in real time. One tap to check in; the board shows who is already up.",
-      "hard": "Almost nothing, and that is the point — the product is one well-chosen mechanic, shipped in a weekend, which is why the group actually uses it.",
-      "highlights": [
-        "Real-time sync via Supabase so the board updates without a refresh.",
-        "Sunrise theme: the earlier you check in, the brighter the board gets — the reward is visual and immediate."
-      ],
-      "business": "Free. Built for one real group that still uses it.",
-      "stack": [
-        "JavaScript",
-        "Supabase"
-      ],
-      "links": [
-        {
-          "label": "Open app",
-          "href": "https://qqjasonchen.github.io/gongdu/"
-        }
-      ],
-      "cover": "posters/gongdu.jpg",
-      "gallery": [
-        "posters/gongdu.jpg"
-      ],
-      "video": "",
-      "card": "You can see whether your group is up yet. That turns out to be the entire mechanism."
     }
   ],
   "approach": [
@@ -384,5 +213,36 @@
     "title": "Grading speech the model could not hear",
     "blurb": "An AI scoring feature was confidently reporting pronunciation errors it had no structural way to detect. Finding that changed the product copy, the prompt, the audio pipeline, the free tier and the error messages — in that order.",
     "cta": "Read the full case study"
+  },
+  "also": {
+    "kicker": "Also shipped",
+    "note": "Same pattern, no AI involved — included because shipping is the habit, not the exception.",
+    "items": [
+      {
+        "name": "Dutch PlayPhrase",
+        "what": "700,000 real Dutch subtitle lines, searchable and playable in context",
+        "href": "https://dutch-playphrase-production.up.railway.app/"
+      },
+      {
+        "name": "Language Practice Hub",
+        "what": "17 worked past papers for the Dutch A2 speaking exam",
+        "href": "https://qqjasonchen.github.io/language-practice-hub/"
+      },
+      {
+        "name": "Yike",
+        "what": "A journal with room for exactly one thing a day",
+        "href": "https://qqjasonchen.github.io/yike/"
+      },
+      {
+        "name": "Yicheng",
+        "what": "A work log that records what the work taught you",
+        "href": "https://qqjasonchen.github.io/yicheng/"
+      },
+      {
+        "name": "Gongdu",
+        "what": "Real-time check-in wall for an early-rising reading group",
+        "href": "https://qqjasonchen.github.io/gongdu/"
+      }
+    ]
   }
 }
