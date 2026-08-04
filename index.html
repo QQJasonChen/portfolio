@@ -154,7 +154,7 @@
 <div class="wrap">
 
   <header class="hero">
-    <div class="kicker"><i></i> AI Project Lead · Building AI products</div>
+    <div class="kicker"><i></i> Building AI products</div>
     <h1 id="hl"></h1>
     <p class="lede" id="lede"></p>
     <p class="why" id="why"></p>
@@ -255,7 +255,7 @@ $('#dlg').addEventListener('click', e => {
 fetch('products.json').then(r => r.json()).then(d => {
   DATA = d;
   const o = d.owner || {}, ps = d.products || [];
-  $('#hl').innerHTML = esc(o.headline).replace('At night I take AI ideas all the way to users', '<em>At night I take AI ideas all the way to users</em>');
+  $('#hl').innerHTML = esc(o.headline).replace('all the way to users', '<em>all the way to users</em>');
   $('#lede').textContent = o.blurb || '';
   $('#why').textContent = o.why || '';
   $('#gh').href = o.github || '#';
