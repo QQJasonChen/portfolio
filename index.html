@@ -1,237 +1,275 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>QQ Chen — AI 產品作品集</title>
-<meta name="description" content="10 個一人開發的 AI 產品：Podcast 筆記、語言學習、思考工具。每個都有實際使用影片。">
-<meta property="og:title" content="QQ Chen — AI 產品作品集">
-<meta property="og:description" content="10 個一人開發的 AI 產品，每個都有實際使用影片。">
+<title>QQ Chen — AI Product Portfolio</title>
+<meta name="description" content="Ten AI products shipped solo: three on the App Store, seven live on the web. Design, backend, iOS and submission, end to end.">
+<meta property="og:title" content="QQ Chen — AI Product Portfolio">
+<meta property="og:description" content="Ten AI products shipped solo. Three on the App Store, seven live on the web.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
 <style>
   :root{
-    --bg:#0d0e12; --card:#16181f; --card-hover:#1c1f28;
-    --ink:#f2f3f5; --ink-soft:#9ba1ae; --ink-dim:#6b7280;
-    --line:#252833; --accent:#ff8a3d; --accent-soft:rgba(255,138,61,.14);
-    --radius:16px;
+    --bg:#08090c; --surface:#101218; --surface-2:#171a22; --line:#22252f;
+    --ink:#f4f5f7; --ink-2:#a2a9b8; --ink-3:#6a7183;
+    --accent:#ff7a2f; --accent-2:#ffb37a; --accent-bg:rgba(255,122,47,.12);
+    --ok:#3fb96b; --ok-bg:rgba(63,185,107,.14);
+    --r:14px; --maxw:1140px;
   }
   @media (prefers-color-scheme: light){
-    :root{ --bg:#faf9f7; --card:#fff; --card-hover:#fff;
-           --ink:#16181f; --ink-soft:#5b6270; --ink-dim:#8b92a0;
-           --line:#e8e6e1; --accent:#d9541e; --accent-soft:rgba(217,84,30,.09); }
+    :root{
+      --bg:#fbfaf8; --surface:#fff; --surface-2:#f5f4f1; --line:#e6e3dd;
+      --ink:#101218; --ink-2:#54596a; --ink-3:#878d9c;
+      --accent:#d24d15; --accent-2:#b03f0f; --accent-bg:rgba(210,77,21,.08);
+      --ok:#1f8a4c; --ok-bg:rgba(31,138,76,.1);
+    }
   }
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
   body{
     margin:0; background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;
-    line-height:1.65; -webkit-font-smoothing:antialiased;
+    font:400 16px/1.65 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px}
+  a{color:inherit}
 
-  /* ── header ─────────────────────────── */
-  header{padding:72px 0 40px}
+  /* ───── hero ───── */
+  .hero{padding:88px 0 46px; border-bottom:1px solid var(--line)}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; margin-bottom:20px;
+    font-size:12px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--accent); background:var(--accent-bg);
+    padding:6px 13px; border-radius:999px;
+  }
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);
+       animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
   h1{
-    font-size:clamp(30px,5.5vw,46px); line-height:1.2; margin:0 0 14px;
-    letter-spacing:-.02em; font-weight:800;
+    margin:0 0 20px; font-size:clamp(32px,6vw,56px); line-height:1.08;
+    letter-spacing:-.033em; font-weight:800; max-width:19ch;
   }
-  h1 .hl{color:var(--accent)}
-  .sub{font-size:clamp(15px,2.2vw,18px); color:var(--ink-soft); margin:0 0 26px; max-width:62ch}
-  .stats{display:flex; flex-wrap:wrap; gap:10px}
-  .stat{
-    display:flex; align-items:baseline; gap:7px;
-    background:var(--card); border:1px solid var(--line);
-    padding:8px 14px; border-radius:999px; font-size:13px;
-  }
-  .stat b{font-size:17px; color:var(--accent); font-weight:800}
-  .stat span{color:var(--ink-soft)}
+  h1 em{font-style:normal; color:var(--accent)}
+  .blurb{margin:0 0 30px; max-width:60ch; font-size:clamp(15px,2vw,17.5px); color:var(--ink-2)}
+  .metrics{display:flex; flex-wrap:wrap; gap:28px}
+  .metric b{display:block; font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.02em; line-height:1.1}
+  .metric span{font-size:12.5px; color:var(--ink-3); letter-spacing:.02em}
 
-  /* ── filters ────────────────────────── */
-  .filters{
-    display:flex; gap:8px; overflow-x:auto; padding:22px 0 4px;
-    -webkit-overflow-scrolling:touch; scrollbar-width:none;
-  }
-  .filters::-webkit-scrollbar{display:none}
-  .chip{
-    flex:0 0 auto; background:var(--card); border:1px solid var(--line);
-    color:var(--ink-soft); padding:7px 15px; border-radius:999px;
-    font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap;
-    transition:.15s; font-family:inherit;
-  }
-  .chip:hover{color:var(--ink); border-color:var(--ink-dim)}
-  .chip[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent); color:var(--accent)}
+  /* ───── section ───── */
+  .sec{padding:46px 0 0}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:20px; flex-wrap:wrap}
+  .sec-head h2{margin:0; font-size:15px; font-weight:800; letter-spacing:.05em; text-transform:uppercase}
+  .sec-head p{margin:0; font-size:13.5px; color:var(--ink-3)}
 
-  /* ── grid ───────────────────────────── */
-  .grid{
-    display:grid; gap:22px; padding:26px 0 80px;
-    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  /* ───── cards ───── */
+  .grid{display:grid; gap:20px; grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .grid.lead{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+    overflow:hidden; cursor:pointer; text-align:left; padding:0; color:inherit;
+    font:inherit; display:flex; flex-direction:column; transition:.2s ease;
   }
-  article{
-    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-    overflow:hidden; display:flex; flex-direction:column; transition:.18s;
+  .card:hover{border-color:var(--accent); transform:translateY(-3px)}
+  .card:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+  .shot{position:relative; aspect-ratio:16/10; background:var(--surface-2); overflow:hidden}
+  .shot img,.shot video{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .shot .none{
+    position:absolute; inset:0; display:grid; place-content:center; gap:6px; justify-items:center;
+    color:var(--ink-3); font-size:12.5px;
   }
-  article:hover{border-color:var(--ink-dim); transform:translateY(-2px)}
+  .shot .none span:first-child{font-size:26px; opacity:.45}
+  .pill{
+    position:absolute; top:11px; left:11px; z-index:2; font-size:11px; font-weight:800;
+    padding:4px 10px; border-radius:999px; letter-spacing:.02em;
+    background:rgba(8,9,12,.76); color:#fff; backdrop-filter:blur(10px);
+  }
+  .pill.shipped{background:var(--ok); color:#fff}
+  .cbody{padding:17px 19px 19px; display:flex; flex-direction:column; gap:8px; flex:1}
+  .cname{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap}
+  .cname h3{margin:0; font-size:19px; font-weight:800; letter-spacing:-.015em}
+  .cname small{font-size:12px; color:var(--ink-3); font-weight:600}
+  .ctag{margin:0; font-size:13.5px; color:var(--accent); font-weight:600; line-height:1.45}
+  .cstack{display:flex; flex-wrap:wrap; gap:5px; margin-top:auto; padding-top:9px}
+  .t{font-size:10.5px; font-weight:700; color:var(--ink-3); border:1px solid var(--line); padding:2.5px 8px; border-radius:5px}
+  .more{font-size:12.5px; color:var(--ink-3); font-weight:700}
+  .card:hover .more{color:var(--accent)}
 
-  /* 影片是主視覺 */
-  .media{
-    position:relative; aspect-ratio:16/10; background:#000;
-    border-bottom:1px solid var(--line); overflow:hidden;
+  /* ───── modal ───── */
+  dialog{
+    border:none; padding:0; background:transparent; max-width:920px; width:calc(100% - 32px);
+    max-height:90vh; color:var(--ink);
   }
-  .media video{width:100%; height:100%; object-fit:cover; display:block}
-  .media .placeholder{
-    position:absolute; inset:0; display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:8px;
-    background:linear-gradient(135deg,var(--card-hover),var(--card));
-    color:var(--ink-dim); font-size:13px; text-align:center; padding:20px;
+  dialog::backdrop{background:rgba(0,0,0,.72); backdrop-filter:blur(4px)}
+  .sheet{
+    background:var(--surface); border:1px solid var(--line); border-radius:18px;
+    overflow:hidden auto; max-height:90vh;
   }
-  .media .placeholder .icon{font-size:30px; opacity:.5}
-  .media .badge{
-    position:absolute; top:10px; right:10px; z-index:2;
-    background:rgba(0,0,0,.72); color:#fff; backdrop-filter:blur(8px);
-    font-size:11px; font-weight:700; padding:4px 10px; border-radius:999px;
+  .sheet-head{position:relative}
+  .sheet-head .media{aspect-ratio:16/9; background:var(--surface-2)}
+  .sheet-head .media img,.sheet-head .media video{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .x{
+    position:absolute; top:12px; right:12px; z-index:3; width:34px; height:34px; border-radius:50%;
+    border:none; background:rgba(8,9,12,.68); color:#fff; font-size:19px; cursor:pointer;
+    backdrop-filter:blur(10px); line-height:1;
   }
+  .x:hover{background:rgba(8,9,12,.9)}
+  .sheet-body{padding:24px 26px 30px}
+  .sheet-body h3{margin:0 0 4px; font-size:26px; font-weight:800; letter-spacing:-.02em}
+  .sheet-body .sub{margin:0 0 14px; color:var(--ink-3); font-size:13.5px; font-weight:600}
+  .sheet-body .tag{margin:0 0 16px; font-size:16px; color:var(--accent); font-weight:700}
+  .sheet-body .pitch{margin:0 0 22px; color:var(--ink-2); font-size:15.5px; max-width:66ch}
+  .hl{margin:0 0 22px; padding:0; list-style:none; display:grid; gap:11px}
+  .hl li{position:relative; padding-left:22px; color:var(--ink-2); font-size:14.5px; max-width:70ch}
+  .hl li::before{content:"→"; position:absolute; left:0; color:var(--accent); font-weight:800}
+  .gal{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:9px; margin:0 0 22px}
+  .gal img{width:100%; border-radius:9px; border:1px solid var(--line); display:block; cursor:zoom-in}
+  .meta{display:flex; flex-wrap:wrap; gap:20px; padding-top:18px; border-top:1px solid var(--line)}
+  .meta div{font-size:13px}
+  .meta dt{color:var(--ink-3); font-size:11.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; margin-bottom:3px}
+  .cta{display:flex; flex-wrap:wrap; gap:9px; margin-top:20px}
+  .cta a{
+    text-decoration:none; font-size:14px; font-weight:700; padding:10px 18px;
+    border-radius:10px; border:1px solid var(--line); transition:.15s;
+  }
+  .cta a:first-child{background:var(--accent); border-color:var(--accent); color:#fff}
+  .cta a:hover{border-color:var(--accent); color:var(--accent)}
+  .cta a:first-child:hover{opacity:.88; color:#fff}
 
-  .body{padding:18px 20px 20px; display:flex; flex-direction:column; gap:11px; flex:1}
-  h2{margin:0; font-size:19px; font-weight:800; letter-spacing:-.01em}
-  .tagline{margin:0; color:var(--accent); font-size:13.5px; font-weight:600}
-  .role{margin:0; color:var(--ink-dim); font-size:12px}
-  .pitch{margin:0; color:var(--ink-soft); font-size:14px}
-
-  details{border-top:1px solid var(--line); padding-top:11px; margin-top:2px}
-  summary{
-    cursor:pointer; color:var(--ink-soft); font-size:12.5px; font-weight:600;
-    list-style:none; user-select:none;
+  footer{margin-top:70px; border-top:1px solid var(--line); padding:30px 0 66px; color:var(--ink-3); font-size:13px}
+  footer a{color:var(--ink-2)}
+  @media (max-width:640px){
+    .hero{padding:56px 0 34px}
+    .metrics{gap:20px}
+    .sheet-body{padding:20px 18px 26px}
   }
-  summary::-webkit-details-marker{display:none}
-  summary::before{content:"▸ "; color:var(--accent)}
-  details[open] summary::before{content:"▾ "}
-  details ul{margin:10px 0 0; padding-left:17px; color:var(--ink-soft); font-size:13px}
-  details li{margin-bottom:6px}
-
-  .stack{display:flex; flex-wrap:wrap; gap:5px}
-  .tag{
-    background:var(--accent-soft); color:var(--accent);
-    font-size:11px; font-weight:700; padding:3px 9px; border-radius:5px;
-  }
-  .links{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:11px}
-  .links a{
-    color:var(--ink); text-decoration:none; font-size:13px; font-weight:700;
-    border:1px solid var(--line); padding:7px 14px; border-radius:9px; transition:.15s;
-  }
-  .links a:hover{border-color:var(--accent); color:var(--accent)}
-
-  footer{
-    border-top:1px solid var(--line); padding:32px 0 60px;
-    color:var(--ink-dim); font-size:13px;
-  }
-  footer a{color:var(--ink-soft)}
-  .empty{padding:60px 20px; text-align:center; color:var(--ink-dim)}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <h1>一個人做的 <span class="hl">10 個 AI 產品</span></h1>
-    <p class="sub">
-      從 Podcast 筆記到語言學習工具，設計、後端、iOS、上架都自己來。
-      每個產品下面都是實際操作影片——不是簡報，是真的在跑。
-    </p>
-    <div class="stats" id="stats"></div>
+<div class="wrap">
+  <header class="hero">
+    <span class="eyebrow"><span class="dot"></span> Available for work</span>
+    <h1 id="headline"></h1>
+    <p class="blurb" id="blurb"></p>
+    <div class="metrics" id="metrics"></div>
   </header>
 
-  <nav class="filters" id="filters" aria-label="篩選"></nav>
-  <main class="grid" id="grid"></main>
+  <section class="sec">
+    <div class="sec-head"><h2>On the App Store</h2><p>Shipped, reviewed and live</p></div>
+    <div class="grid lead" id="g-shipped"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>Live on the web</h2><p>Publicly usable right now</p></div>
+    <div class="grid" id="g-live"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>In beta</h2><p>Invite-only or experimental</p></div>
+    <div class="grid" id="g-beta"></div>
+  </section>
 
   <footer>
-    <p>作者 QQ Chen ｜ <a href="https://github.com/QQJasonChen">GitHub</a></p>
+    <p>QQ Chen · <a id="gh" href="#">GitHub</a></p>
     <p id="verified"></p>
   </footer>
-
 </div>
 
-<script>
-const GRID = document.getElementById('grid');
+<dialog id="dlg"><div class="sheet" id="sheet"></div></dialog>
 
-/** 影片可能還沒錄——沒有就顯示佔位，不要出現破圖 */
-function media(p) {
-  const badge = p.status ? `<span class="badge">${p.status}</span>` : '';
-  if (p.video) {
-    return `<div class="media">${badge}
-      <video src="${p.video}" ${p.poster ? `poster="${p.poster}"` : ''}
-             autoplay muted loop playsinline preload="metadata"></video>
-    </div>`;
-  }
-  return `<div class="media">${badge}
-    <div class="placeholder"><span class="icon">🎬</span><span>操作影片準備中</span></div>
-  </div>`;
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let DATA = null;
+
+/** Cover: video wins, then image, then a labelled placeholder — never a broken frame. */
+function cover(p, cls) {
+  if (p.video)  return `<video src="${esc(p.video)}" ${p.cover ? `poster="${esc(p.cover)}"` : ''} autoplay muted loop playsinline preload="metadata"></video>`;
+  if (p.cover)  return `<img src="${esc(p.cover)}" alt="${esc(p.name)} screenshot" loading="lazy">`;
+  return `<div class="none"><span>◆</span><span>Walkthrough coming soon</span></div>`;
 }
 
 function card(p) {
-  return `<article data-id="${p.id}" data-stack="${(p.stack||[]).join(',')}">
-    ${media(p)}
-    <div class="body">
-      <h2>${p.name}</h2>
-      <p class="tagline">${p.tagline}</p>
-      <p class="role">${p.role}</p>
-      <p class="pitch">${p.pitch}</p>
-      ${(p.highlights||[]).length ? `<details><summary>技術重點</summary><ul>${
-        p.highlights.map(h => `<li>${h}</li>`).join('')
-      }</ul></details>` : ''}
-      <div class="stack">${(p.stack||[]).map(s => `<span class="tag">${s}</span>`).join('')}</div>
-      <div class="links">${(p.links||[]).map(l =>
-        `<a href="${l.href}" target="_blank" rel="noopener">${l.label} ↗</a>`
-      ).join('')}</div>
+  return `<button class="card" data-id="${esc(p.id)}">
+    <div class="shot">
+      <span class="pill ${p.tier === 'shipped' ? 'shipped' : ''}">${esc(p.status)}</span>
+      ${cover(p)}
     </div>
-  </article>`;
+    <div class="cbody">
+      <div class="cname"><h3>${esc(p.name)}</h3><small>${esc(p.subtitle)}</small></div>
+      <p class="ctag">${esc(p.tagline)}</p>
+      <div class="cstack">${(p.stack || []).slice(0, 4).map(s => `<span class="t">${esc(s)}</span>`).join('')}</div>
+      <span class="more">Read the walkthrough →</span>
+    </div>
+  </button>`;
 }
 
-fetch('products.json')
-  .then(r => r.json())
-  .then(data => {
-    const items = data.products || [];
+function openSheet(id) {
+  const p = DATA.products.find(x => x.id === id);
+  if (!p) return;
+  $('#sheet').innerHTML = `
+    <div class="sheet-head">
+      <button class="x" aria-label="Close">×</button>
+      <div class="media">${cover(p)}</div>
+    </div>
+    <div class="sheet-body">
+      <h3>${esc(p.name)}</h3>
+      <p class="sub">${esc(p.subtitle)} · ${esc(p.status)}</p>
+      <p class="tag">${esc(p.tagline)}</p>
+      <p class="pitch">${esc(p.pitch)}</p>
+      ${(p.highlights || []).length ? `<ul class="hl">${p.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
+      ${(p.gallery || []).length > 1 ? `<div class="gal">${p.gallery.map(g =>
+        `<img src="${esc(g)}" alt="${esc(p.name)}" loading="lazy" onclick="window.open('${esc(g)}','_blank')">`).join('')}</div>` : ''}
+      <div class="meta">
+        <div><dt>Role</dt>${esc(p.role)}</div>
+        <div><dt>Stack</dt>${(p.stack || []).join(' · ')}</div>
+      </div>
+      <div class="cta">${(p.links || []).map(l =>
+        `<a href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('')}</div>
+    </div>`;
+  $('#dlg').showModal();
+}
 
-    // 統計：用真實資料算，不要寫死數字（寫死的遲早跟現實對不上）
-    const shipped = items.filter(p => /上架中/.test(p.status || '')).length;
-    const live    = items.filter(p => /使用中|上架中/.test(p.status || '')).length;
-    const stacks  = new Set(items.flatMap(p => p.stack || []));
-    document.getElementById('stats').innerHTML = [
-      [items.length, '個產品'], [shipped, '個 App Store 上架'],
-      [live, '個公開可用'], [stacks.size, '種技術'],
-    ].map(([n, l]) => `<span class="stat"><b>${n}</b><span>${l}</span></span>`).join('');
+$('#dlg').addEventListener('click', e => {
+  // click the backdrop or the × to close
+  if (e.target.id === 'dlg' || e.target.classList.contains('x')) $('#dlg').close();
+});
 
-    // 篩選：依技術棧
-    const all = ['全部', ...[...stacks].sort()];
-    document.getElementById('filters').innerHTML = all.map((s, i) =>
-      `<button class="chip" aria-pressed="${i === 0}" data-f="${s}">${s}</button>`
-    ).join('');
+fetch('products.json').then(r => r.json()).then(data => {
+  DATA = data;
+  const o = data.owner || {}, ps = data.products || [];
 
-    GRID.innerHTML = items.map(card).join('');
+  $('#headline').innerHTML = esc(o.headline).replace('end to end', '<em>end to end</em>');
+  $('#blurb').textContent = o.blurb || '';
+  $('#gh').href = o.github || '#';
 
-    document.getElementById('filters').addEventListener('click', e => {
-      const btn = e.target.closest('.chip'); if (!btn) return;
-      document.querySelectorAll('.chip').forEach(c =>
-        c.setAttribute('aria-pressed', String(c === btn)));
-      const f = btn.dataset.f;
-      let shown = 0;
-      GRID.querySelectorAll('article').forEach(a => {
-        const hit = f === '全部' || a.dataset.stack.split(',').includes(f);
-        a.style.display = hit ? '' : 'none';
-        if (hit) shown++;
-      });
-      const old = GRID.querySelector('.empty'); if (old) old.remove();
-      if (!shown) GRID.insertAdjacentHTML('beforeend', '<p class="empty">沒有符合的產品</p>');
-    });
+  // Metrics are computed, never hard-coded — hard-coded numbers drift out of truth.
+  const n = t => ps.filter(p => p.tier === t).length;
+  const stacks = new Set(ps.flatMap(p => p.stack || []));
+  $('#metrics').innerHTML = [
+    [ps.length, 'products shipped solo'],
+    [n('shipped'), 'live on the App Store'],
+    [n('live') + n('shipped'), 'publicly usable today'],
+    [stacks.size, 'technologies'],
+  ].map(([v, l]) => `<div class="metric"><b>${v}</b><span>${l}</span></div>`).join('');
 
-    if (data._verified) {
-      document.getElementById('verified').textContent = '產品狀態最後查證：' + data._verified.split(' ')[0];
-    }
-  })
-  .catch(err => {
-    GRID.innerHTML = '<p class="empty">產品資料載入失敗——請確認 products.json 存在且格式正確。</p>';
-    console.error(err);
-  });
+  for (const [tier, sel] of [['shipped', '#g-shipped'], ['live', '#g-live'], ['beta', '#g-beta']]) {
+    const items = ps.filter(p => p.tier === tier);
+    const el = $(sel);
+    if (!items.length) { el.closest('.sec').remove(); continue; }
+    el.innerHTML = items.map(card).join('');
+  }
+
+  document.querySelectorAll('.card').forEach(c =>
+    c.addEventListener('click', () => openSheet(c.dataset.id)));
+
+  if (data._verified) $('#verified').textContent =
+    'Product status last verified ' + data._verified.split(' ')[0] + ' against live endpoints and the iTunes Lookup API.';
+}).catch(err => {
+  $('#g-shipped').innerHTML = '<p style="color:var(--ink-3)">Could not load products.json.</p>';
+  console.error(err);
+});
 </script>
 </body>
 </html>

@@ -1,166 +1,209 @@
 {
-  "_comment": "產品資料的唯一真相。index.html 讀這支檔案算圖。加新產品只改這裡。",
-  "_video": "video 欄位填 videos/xxx.mp4（短迴圈、靜音、10-20 秒），沒有就留空字串，卡片會顯示佔位。poster 同理。",
-  "_verified": "2026-08-04 逐一 curl / iTunes API 查證過狀態",
+  "_comment": "Single source of truth. index.html renders from this file. To add a product, edit here only.",
+  "_video": "Put videos/<id>.mp4 in `video` (short silent loop, 10-20s). Leave empty and the cover image is used instead.",
+  "_verified": "2026-08-04 — every status below was checked with curl / iTunes Lookup API, not from memory",
+  "_tiers": "shipped = live on the App Store | live = publicly usable on the web | beta = invite-only",
+
+  "owner": {
+    "name": "QQ Chen",
+    "headline": "I ship AI products end to end — design, backend, iOS, App Store.",
+    "blurb": "Ten products built solo over the past year. Everything below is running right now: three are on the App Store, seven are live on the web. Each card opens with a walkthrough of what the product actually does.",
+    "github": "https://github.com/QQJasonChen"
+  },
 
   "products": [
     {
       "id": "tingzhai",
-      "name": "聽摘 TingZhai",
-      "tagline": "聽 Podcast 最可惜的是聽完什麼都留不住",
-      "role": "全端＋iOS，一人開發",
-      "pitch": "煮飯、開車時聽到金句，直接說一聲「筆記」就記下來——不用碰手機、不用喊 Siri、播放不中斷。AI 整理成看得懂的重點，再用間隔複習在你快忘記時推回來。",
+      "name": "TingZhai",
+      "subtitle": "Podcast AI Notes",
+      "tier": "shipped",
+      "status": "App Store · v1.7",
+      "tagline": "The worst thing about podcasts: you finish one and keep nothing.",
+      "role": "Solo — backend, iOS, App Store submission",
+      "pitch": "Hear something worth keeping while cooking or driving? Just say \"note\" out loud. No touching the phone, no wake word for Siri, playback never stops. AI turns it into something readable, then spaced repetition brings it back right before you forget.",
       "highlights": [
-        "免持模式：自建喚醒詞，真實中文語料 12.7 萬字壓測誤觸率 0",
-        "跨租戶快取讓同一集只花一次 AI 錢，命中率 86%",
-        "間隔複習 SRS——全市場競品都沒做"
+        "Custom on-device wake word. Stress-tested against 127K characters of real Chinese transcripts — cut false triggers from 38 to 0.",
+        "Cross-tenant transcript cache: the same episode costs AI money once, not once per user. 86% hit rate, 7.07× reuse, US$0.82 per episode.",
+        "Spaced repetition (SM-2) — no competitor in this category ships it.",
+        "Found and fixed two App Store rejection risks pre-submission by running an adversarial review with a second AI agent."
       ],
       "stack": ["TypeScript", "Express", "SQLite", "SwiftUI", "OpenAI", "Groq"],
       "links": [
-        { "label": "網站", "href": "https://mytingzhai.com" },
+        { "label": "Website", "href": "https://mytingzhai.com" },
         { "label": "App Store", "href": "https://apps.apple.com/tw/app/id6786615132" }
       ],
-      "status": "上架中 · v1.7",
-      "video": "",
-      "poster": ""
-    },
-    {
-      "id": "mailuo",
-      "name": "脈絡 MaiLuo",
-      "tagline": "把一篇文章拆成看得見的思考脈絡",
-      "role": "全端，一人開發",
-      "pitch": "丟一份 Markdown 或 YouTube 連結進去，AI 拆成卡片、連出「有理由的邊」，再生成雙版導讀與語音。不是摘要，是把作者的推論路徑攤開來。",
-      "highlights": [
-        "每條連線都要說出為什麼連——沒有理由的邊不畫",
-        "雙版導讀：快讀版與深讀版並存",
-        "加料／健檢／借卡／圖解四個再加工動作"
-      ],
-      "stack": ["TypeScript", "Railway", "TTS"],
-      "links": [{ "label": "線上試用", "href": "https://mailuo-production.up.railway.app" }],
-      "status": "邀請制封測",
-      "video": "",
-      "poster": ""
-    },
-    {
-      "id": "yuqiao",
-      "name": "語橋 YuQiao",
-      "tagline": "AI 是一座會退場的橋",
-      "role": "全端，一晚實驗作品",
-      "pitch": "語言交換最大的障礙不是語言，是尷尬。AI 在中間接話、補詞、遞話題，等兩個人聊開了就自己退到旁邊。",
-      "highlights": [
-        "設計核心：AI 的成功指標是「被需要的次數下降」",
-        "即時語音對話室"
-      ],
-      "stack": ["TypeScript", "Railway", "Daily.co"],
-      "links": [{ "label": "線上試用", "href": "https://yuqiao-production.up.railway.app" }],
-      "status": "實驗中",
-      "video": "",
-      "poster": ""
-    },
-    {
-      "id": "huisheng",
-      "name": "迴聲 Miraa",
-      "tagline": "用回音法練外語口說",
-      "role": "全端＋iOS，一人開發",
-      "pitch": "聽三秒、跟著說、逐詞評分。20 輪迭代做出回音法、聽寫、SRS 與日文標註。",
-      "highlights": [
-        "逐詞發音評分，不是整句給一個分數",
-        "3 秒回音法 × 間隔複習",
-        "iOS 版已可 build"
-      ],
-      "stack": ["TypeScript", "Railway", "SwiftUI", "Whisper"],
-      "links": [{ "label": "線上試用（需邀請碼）", "href": "https://huisheng-production.up.railway.app" }],
-      "status": "邀請制封測",
-      "video": "",
-      "poster": ""
+      "cover": "posters/tingzhai-1.jpg",
+      "gallery": ["posters/tingzhai-1.jpg", "posters/tingzhai-2.jpg", "posters/tingzhai-3.jpg", "posters/tingzhaiweb.jpg"],
+      "video": ""
     },
     {
       "id": "woordjes",
-      "name": "荷蘭文單字 Woordjes",
-      "tagline": "為了自己考荷蘭語 A2 而寫的背單字 App",
-      "role": "全端＋iOS，一人開發",
-      "pitch": "原創詞庫、免費、無廣告。從自己準備考試的痛點長出來，web 與 iOS 同步。",
+      "name": "Woordjes",
+      "subtitle": "Dutch Vocabulary",
+      "tier": "shipped",
+      "status": "App Store · v1.12",
+      "tagline": "Built because I was failing my own Dutch A2 exam.",
+      "role": "Solo — backend, iOS, App Store submission",
+      "pitch": "Original word list, free, no ads, no tracking. Started as a tool for my own exam prep and turned into a shipped app with a shared content layer across web and iOS.",
       "highlights": [
-        "具體名詞自動配圖（gpt-image，約 300 張）",
-        "詞頻分級，不用死背罕見字",
-        "web 與 iOS 共用同一套內容"
+        "Auto-illustrated concrete nouns via image generation — roughly 300 images for about US$2.",
+        "Frequency-based leveling so you learn common words first instead of memorising rare ones.",
+        "Same engine later produced the Japanese app — 95% of the code is shared, only the content layer differs."
       ],
       "stack": ["JavaScript", "SwiftUI", "OpenAI"],
       "links": [{ "label": "App Store", "href": "https://apps.apple.com/tw/app/id6782196904" }],
-      "status": "上架中 · v1.12",
-      "video": "",
-      "poster": ""
+      "cover": "posters/woordjes-1.jpg",
+      "gallery": ["posters/woordjes-1.jpg", "posters/woordjes-2.jpg", "posters/woordjes-3.jpg", "posters/woordjes-4.jpg"],
+      "video": ""
     },
     {
       "id": "tango",
-      "name": "日語單字 Tango",
-      "tagline": "JLPT 分級照詞頻，不照直覺",
-      "role": "全端＋iOS，一人開發",
-      "pitch": "同一套背單字引擎換內容層長出的日文版。分級用 44K 詞頻表重算——越常用的字級數越低，把「進階漢字複合詞被塞進 N3」這種錯誤修掉。",
+      "name": "Tango",
+      "subtitle": "Japanese Vocabulary",
+      "tier": "shipped",
+      "status": "App Store · v1.3",
+      "tagline": "JLPT levels assigned by word frequency, not by intuition.",
+      "role": "Solo — backend, iOS, App Store submission",
+      "pitch": "The second app off the same engine. The interesting part was the data: an earlier heuristic had quietly pushed advanced kanji compounds into N3, so I rebuilt leveling on a 44K-word frequency table.",
       "highlights": [
-        "詞頻制重新分級，N1 洩漏歸零",
-        "文法卡與單字卡同一套 SRS"
+        "Re-leveled the full deck against a frequency corpus — N1 leakage into lower levels dropped to zero.",
+        "Grammar cards and vocabulary cards share one spaced-repetition scheduler.",
+        "Proved the engine is reusable: shipping a second language took content work, not a rewrite."
       ],
       "stack": ["JavaScript", "SwiftUI"],
       "links": [{ "label": "App Store", "href": "https://apps.apple.com/tw/app/id6784779535" }],
-      "status": "上架中 · v1.3",
-      "video": "",
-      "poster": ""
+      "cover": "posters/tango-1.jpg",
+      "gallery": ["posters/tango-1.jpg", "posters/tango-2.jpg", "posters/tango-3.jpg", "posters/tango-4.jpg"],
+      "video": ""
+    },
+    {
+      "id": "mailuo",
+      "name": "MaiLuo",
+      "subtitle": "Reasoning Canvas",
+      "tier": "beta",
+      "status": "Invite-only beta",
+      "tagline": "Turn an article into the argument behind it.",
+      "role": "Solo — full stack",
+      "pitch": "Drop in a Markdown file or a YouTube link. It breaks the content into cards and draws edges between them — but only edges it can justify. The output isn't a summary; it's the author's reasoning path laid out where you can see it.",
+      "highlights": [
+        "Every edge has to state why it exists. Unjustifiable connections are not drawn.",
+        "Two reading depths generated side by side, plus text-to-speech.",
+        "Four follow-up actions: enrich, health-check, borrow a card, diagram it."
+      ],
+      "stack": ["TypeScript", "Railway", "TTS"],
+      "links": [{ "label": "Live demo", "href": "https://mailuo-production.up.railway.app" }],
+      "cover": "posters/mailuo.jpg",
+      "gallery": ["posters/mailuo.jpg"],
+      "video": ""
     },
     {
       "id": "yike",
-      "name": "一刻手帳 Yike",
-      "tagline": "一天只寫一刻，種出一片樹林",
-      "role": "全端，一人開發",
-      "pitch": "不是待辦清單，是給「今天最重要的那一件事」留一個位置。寫下的每一刻長成一棵樹，樹林是你走過的證據——不是誘餌，是縱深。",
+      "name": "Yike",
+      "subtitle": "One Moment Journal",
+      "tier": "live",
+      "status": "Publicly available",
+      "tagline": "One moment a day grows into a forest.",
+      "role": "Solo — full stack",
+      "pitch": "Not a to-do list. It reserves one place for the single thing that mattered today. Each entry grows a tree, and the forest becomes evidence of where you've been.",
       "highlights": [
-        "種樹是回顧的證據，不是遊戲化的餌",
-        "Gumroad 序號自動開通（Supabase edge function）"
+        "The tree is proof of depth, not a gamification hook — a deliberate product decision after studying Forest.",
+        "Gumroad license keys auto-activate through a Supabase edge function.",
+        "Ships as an installable PWA and a native iOS build."
       ],
       "stack": ["JavaScript", "Supabase", "PWA"],
-      "links": [{ "label": "線上使用", "href": "https://qqjasonchen.github.io/yike/" }],
-      "status": "公開使用中",
-      "video": "",
-      "poster": ""
+      "links": [{ "label": "Open app", "href": "https://qqjasonchen.github.io/yike/" }],
+      "cover": "posters/yike.jpg",
+      "gallery": ["posters/yike.jpg"],
+      "video": ""
+    },
+    {
+      "id": "huisheng",
+      "name": "Miraa",
+      "subtitle": "Speaking Practice",
+      "tier": "beta",
+      "status": "Invite-only beta",
+      "tagline": "Echo method for foreign-language speaking.",
+      "role": "Solo — backend, iOS",
+      "pitch": "Listen for three seconds, repeat it back, get scored word by word. Twenty iterations produced the echo drill, dictation mode, spaced repetition and Japanese furigana annotation.",
+      "highlights": [
+        "Per-word pronunciation scoring rather than one number for the whole sentence.",
+        "Hit and solved two iOS web-audio traps: reused audio elements breaking after first playback, and MediaRecorder producing empty blobs."
+      ],
+      "stack": ["TypeScript", "Railway", "SwiftUI", "Whisper"],
+      "links": [{ "label": "Live demo (invite code)", "href": "https://huisheng-production.up.railway.app" }],
+      "cover": "",
+      "gallery": [],
+      "video": ""
     },
     {
       "id": "yicheng",
-      "name": "一程工作誌 Yicheng",
-      "tagline": "專案 × 任務 × 學習，三軸工作日誌",
-      "role": "全端，一人開發",
-      "pitch": "Yike 的姊妹作。記的不只是做了什麼，還有這一程學到什麼。純本機儲存，資料不離開瀏覽器。",
-      "highlights": ["localStorage 純本機，零後端", "三軸結構：專案／任務／學習"],
+      "name": "Yicheng",
+      "subtitle": "Work Log",
+      "tier": "live",
+      "status": "Publicly available",
+      "tagline": "Projects × tasks × what you learned.",
+      "role": "Solo — full stack",
+      "pitch": "Sister product to Yike. Most work logs record what you did; this one also records what the work taught you. Entirely local storage — data never leaves the browser.",
+      "highlights": ["Zero backend by design: localStorage only, nothing to breach.", "Three-axis structure instead of a flat task list."],
       "stack": ["JavaScript", "PWA"],
-      "links": [{ "label": "線上使用", "href": "https://qqjasonchen.github.io/yicheng/" }],
-      "status": "公開使用中",
-      "video": "",
-      "poster": ""
+      "links": [{ "label": "Open app", "href": "https://qqjasonchen.github.io/yicheng/" }],
+      "cover": "posters/yicheng.jpg",
+      "gallery": ["posters/yicheng.jpg"],
+      "video": ""
+    },
+    {
+      "id": "yuqiao",
+      "name": "YuQiao",
+      "subtitle": "Language Exchange",
+      "tier": "beta",
+      "status": "Experimental",
+      "tagline": "The AI is a bridge that walks away.",
+      "role": "Solo — full stack, built in one night",
+      "pitch": "The hard part of language exchange isn't language, it's awkwardness. The AI sits in the middle feeding words and topics — then steps back once the two people are actually talking.",
+      "highlights": [
+        "Success metric is inverted: the AI is working when it gets used less over time.",
+        "Real-time voice rooms."
+      ],
+      "stack": ["TypeScript", "Railway", "Daily.co"],
+      "links": [{ "label": "Live demo", "href": "https://yuqiao-production.up.railway.app" }],
+      "cover": "posters/yuqiao.jpg",
+      "gallery": ["posters/yuqiao.jpg"],
+      "video": ""
     },
     {
       "id": "gongdu",
-      "name": "共讀打卡 gongdu",
-      "tagline": "早睡早起讀書會的揪團打卡",
-      "role": "全端，一人開發",
-      "pitch": "一個人讀書會斷，一群人就不會。即時同步的打卡牆，看得到夥伴今天起來了沒。",
-      "highlights": ["Supabase 即時同步", "日出主題：越早打卡畫面越亮"],
+      "name": "Gongdu",
+      "subtitle": "Reading Check-in",
+      "tier": "live",
+      "status": "Publicly available",
+      "tagline": "Alone you quit; together you don't.",
+      "role": "Solo — full stack",
+      "pitch": "A shared check-in wall for an early-rising reading group. You can see whether your group is up yet, which turns out to be the whole mechanism.",
+      "highlights": ["Real-time sync via Supabase.", "Sunrise theme: the earlier you check in, the brighter the board."],
       "stack": ["JavaScript", "Supabase"],
-      "links": [{ "label": "線上使用", "href": "https://qqjasonchen.github.io/gongdu/" }],
-      "status": "公開使用中",
-      "video": "",
-      "poster": ""
+      "links": [{ "label": "Open app", "href": "https://qqjasonchen.github.io/gongdu/" }],
+      "cover": "posters/gongdu.jpg",
+      "gallery": ["posters/gongdu.jpg"],
+      "video": ""
     },
     {
       "id": "lph",
       "name": "Language Practice Hub",
-      "tagline": "荷蘭語 A2 口說考古題與反射訓練",
-      "role": "內容＋工具，一人製作",
-      "pitch": "把自己準備 A2 口說的整套素材做成可練的講義：聽力轉口說、看圖回答、答題模板。",
-      "highlights": ["17 份考古題講義", "兩種題型分開設計，看圖題必附截圖"],
+      "subtitle": "Dutch A2 Exam Prep",
+      "tier": "live",
+      "status": "Publicly available",
+      "tagline": "My own exam prep, turned into something practisable.",
+      "role": "Solo — content and tooling",
+      "pitch": "Seventeen worked past-paper sets for the Dutch A2 speaking exam, plus a 14-day sprint plan and daily review.",
+      "highlights": [
+        "Two question types kept structurally separate — mixing them was why earlier drafts didn't work.",
+        "Picture-response questions always ship with the actual image, never a description."
+      ],
       "stack": ["JavaScript", "Static"],
-      "links": [{ "label": "線上使用", "href": "https://qqjasonchen.github.io/language-practice-hub/" }],
-      "status": "公開使用中",
-      "video": "",
-      "poster": ""
+      "links": [{ "label": "Open site", "href": "https://qqjasonchen.github.io/language-practice-hub/" }],
+      "cover": "posters/lph.jpg",
+      "gallery": ["posters/lph.jpg"],
+      "video": ""
     }
   ]
 }

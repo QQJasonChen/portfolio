@@ -1,91 +1,92 @@
-# AI 產品作品集
+# AI Product Portfolio
 
-10 個一人開發的 AI 產品，每個都配一段實際操作影片。純靜態，走 GitHub Pages。
+Ten AI products shipped solo. Static site, deployed on GitHub Pages.
 
-**線上位置**：`https://qqjasonchen.github.io/ai-works/`（部署後）
+**Live:** https://qqjasonchen.github.io/portfolio/
 
 ---
 
-## 現在的狀態
+## Structure
 
-網站本體、資料、篩選、RWD 都完成了。**還缺的只有影片**——10 個卡片目前都是「操作影片準備中」的佔位。
+```
+index.html      Layout and interaction — renders from products.json
+products.json   Single source of truth. Add a product here only.
+add-video.sh    Compress a screen recording for the web and wire it up
+posters/        Cover images and galleries
+videos/         Compressed walkthrough clips
+```
 
-## 怎麼加影片
+Products are grouped automatically by `tier`:
 
-### 1. 錄
+| tier | Section | Meaning |
+|---|---|---|
+| `shipped` | On the App Store | Reviewed and live on the App Store |
+| `live` | Live on the web | Publicly usable right now |
+| `beta` | In beta | Invite-only or experimental |
 
-| 產品類型 | 怎麼錄 |
+The headline metrics (products, App Store count, technologies) are **computed from the
+data**, never hard-coded. Hard-coded numbers drift out of truth the moment you add
+something and forget to update them.
+
+---
+
+## Adding a walkthrough video
+
+Every card falls back to its cover image, so videos are optional — add them one at a time.
+
+### 1. Record
+
+| Product type | How |
 |---|---|
-| iOS App | iPhone 控制中心 → 螢幕錄影 |
-| 網頁 | macOS `Cmd+Shift+5` → 錄製選取範圍 |
+| iOS app | iPhone Control Centre → Screen Recording |
+| Web | macOS `Cmd+Shift+5` → record selection |
 
-**錄影原則**（決定這頁好不好看）：
+Three rules that decide whether this page works:
 
-- **10–15 秒就好**。卡片是自動播放的靜音迴圈，沒人會停下來看 60 秒。
-- **只演一件事**，而且是那個產品最不可取代的那件事。
-  例：聽摘就錄「說一聲『筆記』→ 摘錄跳出來」，不要錄註冊登入。
-- **從動作開始**，不要錄開場畫面。前 2 秒沒東西動，觀眾就滑掉了。
-- 手機錄直式、網頁錄橫式都可以，卡片會自己裁切成 16:10。
+- **10–15 seconds.** Cards autoplay silently on loop. Nobody stops to watch 60 seconds.
+- **Show one thing** — the thing that product does that nothing else does. For TingZhai
+  that's *say "note" out loud → the highlight appears*. Not signup, not settings.
+- **Start on the action.** If nothing moves in the first two seconds, people scroll past.
 
-### 2. 壓縮並自動填進資料
+### 2. Compress and wire it up
 
 ```bash
-./add-video.sh <產品id> <錄影檔> [起點秒] [長度秒]
+./add-video.sh <product-id> <recording> [start-sec] [duration-sec]
 
-# 例：從第 3 秒開始取 14 秒
+# e.g. take 14 seconds starting at 0:03
 ./add-video.sh tingzhai ~/Desktop/rec.mov 3 14
 ```
 
-腳本會做三件事：壓成 web 用的 mp4（通常 1–3MB）、抽第一幀當封面、把路徑寫回 `products.json`。
+Compresses to a web-sized mp4 (typically 1–3 MB), pulls a poster frame, and writes the
+paths back into `products.json`. Requires `ffmpeg` (`brew install ffmpeg`).
 
-需要 `ffmpeg`（`brew install ffmpeg`）。
+GitHub Pages caps a single file at 100 MB, and a raw 20-second iPhone recording is often
+30 MB+. Ten of those unprocessed would make the page unusable.
 
-**產品 id**：`tingzhai` `mailuo` `yuqiao` `huisheng` `woordjes` `tango` `yike` `yicheng` `gongdu` `lph`
+**Product ids:** `tingzhai` `woordjes` `tango` `mailuo` `yike` `huisheng` `yicheng`
+`yuqiao` `gongdu` `lph`
 
-### 3. 預覽
+### 3. Preview
 
 ```bash
-python3 -m http.server 8899
-open http://localhost:8899
+python3 -m http.server 8899 && open http://localhost:8899
 ```
 
 ---
 
-## 部署到 GitHub Pages
+## Keeping it honest
+
+`products.json` carries a `_verified` date, shown in the page footer. Every status claim
+was checked against a live endpoint — not from memory.
 
 ```bash
-gh repo create ai-works --public --source=. --push
-# 然後：GitHub → Settings → Pages → Source 選 main / root
-```
-
----
-
-## 檔案結構
-
-```
-index.html      版面與互動（讀 products.json 算圖）
-products.json   產品資料的唯一真相——加新產品只改這裡
-add-video.sh    壓縮影片並自動填資料
-videos/         壓好的 mp4
-posters/        封面圖
-```
-
-## 加一個新產品
-
-在 `products.json` 的 `products` 陣列加一筆，欄位照現有的抄。`video` 與 `poster` 先留空字串，之後用 `add-video.sh` 補。
-
-首頁的統計數字（幾個產品／幾個上架／幾種技術）是**從資料算出來的**，不用手動改——寫死的數字遲早會跟現實對不上。
-
-## 維護原則
-
-**產品狀態要定期查證，不要憑印象寫。** `products.json` 裡的 `_verified` 記錄最後查證日期，網頁頁尾會顯示。
-
-查證方式：
-
-```bash
-# 網站是否還活著
+# is the site actually up?
 curl -s -o /dev/null -w "%{http_code}\n" -L https://mytingzhai.com
 
-# App Store 上架版本（權威來源）
-curl -s "https://itunes.apple.com/lookup?bundleId=com.qqchen.tingzhai" | python3 -m json.tool | grep '"version"'
+# what version is really on the App Store?
+curl -s "https://itunes.apple.com/lookup?bundleId=com.qqchen.tingzhai" \
+  | python3 -m json.tool | grep '"version"'
 ```
+
+Re-run these before sending the link to anyone. A portfolio that claims a dead product is
+worse than one that lists fewer.
