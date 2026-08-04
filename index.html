@@ -71,6 +71,17 @@
   .pr .ev{margin:0;padding:11px 15px;background:var(--accent-bg);border-left:2px solid var(--accent);
     border-radius:0 8px 8px 0;color:var(--ink);font-size:14.2px;line-height:1.62;max-width:70ch}
 
+  /* ── deep dive ── */
+  .cs{display:block;text-decoration:none;color:inherit;margin:0 0 64px;padding:30px 32px;
+    border:1px solid var(--line-2);border-radius:16px;background:var(--surface);transition:.18s}
+  .cs:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .cs .k{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+  .cs strong{display:block;font-size:clamp(21px,2.9vw,27px);line-height:1.24;
+    letter-spacing:-.022em;font-weight:800;margin-bottom:12px;max-width:24ch}
+  .cs p{margin:0 0 16px;color:var(--ink-2);font-size:15.5px;line-height:1.66;max-width:66ch}
+  .cs .go{font-size:13.5px;font-weight:700;color:var(--accent)}
+
   /* ── work ── */
   .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
@@ -154,6 +165,13 @@
   </section>
 
   <div class="rule"></div>
+
+  <a class="cs" id="cs" href="casestudy.html">
+    <span class="k"></span>
+    <strong></strong>
+    <p></p>
+    <span class="go"></span>
+  </a>
 
   <section class="band">
     <div class="sh"><h2>On the App Store</h2><p>Through review and live</p></div>
@@ -245,6 +263,15 @@ fetch('products.json').then(r => r.json()).then(d => {
     ['7k', 'people used the exam platform (90 days)'],
     [stacks.size, 'technologies'],
   ].map(([v, l]) => `<div class="num"><b>${v}</b><span>${l}</span></div>`).join('');
+
+  const cs = d.casestudy;
+  if (cs) {
+    const el = $('#cs');
+    el.href = cs.href; el.querySelector('.k').textContent = cs.kicker;
+    el.querySelector('strong').textContent = cs.title;
+    el.querySelector('p').textContent = cs.blurb;
+    el.querySelector('.go').textContent = cs.cta + ' →';
+  } else { $('#cs')?.remove(); }
 
   $('#princ').innerHTML = (d.approach || []).map(a => `<article class="pr">
       <div class="n">${esc(a.n)}</div>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case study — Grading speech you cannot hear · QQ Chen</title>
+<meta name="description" content="An AI scoring feature was reporting pronunciation errors it had no way to detect. How I found it, what I changed, and why the fix started in the UI copy rather than the model.">
+<meta property="og:title" content="Grading speech you cannot hear — an AI case study">
+<meta property="og:description" content="The model was scoring a dimension that was structurally invisible to it. Fixing that changed the product, the prompt, the pipeline and the error messages.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.92em' font-size='88'>◆</text></svg>">
+<style>
+  :root{
+    --bg:#08090c; --surface:#101218; --line:#1e222c; --line-2:#2b3140;
+    --ink:#f7f8fa; --ink-2:#9aa2b3; --ink-3:#636b7e;
+    --accent:#ff7a2f; --accent-bg:rgba(255,122,47,.1);
+    --bad:#e0574f; --bad-bg:rgba(224,87,79,.09);
+    --good:#35b869; --good-bg:rgba(53,184,105,.09);
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#fdfcfa; --surface:#fff; --line:#eae7e1; --line-2:#d8d4cc;
+      --ink:#0d0f14; --ink-2:#4b5162; --ink-3:#828998;
+      --accent:#cf4a13; --accent-bg:rgba(207,74,19,.07);
+      --bad:#b4362e; --bad-bg:rgba(180,54,46,.06);
+      --good:#1c8347; --good-bg:rgba(28,131,71,.06); }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:400 17px/1.72 -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+  a{color:var(--accent)}
+
+  .back{display:inline-block;margin:38px 0 0;font-size:13px;font-weight:700;
+    color:var(--ink-3);text-decoration:none;letter-spacing:.02em}
+  .back:hover{color:var(--accent)}
+
+  header{padding:34px 0 40px;border-bottom:1px solid var(--line)}
+  .tagline{margin:0 0 14px;font-size:12px;font-weight:800;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent)}
+  h1{margin:0 0 20px;font-size:clamp(30px,5.2vw,46px);line-height:1.1;
+    letter-spacing:-.032em;font-weight:800}
+  .standfirst{margin:0;font-size:clamp(17px,2.2vw,19.5px);color:var(--ink-2);line-height:1.62}
+  .facts{display:flex;flex-wrap:wrap;gap:26px;margin-top:30px}
+  .fact b{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-3);margin-bottom:3px}
+  .fact span{font-size:15px;color:var(--ink-2)}
+
+  h2{margin:52px 0 16px;font-size:clamp(22px,3vw,27px);line-height:1.25;
+    letter-spacing:-.022em;font-weight:800}
+  h3{margin:34px 0 10px;font-size:18px;font-weight:800;letter-spacing:-.012em}
+  p{margin:0 0 18px;color:var(--ink-2)}
+  strong{color:var(--ink);font-weight:700}
+
+  .callout{margin:26px 0;padding:18px 20px;border-radius:12px;font-size:16px;line-height:1.62}
+  .callout.bad{background:var(--bad-bg);border-left:3px solid var(--bad)}
+  .callout.good{background:var(--good-bg);border-left:3px solid var(--good)}
+  .callout.key{background:var(--accent-bg);border-left:3px solid var(--accent);
+    font-size:18px;font-weight:600;color:var(--ink)}
+  .callout b{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;
+    text-transform:uppercase;margin-bottom:6px}
+  .callout.bad b{color:var(--bad)} .callout.good b{color:var(--good)}
+
+  .prob{border:1px solid var(--line);border-radius:12px;padding:0;margin:22px 0;overflow:hidden}
+  .prob .h{padding:13px 18px;background:var(--surface);border-bottom:1px solid var(--line);
+    font-size:15.5px;font-weight:700}
+  .prob .b{padding:15px 18px;font-size:15.5px;color:var(--ink-2);line-height:1.62}
+  .prob .b em{font-style:normal;color:var(--ink);font-weight:600}
+
+  footer{margin-top:60px;border-top:1px solid var(--line);padding:28px 0 70px;
+    color:var(--ink-3);font-size:14px}
+  footer a{font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="./">← All work</a>
+
+  <header>
+    <p class="tagline">Case study · Dutch Exam Ace</p>
+    <h1>Grading speech the model could not hear</h1>
+    <p class="standfirst">
+      An AI scoring feature was confidently reporting pronunciation errors it had no
+      structural way to detect. Finding that changed the product copy, the prompt, the
+      audio pipeline, the free tier and the error messages — in that order.
+    </p>
+    <div class="facts">
+      <div class="fact"><b>Product</b><span>Dutch integration-exam platform</span></div>
+      <div class="fact"><b>My role</b><span>Solo — product, backend, AI</span></div>
+      <div class="fact"><b>Users</b><span>7,000 in 90 days</span></div>
+    </div>
+  </header>
+
+  <h2>Why this score is not a nice-to-have</h2>
+  <p>
+    Dutch Exam Ace grades a candidate's spoken Dutch across seven dimensions drawn from
+    the DUO A2 criteria. Candidates use that score to decide whether to <strong>book the
+    real exam</strong> — which costs money, takes weeks to schedule, and sits on the
+    critical path of a residency application.
+  </p>
+  <div class="callout key">
+    The score is not a feature. It is a decision input. A generous score is worse than
+    no score, because it sends someone into an exam they are not ready for.
+  </div>
+
+  <h2>What was wrong</h2>
+
+  <div class="prob">
+    <div class="h">1 · It scored a dimension that was structurally invisible</div>
+    <div class="b">
+      The scorer reported pronunciation errors. But the pipeline transcribes speech to
+      text first, and <em>transcription normalises spelling</em> — by the time the model
+      saw the answer, every word was spelled correctly no matter how it had been said.
+      Pronunciation was unknowable, and the model was inventing plausible-sounding errors
+      to fill the field.
+    </div>
+  </div>
+
+  <div class="prob">
+    <div class="h">2 · The UI implied an authority I do not have</div>
+    <div class="b">
+      The label read <em>“official DUO seven-dimension scoring”</em>. It is not official.
+      It is my approximation of published criteria, and candidates were reading it as
+      the real thing.
+    </div>
+  </div>
+
+  <div class="prob">
+    <div class="h">3 · The failing bands were improvised</div>
+    <div class="b">
+      The rubric defined what a 6 and an 8 looked like. It said nothing about 1–3 or 4–5.
+      <em>Every score in the range that actually changes a decision</em> — the range where
+      someone should not book yet — was the model filling a gap.
+    </div>
+  </div>
+
+  <div class="prob">
+    <div class="h">4 · The free tier quietly contradicted the promise</div>
+    <div class="b">
+      Grading quota was one per day. A mock exam is twelve questions. So a free user
+      finished a full mock exam and got a score for <em>question one</em>. The landing page
+      promised a free mock exam. Both statements were true, and together they were a lie.
+    </div>
+  </div>
+
+  <div class="prob">
+    <div class="h">5 · Feedback came back in a language the user cannot read</div>
+    <div class="b">
+      The prompt said “respond in Traditional Chinese”. Production returned whole
+      paragraphs of Dutch. The entire audience is Chinese speakers who do not yet read
+      Dutch — <em>feedback you cannot read is not feedback</em>.
+    </div>
+  </div>
+
+  <h2>What I changed, and why in that order</h2>
+
+  <h3>First: stop claiming what the model cannot know</h3>
+  <p>
+    Pronunciation and fluency are now labelled in the UI as AI inference rather than
+    measurement. The prompt explicitly forbids claiming the official rubric and forbids
+    inventing pronunciation errors. This came first because everything else is a
+    correctness problem, and this one was a <strong>trust</strong> problem.
+  </p>
+
+  <h3>Then: make fluency real instead of deleting it</h3>
+  <p>
+    Fluency <em>is</em> measurable — just not from text. Transcription moved to
+    word-level timestamps, and the service now computes speaking rate, pause count and
+    longest pause directly, then passes those to the scorer as measured evidence.
+  </p>
+  <div class="callout good">
+    <b>The principle</b>
+    The dimension survived because it became true, not because it sounded good. The one
+    that could not be made true got relabelled instead of quietly kept.
+  </div>
+
+  <h3>Then: define the bands that carry consequence</h3>
+  <p>
+    Added explicit anchors for 1–3 and 4–5. If a score is going to tell someone they are
+    not ready, the rubric has to define what not-ready looks like.
+  </p>
+
+  <h3>Then: make the free tier match the sentence on the landing page</h3>
+  <p>
+    Quota moved to 15 for anonymous users and 30 once signed in — enough to complete the
+    full mock exam the page had been promising all along.
+  </p>
+
+  <h3>Then: make a model change survivable</h3>
+  <p>
+    The Dutch-language feedback traced to a preview model with weak instruction-following.
+    I moved the endpoint to a stable model <strong>with automatic fallback to the previous
+    one</strong> — I could not verify the new model ID from my machine, and a model swap
+    must never be able to take grading down. The Chinese-output rule was promoted to the
+    highest-priority block with worked positive and negative examples, then applied across
+    the four other grading endpoints that shared the flaw.
+  </p>
+
+  <h3>Then: make the rate limiter fail closed</h3>
+  <p>
+    When the limiter's backend errored, it previously let every request through — unbounded
+    spend on a paid AI endpoint. It now returns 503 “system busy”, and deliberately
+    <strong>not</strong> “quota exhausted”, because a misleading error teaches users to
+    distrust the accurate one.
+  </p>
+
+  <h2>What I would want a panel to take from this</h2>
+  <div class="callout key">
+    The interesting decision was not which model to use. It was noticing that a field in
+    my own output was structurally unknowable — and being willing to say so, in the UI of
+    a product I want people to trust.
+  </div>
+  <p>
+    Everything downstream followed from that single call: measure what can be measured,
+    label what cannot, define the bands where the answer changes someone's behaviour, and
+    make sure no single model choice can take the feature down.
+  </p>
+
+  <h2>Still open, and written down as such</h2>
+  <div class="callout bad">
+    <b>Known single-point risk</b>
+    Twelve AI features still run on one preview model. I fixed the one where being wrong
+    carried the highest cost to a user, and recorded the rest as known risk rather than
+    treating it as handled.
+  </div>
+
+  <footer>
+    <p><a href="./">← Back to all work</a> · <a href="https://dutch-exam-ace.com" target="_blank" rel="noopener">See the product ↗</a></p>
+  </footer>
+</div>
+</body>
+</html>

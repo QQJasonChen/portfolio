@@ -159,6 +159,10 @@
       ],
       "links": [
         {
+          "label": "Case study",
+          "href": "casestudy.html"
+        },
+        {
           "label": "Open site",
           "href": "https://dutch-exam-ace.com"
         }
@@ -501,5 +505,12 @@
         "playphrase"
       ]
     }
-  ]
+  ],
+  "casestudy": {
+    "href": "casestudy.html",
+    "kicker": "Deep dive",
+    "title": "Grading speech the model could not hear",
+    "blurb": "An AI scoring feature was confidently reporting pronunciation errors it had no structural way to detect. Finding that changed the product copy, the prompt, the audio pipeline, the free tier and the error messages — in that order.",
+    "cta": "Read the full case study"
+  }
 }
