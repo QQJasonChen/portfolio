@@ -2,14 +2,13 @@
   "_comment": "Single source of truth. index.html renders from this file.",
   "_writing": "Every description must work for a reader who will NEVER open the product. State the problem, who has it, what the thing actually does, what was hard, and the numbers. No insider shorthand.",
   "_verified": "2026-08-04 — every status checked against a live endpoint or the iTunes Lookup API, not from memory",
-
   "owner": {
     "name": "QQ Chen",
-    "headline": "I ship AI products end to end — design, backend, iOS, App Store.",
-    "blurb": "Eleven products built solo over the past year. Three passed App Store review and are live; eight run on the web today. Below is what each one does, what was technically hard about it, and the numbers behind it — written so you can judge the work without installing anything.",
+    "role": "AI Project Lead",
+    "headline": "I turn AI capability into products that pass review, control cost, and survive real users.",
+    "blurb": "Eleven products shipped solo in a year — three through App Store review, eight live on the web. But the products are the evidence, not the point. What follows is how I run AI work: what I measure, what I refuse to ship, and how I got a second AI agent to catch the mistakes I made.",
     "github": "https://github.com/QQJasonChen"
   },
-
   "products": [
     {
       "id": "tingzhai",
@@ -29,13 +28,31 @@
         "Ran an adversarial pre-submission review with a second AI agent. It caught two real App Store rejection risks I had written myself: a described feature the iOS build did not have, and a privacy label that under-declared audio collection."
       ],
       "business": "Free tier: 3 hours of AI processing per month. Pro: NT$399/month for 30 hours. Unit economics verified — worst-case cost per Pro user stays under revenue.",
-      "stack": ["TypeScript", "Express", "SQLite", "SwiftUI", "OpenAI", "Groq"],
+      "stack": [
+        "TypeScript",
+        "Express",
+        "SQLite",
+        "SwiftUI",
+        "OpenAI",
+        "Groq"
+      ],
       "links": [
-        { "label": "App Store", "href": "https://apps.apple.com/tw/app/id6786615132" },
-        { "label": "Website", "href": "https://mytingzhai.com" }
+        {
+          "label": "App Store",
+          "href": "https://apps.apple.com/tw/app/id6786615132"
+        },
+        {
+          "label": "Website",
+          "href": "https://mytingzhai.com"
+        }
       ],
       "cover": "posters/tingzhai.jpg",
-      "gallery": ["posters/g/tingzhai-1.jpg", "posters/g/tingzhai-2.jpg", "posters/g/tingzhai-3.jpg", "posters/g/tingzhai-4.jpg"],
+      "gallery": [
+        "posters/g/tingzhai-1.jpg",
+        "posters/g/tingzhai-2.jpg",
+        "posters/g/tingzhai-3.jpg",
+        "posters/g/tingzhai-4.jpg"
+      ],
       "video": ""
     },
     {
@@ -55,10 +72,24 @@
         "The engine was later reused for a Japanese app with 95% code shared — only the content layer differs. Proving that took shipping the second app, not arguing about it."
       ],
       "business": "Free, no ads, no tracking. Built as a tool for my own exam; the App Store listing exists so other candidates can find it.",
-      "stack": ["JavaScript", "SwiftUI", "OpenAI"],
-      "links": [{ "label": "App Store", "href": "https://apps.apple.com/tw/app/id6782196904" }],
+      "stack": [
+        "JavaScript",
+        "SwiftUI",
+        "OpenAI"
+      ],
+      "links": [
+        {
+          "label": "App Store",
+          "href": "https://apps.apple.com/tw/app/id6782196904"
+        }
+      ],
       "cover": "posters/woordjes.jpg",
-      "gallery": ["posters/g/woordjes-1.jpg", "posters/g/woordjes-2.jpg", "posters/g/woordjes-3.jpg", "posters/g/woordjes-4.jpg"],
+      "gallery": [
+        "posters/g/woordjes-1.jpg",
+        "posters/g/woordjes-2.jpg",
+        "posters/g/woordjes-3.jpg",
+        "posters/g/woordjes-4.jpg"
+      ],
       "video": ""
     },
     {
@@ -78,10 +109,23 @@
         "Second product off the same engine as Woordjes — shipping it was content work, not a rewrite."
       ],
       "business": "Free. Serves as the proof that the vocabulary engine generalises across languages.",
-      "stack": ["JavaScript", "SwiftUI"],
-      "links": [{ "label": "App Store", "href": "https://apps.apple.com/tw/app/id6784779535" }],
+      "stack": [
+        "JavaScript",
+        "SwiftUI"
+      ],
+      "links": [
+        {
+          "label": "App Store",
+          "href": "https://apps.apple.com/tw/app/id6784779535"
+        }
+      ],
       "cover": "posters/tango.jpg",
-      "gallery": ["posters/g/tango-1.jpg", "posters/g/tango-2.jpg", "posters/g/tango-3.jpg", "posters/g/tango-4.jpg"],
+      "gallery": [
+        "posters/g/tango-1.jpg",
+        "posters/g/tango-2.jpg",
+        "posters/g/tango-3.jpg",
+        "posters/g/tango-4.jpg"
+      ],
       "video": ""
     },
     {
@@ -101,10 +145,22 @@
         "Deployment lesson learned the hard way: pushing to git does not deploy, and container env changes need an explicit redeploy. Both are now written into the repo's runbook."
       ],
       "business": "Free while the corpus grows. The exam-prep layer is the natural paid tier.",
-      "stack": ["TypeScript", "Railway", "Full-text search", "Tailwind"],
-      "links": [{ "label": "Open app", "href": "https://dutch-playphrase-production.up.railway.app/" }],
+      "stack": [
+        "TypeScript",
+        "Railway",
+        "Full-text search",
+        "Tailwind"
+      ],
+      "links": [
+        {
+          "label": "Open app",
+          "href": "https://dutch-playphrase-production.up.railway.app/"
+        }
+      ],
       "cover": "posters/playphrase.jpg",
-      "gallery": ["posters/playphrase.jpg"],
+      "gallery": [
+        "posters/playphrase.jpg"
+      ],
       "video": ""
     },
     {
@@ -124,10 +180,21 @@
         "Four follow-up actions on any card: enrich it, health-check it, borrow it into another board, or diagram it."
       ],
       "business": "Invite-only while the edge-justification quality is tuned. Positioned as a paid research tool, not a consumer app.",
-      "stack": ["TypeScript", "Railway", "TTS"],
-      "links": [{ "label": "Live demo", "href": "https://mailuo-production.up.railway.app" }],
+      "stack": [
+        "TypeScript",
+        "Railway",
+        "TTS"
+      ],
+      "links": [
+        {
+          "label": "Live demo",
+          "href": "https://mailuo-production.up.railway.app"
+        }
+      ],
       "cover": "posters/mailuo.jpg",
-      "gallery": ["posters/mailuo.jpg"],
+      "gallery": [
+        "posters/mailuo.jpg"
+      ],
       "video": ""
     },
     {
@@ -147,10 +214,20 @@
         "Part of the most complete Dutch exam-prep set available to Chinese-speaking candidates."
       ],
       "business": "Free preview publicly; the full 17-paper set is sold as a paid resource.",
-      "stack": ["JavaScript", "Static"],
-      "links": [{ "label": "Open site", "href": "https://qqjasonchen.github.io/language-practice-hub/" }],
+      "stack": [
+        "JavaScript",
+        "Static"
+      ],
+      "links": [
+        {
+          "label": "Open site",
+          "href": "https://qqjasonchen.github.io/language-practice-hub/"
+        }
+      ],
       "cover": "posters/lph.jpg",
-      "gallery": ["posters/lph.jpg"],
+      "gallery": [
+        "posters/lph.jpg"
+      ],
       "video": ""
     },
     {
@@ -170,10 +247,21 @@
         "Ships as an installable PWA and a native iOS build from one codebase."
       ],
       "business": "Free to use; sync across devices is a paid upgrade, delivered via Gumroad licence keys.",
-      "stack": ["JavaScript", "Supabase", "PWA"],
-      "links": [{ "label": "Open app", "href": "https://qqjasonchen.github.io/yike/" }],
+      "stack": [
+        "JavaScript",
+        "Supabase",
+        "PWA"
+      ],
+      "links": [
+        {
+          "label": "Open app",
+          "href": "https://qqjasonchen.github.io/yike/"
+        }
+      ],
       "cover": "posters/yike.jpg",
-      "gallery": ["posters/yike.jpg"],
+      "gallery": [
+        "posters/yike.jpg"
+      ],
       "video": ""
     },
     {
@@ -193,8 +281,18 @@
         "Twenty build iterations before the drill felt right — the interaction, not the model, was the hard part."
       ],
       "business": "Invite-gated while scoring accuracy is validated with real learners.",
-      "stack": ["TypeScript", "Railway", "SwiftUI", "Whisper"],
-      "links": [{ "label": "Live demo (invite code)", "href": "https://huisheng-production.up.railway.app" }],
+      "stack": [
+        "TypeScript",
+        "Railway",
+        "SwiftUI",
+        "Whisper"
+      ],
+      "links": [
+        {
+          "label": "Live demo (invite code)",
+          "href": "https://huisheng-production.up.railway.app"
+        }
+      ],
       "cover": "",
       "gallery": [],
       "video": ""
@@ -215,10 +313,20 @@
         "Three-axis structure instead of a flat task list, so the record answers 'what did I learn' and not only 'what did I do'."
       ],
       "business": "Free, private by construction. Companion to Yike rather than a separate product line.",
-      "stack": ["JavaScript", "PWA"],
-      "links": [{ "label": "Open app", "href": "https://qqjasonchen.github.io/yicheng/" }],
+      "stack": [
+        "JavaScript",
+        "PWA"
+      ],
+      "links": [
+        {
+          "label": "Open app",
+          "href": "https://qqjasonchen.github.io/yicheng/"
+        }
+      ],
       "cover": "posters/yicheng.jpg",
-      "gallery": ["posters/yicheng.jpg"],
+      "gallery": [
+        "posters/yicheng.jpg"
+      ],
       "video": ""
     },
     {
@@ -237,10 +345,20 @@
         "Sunrise theme: the earlier you check in, the brighter the board gets — the reward is visual and immediate."
       ],
       "business": "Free. Built for one real group that still uses it.",
-      "stack": ["JavaScript", "Supabase"],
-      "links": [{ "label": "Open app", "href": "https://qqjasonchen.github.io/gongdu/" }],
+      "stack": [
+        "JavaScript",
+        "Supabase"
+      ],
+      "links": [
+        {
+          "label": "Open app",
+          "href": "https://qqjasonchen.github.io/gongdu/"
+        }
+      ],
       "cover": "posters/gongdu.jpg",
-      "gallery": ["posters/gongdu.jpg"],
+      "gallery": [
+        "posters/gongdu.jpg"
+      ],
       "video": ""
     },
     {
@@ -260,11 +378,60 @@
         "Built end to end in a single night as a test of whether the premise held at all."
       ],
       "business": "Experimental. Kept live because the premise is worth testing with real pairs, not because it is a business yet.",
-      "stack": ["TypeScript", "Railway", "Daily.co"],
-      "links": [{ "label": "Live demo", "href": "https://yuqiao-production.up.railway.app" }],
+      "stack": [
+        "TypeScript",
+        "Railway",
+        "Daily.co"
+      ],
+      "links": [
+        {
+          "label": "Live demo",
+          "href": "https://yuqiao-production.up.railway.app"
+        }
+      ],
       "cover": "posters/yuqiao.jpg",
-      "gallery": ["posters/yuqiao.jpg"],
+      "gallery": [
+        "posters/yuqiao.jpg"
+      ],
       "video": ""
+    }
+  ],
+  "approach": [
+    {
+      "n": "01",
+      "title": "I make AI agents review each other, and I verify before I trust them",
+      "body": "I run Claude and Codex on the same repository under one written protocol: reviewer is never the author, and only the reviewer can close a ticket. Before trusting the second agent I ran a four-stage validation on it — including a deliberate trap asking it to close its own ticket with a plausible excuse.",
+      "evidence": "It refused, citing the rule by line number. That result told me the document-level constraint was sufficient and saved me from building an enforcement layer I had already scoped."
+    },
+    {
+      "n": "02",
+      "title": "The most valuable review is the one that catches me",
+      "body": "On the submission before App Store review, the second agent audited work I had written myself.",
+      "evidence": "It found two real rejection risks: a feature described in the store listing that the iOS build did not actually have, and a privacy label declaring no audio collection while a paid feature uploaded recordings. Both were mine. Both were caught before submission."
+    },
+    {
+      "n": "03",
+      "title": "AI cost is an architecture decision, not a billing surprise",
+      "body": "Per-user AI processing does not survive contact with growth. I keyed a cross-tenant cache on content identity rather than user identity, so an episode costs money once no matter how many people process it.",
+      "evidence": "86% cache hit rate, 7.07× reuse, US$0.82 all-in per hour of audio — measured, not estimated. Unit economics verified against the paid tier before pricing it."
+    },
+    {
+      "n": "04",
+      "title": "I measure the thing I am afraid of, on real data",
+      "body": "A voice trigger that fires during normal speech is worse than no voice trigger. Rather than tuning by feel, I replayed 127,000 characters of real podcast transcripts through the matcher.",
+      "evidence": "First run: 38 false triggers. After removing single-character matches and adding a debounce, zero — on the same corpus. The same discipline re-levelled a 10,000-word JLPT deck against a 44,000-word frequency corpus."
+    },
+    {
+      "n": "05",
+      "title": "Deciding not to build is part of the job",
+      "body": "Keeping a voice mode alive on a locked screen was technically possible and I had the design ready. I worked through who would actually use it and what it cost in battery.",
+      "evidence": "Two existing paths already covered both real scenarios, so I did not build it and wrote down why. The same call killed an agent-enforcement layer after testing showed it was unnecessary."
+    },
+    {
+      "n": "06",
+      "title": "Claims get verified against reality, including my own",
+      "body": "Every status on this page was checked against a live endpoint or the App Store API on the day it was published — not written from memory.",
+      "evidence": "That habit exists because a status board I maintained once said four features were shipped when the branch had never been merged. A board that lies is worse than no board, because you act on it."
     }
   ]
 }
