@@ -12,7 +12,7 @@
 from PIL import Image
 import glob, os, re, json, subprocess
 
-W, H = 1600, 1000
+W, H = 1400, 1080   # ≈1.30，貼近卡片實際比例，中央裁切不會吃到字
 OUT = "posters"
 APPS = {
     "tingzhai": "com.qqchen.tingzhai",
@@ -38,11 +38,22 @@ def fetch(pid, bid):
 
 
 def cover(pid, shot):
-    im = Image.open(shot).convert("RGB")
-    # 頂部 16:10 那塊就是行銷大字所在，正好也是最能一眼看懂的部分
-    crop_h = int(im.width * H / W)
-    im = im.crop((0, 0, im.width, min(crop_h, im.height)))
-    im = im.resize((W, H), Image.LANCZOS)
+    """寬度整條保留，上下用取樣底色補滿。
+
+    為什麼不裁：App Store 截圖的行銷大字常常貼著左緣（聽摘就是），
+    只要橫向裁掉一點就把字吃掉。寧可上下補色，也不要切字。
+    """
+    src = Image.open(shot).convert("RGB")
+    crop_h = int(src.width * H / W)
+    top = src.crop((0, 0, src.width, min(crop_h, src.height)))
+    scaled = top.resize((W, int(top.height * W / top.width)), Image.LANCZOS)
+
+    bg = scaled.crop((0, 0, scaled.width, 6)).resize((1, 1), Image.LANCZOS).getpixel((0, 0))
+    im = Image.new("RGB", (W, H), bg)
+    if scaled.height >= H:
+        im.paste(scaled.crop((0, 0, W, H)), (0, 0))
+    else:
+        im.paste(scaled, (0, (H - scaled.height) // 2))
     out = f"{OUT}/{pid}.jpg"
     im.save(out, quality=90, optimize=True)
     print(f"  {pid:10} → {out}  {W}x{H}  {os.path.getsize(out)//1024}KB")
