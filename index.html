@@ -263,7 +263,7 @@ $('#dlg').addEventListener('click', e => {
 fetch('products.json').then(r => r.json()).then(d => {
   DATA = d;
   const o = d.owner || {}, ps = d.products || [];
-  $('#hl').innerHTML = esc(o.headline).replace('four AI products live', '<em>four AI products live</em>');
+  $('#hl').innerHTML = esc(o.headline).replace('five AI products live', '<em>five AI products live</em>');
   $('#lede').textContent = o.blurb || '';
   $('#why').textContent = o.why || '';
   $('#gh').href = o.github || '#';

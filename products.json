@@ -5,7 +5,7 @@
   "owner": {
     "name": "QQ Chen",
     "role": "AI Project Lead",
-    "headline": "I take AI ideas all the way to users — four AI products live, three through App Store review.",
+    "headline": "I take AI ideas all the way to users — five AI products live, three through App Store review.",
     "blurb": "Built on evenings and weekends. Live links, real usage, and one project written up end to end.",
     "github": "https://github.com/QQJasonChen"
   },
@@ -175,6 +175,41 @@
       ],
       "video": "",
       "card": "10,000 words levelled by corpus frequency instead of by intuition."
+    },
+    {
+      "id": "yike",
+      "name": "Yike",
+      "subtitle": "AI journal that reads you back",
+      "tier": "ai",
+      "status": "Live · web and iOS",
+      "tagline": "One entry a day, then AI reads the whole run back to you — patterns you cannot see from inside a single day.",
+      "role": "Solo — product, backend, iOS",
+      "problem": "Journalling apps store what you wrote and never do anything with it. The value of a journal is not in the entry, it is in the pattern across months — which is exactly the thing you cannot see while you are living it.",
+      "what": "A journal with room for exactly one thing a day. AI analyses the accumulated entries and reflects patterns back: what keeps recurring, what shifted, what you keep saying you will do. Each entry grows a tree; the forest is the record of showing up.",
+      "hard": "Making the analysis worth reading rather than a horoscope. Generic reflection sounds insightful and helps nobody. The output has to quote your own words back with enough specificity that you cannot dismiss it.",
+      "highlights": [
+        "AI analysis over the accumulated journal rather than per-entry — the useful signal only exists across time.",
+        "The tree is proof of depth, not a reward loop — a deliberate call after studying how Forest uses the same visual as bait.",
+        "Ships as an installable PWA and a native iOS build from one codebase; upgrades activate automatically with no manual step."
+      ],
+      "business": "Free to use. Cross-device sync is an optional upgrade, activated automatically.",
+      "stack": [
+        "JavaScript",
+        "Supabase",
+        "PWA",
+        "LLM analysis"
+      ],
+      "links": [
+        {
+          "label": "Open app",
+          "href": "https://qqjasonchen.github.io/yike/"
+        }
+      ],
+      "cover": "posters/yike.jpg",
+      "gallery": [
+        "posters/yike.jpg"
+      ],
+      "video": ""
     }
   ],
   "approach": [
@@ -227,11 +262,6 @@
         "name": "Language Practice Hub",
         "what": "17 worked past papers for the Dutch A2 speaking exam",
         "href": "https://qqjasonchen.github.io/language-practice-hub/"
-      },
-      {
-        "name": "Yike",
-        "what": "A journal with room for exactly one thing a day",
-        "href": "https://qqjasonchen.github.io/yike/"
       },
       {
         "name": "Yicheng",
