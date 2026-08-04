@@ -15,15 +15,15 @@
       "name": "Dutch Exam Ace",
       "subtitle": "Dutch integration-exam platform",
       "tier": "ai",
-      "status": "Live · 7k visitors / 90 days",
-      "tagline": "I built it to pass the Dutch integration exam myself. I passed. It has drawn 7,000 visitors in the last 90 days since.",
+      "status": "Live · 9,858 visitors this year",
+      "tagline": "I built it to pass the Dutch integration exam myself. I passed. It has drawn 9,858 visitors since January.",
       "role": "Solo — product, backend, AI grading, monetisation",
       "problem": "The Dutch integration exam (Inburgeringsexamen) is compulsory for residency, and almost no preparation material exists in Chinese. Candidates study from Dutch-language material for an exam they are taking precisely because they do not yet speak Dutch.",
       "what": "A full preparation platform covering all four exam skills plus KNM: 50+ past-paper questions, 14 writing templates, 1,000+ high-frequency words, mock speaking exams, and AI grading for both writing and speaking against the CEFR A2 / DUO criteria. Core content is permanently free.",
       "hard": "Grading speech and writing in a language the learner is failing at, and having the score be trustworthy. Early versions were too generous, which is worse than useless — a candidate who thinks they are ready walks into the real exam and fails. Rebuilding the speaking scorer to report real fluency signals honestly took several rounds.",
       "highlights": [
-        "7,000 visitors and 18,900 page views in the last 90 days, for an audience as narrow as it gets: Chinese speakers sitting the Dutch integration exam. Visitors, not registered users — that is what the analytics measure.",
-        "Average visit is 3m28s across 2.7 pages — people arrive and study. Engagement, not just traffic.",
+        "9,858 visitors and 26,667 page views since January, for an audience as narrow as it gets: Chinese speakers sitting the Dutch integration exam. Visitors rather than registered users — that is what the analytics measure.",
+        "2.7 pages per visit across the whole period — people arrive and work through material rather than bouncing. Traffic took off around 11 April and has held since, entirely through organic search.",
         "AI grading for writing and speaking built against the published DUO A2 criteria — my approximation of them, and the UI says so rather than implying an official rubric.",
         "Made the speaking scorer honest after finding it inflated results — a generous score is worse than no score when someone is deciding whether to book the real exam.",
         "Core content is free and stays free — the pieces that cost money to run are funded separately so the free path never degrades.",
@@ -53,8 +53,8 @@
         "posters/examace.jpg"
       ],
       "video": "",
-      "card": "I built it to pass the Dutch integration exam myself. I passed. It has drawn 7,000 visitors in the last 90 days since.",
-      "journey": "I could not find Dutch exam material in my own language → built the platform → passed the exam → 7,000 visitors in 90 days."
+      "card": "I built it to pass the Dutch integration exam myself. I passed. It has drawn 9,858 visitors since January.",
+      "journey": "I could not find Dutch exam material in my own language → built the platform → passed the exam → 9,858 visitors since January."
     },
     {
       "id": "tingzhai",

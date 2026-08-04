@@ -291,8 +291,8 @@ fetch('products.json').then(r => r.json()).then(d => {
   $('#nums').innerHTML = [
     [8, 'products shipped solo'],
     [3, 'through App Store review'],
-    ['7k', 'used the exam platform (90 days)'],
-    ['3m28s', 'average visit — they study, not bounce'],
+    ['9,858', 'visitors on the exam platform this year'],
+    ['2.7', 'pages per visit — they work, not bounce'],
   ].map(([v, l]) => `<div class="num"><b>${v}</b><span>${l}</span></div>`).join('');
 
   const cs = d.casestudy;
