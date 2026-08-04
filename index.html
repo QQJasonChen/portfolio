@@ -255,7 +255,7 @@ $('#dlg').addEventListener('click', e => {
 fetch('products.json').then(r => r.json()).then(d => {
   DATA = d;
   const o = d.owner || {}, ps = d.products || [];
-  $('#hl').innerHTML = esc(o.headline).replace('At night I ship AI products', '<em>At night I ship AI products</em>');
+  $('#hl').innerHTML = esc(o.headline).replace('At night I take AI ideas all the way to users', '<em>At night I take AI ideas all the way to users</em>');
   $('#lede').textContent = o.blurb || '';
   $('#why').textContent = o.why || '';
   $('#gh').href = o.github || '#';
