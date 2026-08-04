@@ -512,5 +512,38 @@
     "title": "Grading speech the model could not hear",
     "blurb": "An AI scoring feature was confidently reporting pronunciation errors it had no structural way to detect. Finding that changed the product copy, the prompt, the audio pipeline, the free tier and the error messages — in that order.",
     "cta": "Read the full case study"
+  },
+  "work": {
+    "kicker": "At work",
+    "title": "The other half: programme delivery at scale",
+    "lede": "Everything above I built alone. This is the part that is not solo — eight years delivering new-product introduction inside a semiconductor equipment manufacturer, where nothing ships because one person decided it should.",
+    "items": [
+      {
+        "h": "Coordination without authority is most of the job",
+        "p": "New-product introduction for the latest DUV system meant working across a cross-functional community of 100+ engineers spanning multiple sites, none of whom report to me. The programme delivered roughly a 20% reduction in production labour hours and parts cost.",
+        "note": "Most of that work is not technical. It is getting people who have their own priorities to sequence theirs against yours, and being right often enough that they keep doing it."
+      },
+      {
+        "h": "Leading a team through qualification",
+        "p": "Led seven engineers through software and hardware performance qualification for the newest scanner — owning scope, sequencing and escalation, including the calls about what does not make this release.",
+        "note": "The hard decisions here were the same shape as the ones in my own products: what to cut, and how to say so early enough that it is a decision rather than a slip."
+      },
+      {
+        "h": "Turning scattered reporting into one prioritised view",
+        "p": "Each site reported issues its own way, so nobody could see what was actually critical across the programme. I defined the metrics and critical-issue framework used to compare NPI performance between sites.",
+        "note": "Making the comparison possible was the whole job. Once every site reported the same way, prioritisation stopped being an argument."
+      },
+      {
+        "h": "Built the tool my colleagues chose to keep using",
+        "p": "As a design engineer I kept watching the team lose hours to manual lithography imaging analysis. Nobody asked me to fix it. I built Python tooling with a proper GUI on top, cutting analysis time by 50%; 20+ engineers adopted it and it is still in use.",
+        "note": "Shipping software to colleagues is a harder test than shipping to strangers. Strangers churn quietly; colleagues can walk to your desk, tell you it is worse than the spreadsheet, and go back to it. They did not."
+      },
+      {
+        "h": "Deploying across cultures, not just across sites",
+        "p": "Before Eindhoven I spent three and a half years in Japan putting European lithography technology into Japanese high-volume manufacturing, adapting it to how those sites actually run, and mentoring the local engineers who would own it afterwards.",
+        "note": "Technology transfer fails on the human side far more often than the technical one. That is the experience I would bring to rolling AI tooling into an organisation that has its own way of working."
+      }
+    ],
+    "footnote": "Described at the level already on my CV. Specifics stay inside."
   }
 }

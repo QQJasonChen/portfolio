@@ -71,6 +71,11 @@
   .pr .ev{margin:0;padding:11px 15px;background:var(--accent-bg);border-left:2px solid var(--accent);
     border-radius:0 8px 8px 0;color:var(--ink);font-size:14.2px;line-height:1.62;max-width:70ch}
 
+  .wk-lede{max-width:66ch;font-size:16px;line-height:1.7;color:var(--ink-2);margin:0 0 30px}
+  .wk-foot{margin:18px 0 0;font-size:13px;color:var(--ink-3);font-style:italic}
+  .pr .note{margin:11px 0 0;padding-left:14px;border-left:2px solid var(--line-2);
+    color:var(--ink-3);font-size:14px;line-height:1.6;max-width:68ch}
+
   /* ── deep dive ── */
   .cs{display:block;text-decoration:none;color:inherit;margin:0 0 64px;padding:30px 32px;
     border:1px solid var(--line-2);border-radius:16px;background:var(--surface);transition:.18s}
@@ -182,6 +187,16 @@
 
   <div class="rule"></div>
 
+  <section class="band" id="worksec">
+    <div class="sh"><h2 id="wk-kick"></h2><p id="wk-lede2"></p></div>
+    <p class="lead-in" id="wk-title"></p>
+    <p class="wk-lede" id="wk-lede"></p>
+    <div class="princ" id="wk"></div>
+    <p class="wk-foot" id="wk-foot"></p>
+  </section>
+
+  <div class="rule"></div>
+
   <section class="band">
     <div class="sh"><h2>How I run AI projects</h2><p>Seven decisions, each with what it actually produced</p></div>
     <p class="lead-in">Shipping AI is mostly judgment under uncertainty: what to measure, what to refuse, and when the answer is not to build it.</p>
@@ -274,6 +289,20 @@ fetch('products.json').then(r => r.json()).then(d => {
     el.querySelector('p').textContent = cs.blurb;
     el.querySelector('.go').textContent = cs.cta + ' →';
   } else { $('#cs')?.remove(); }
+
+  const w = d.work;
+  if (w) {
+    $('#wk-kick').textContent = w.kicker;
+    $('#wk-lede2').textContent = 'Not solo';
+    $('#wk-title').textContent = w.title;
+    $('#wk-lede').textContent = w.lede;
+    $('#wk-foot').textContent = w.footnote || '';
+    $('#wk').innerHTML = w.items.map((it, k) => `<article class="pr">
+        <div class="n">${String(k + 1).padStart(2, '0')}</div>
+        <div><h3>${esc(it.h)}</h3><p class="body">${esc(it.p)}</p>
+        <p class="note">${esc(it.note)}</p></div>
+      </article>`).join('');
+  } else { $('#worksec')?.remove(); }
 
   $('#princ').innerHTML = (d.approach || []).map(a => `<article class="pr">
       <div class="n">${esc(a.n)}</div>
