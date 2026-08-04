@@ -88,7 +88,7 @@
     <div class="facts">
       <div class="fact"><b>Product</b><span>Dutch integration-exam platform</span></div>
       <div class="fact"><b>My role</b><span>Solo — product, backend, AI</span></div>
-      <div class="fact"><b>Users</b><span>7,000 in 90 days</span></div>
+      <div class="fact"><b>Traffic</b><span>7,000 visitors / 90 days</span></div>
     </div>
   </header>
 
@@ -190,9 +190,10 @@
   <h3>Then: make a model change survivable</h3>
   <p>
     The Dutch-language feedback traced to a preview model with weak instruction-following.
-    I moved the endpoint to a stable model <strong>with automatic fallback to the previous
-    one</strong> — I could not verify the new model ID from my machine, and a model swap
-    must never be able to take grading down. The Chinese-output rule was promoted to the
+    I moved the endpoint to a stable model and shipped it <strong>behind an automatic fallback
+    to the previous one</strong>. The fallback was the point: a model swap must never be able to
+    take grading down, and I would rather ship a change that cannot fail closed than hold it
+    until I can reproduce the vendor’s environment locally. The Chinese-output rule was promoted to the
     highest-priority block with worked positive and negative examples, then applied across
     the four other grading endpoints that shared the flaw.
   </p>
@@ -200,7 +201,7 @@
   <h3>Then: make the rate limiter fail closed</h3>
   <p>
     When the limiter's backend errored, it previously let every request through — unbounded
-    spend on a paid AI endpoint. It now returns 503 “system busy”, and deliberately
+    spend on a paid AI endpoint. It now returns 503 “system busy” on the speech-grading endpoints, and deliberately
     <strong>not</strong> “quota exhausted”, because a misleading error teaches users to
     distrust the accurate one.
   </p>

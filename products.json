@@ -16,18 +16,18 @@
       "subtitle": "Dutch integration-exam platform",
       "tier": "ai",
       "status": "Live · 7k visitors / 90 days",
-      "tagline": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since.",
+      "tagline": "I built it to pass the Dutch integration exam myself. I passed. It has drawn 7,000 visitors in the last 90 days since.",
       "role": "Solo — product, backend, AI grading, monetisation",
       "problem": "The Dutch integration exam (Inburgeringsexamen) is compulsory for residency, and almost no preparation material exists in Chinese. Candidates study from Dutch-language material for an exam they are taking precisely because they do not yet speak Dutch.",
       "what": "A full preparation platform covering all four exam skills plus KNM: 50+ past-paper questions, 14 writing templates, 1,000+ high-frequency words, mock speaking exams, and AI grading for both writing and speaking against the CEFR A2 / DUO criteria. Core content is permanently free.",
       "hard": "Grading speech and writing in a language the learner is failing at, and having the score be trustworthy. Early versions were too generous, which is worse than useless — a candidate who thinks they are ready walks into the real exam and fails. Rebuilding the speaking scorer to report real fluency signals honestly took several rounds.",
       "highlights": [
-        "7,000 visitors and 18,900 page views in the last 90 days, for an audience as narrow as it gets: Chinese speakers sitting the Dutch integration exam.",
+        "7,000 visitors and 18,900 page views in the last 90 days, for an audience as narrow as it gets: Chinese speakers sitting the Dutch integration exam. Visitors, not registered users — that is what the analytics measure.",
         "Average visit is 3m28s across 2.7 pages — people arrive and study. Engagement, not just traffic.",
-        "AI grading for writing and speaking aligned to the official DUO A2 criteria, not a generic language score.",
+        "AI grading for writing and speaking built against the published DUO A2 criteria — my approximation of them, and the UI says so rather than implying an official rubric.",
         "Made the speaking scorer honest after finding it inflated results — a generous score is worse than no score when someone is deciding whether to book the real exam.",
         "Core content is free and stays free — the pieces that cost money to run are funded separately so the free path never degrades.",
-        "Rate limiting fails closed on the AI endpoints: a traffic spike degrades access rather than the bill."
+        "Rate limiting on the speech-grading endpoints fails closed, so a limiter outage degrades access rather than the bill. The other AI endpoints have not had the same pass."
       ],
       "business": "Core content is permanently free and always will be; an optional resource pack covers running costs. Reaches its audience entirely through organic search — no paid acquisition, no ads.",
       "stack": [
@@ -53,8 +53,8 @@
         "posters/examace.jpg"
       ],
       "video": "",
-      "card": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since.",
-      "journey": "I could not find Dutch exam material in my own language → built the platform → passed the exam → 7,000 candidates followed."
+      "card": "I built it to pass the Dutch integration exam myself. I passed. It has drawn 7,000 visitors in the last 90 days since.",
+      "journey": "I could not find Dutch exam material in my own language → built the platform → passed the exam → 7,000 visitors in 90 days."
     },
     {
       "id": "tingzhai",
@@ -70,7 +70,7 @@
       "highlights": [
         "Custom on-device wake word instead of Siri, so playback is never interrupted. Validated against 127,000 characters of real Chinese podcast transcripts: false triggers went from 38 to 0 after switching from single-character matching to a debounced multi-word matcher.",
         "Cross-tenant transcript cache keyed on feed URL plus episode ID: one episode costs AI money once, no matter how many users process it. 86% cache hit rate, 7.07× reuse, US$0.82 per episode all-in, measured over production traffic.",
-        "Spaced repetition (SM-2) on captured highlights — no competing podcast app ships this.",
+        "Spaced repetition (SM-2) on captured highlights — I have not found another podcast app that schedules review of what you saved.",
         "Ran an adversarial pre-submission review with a second AI agent. It caught two real App Store rejection risks I had written myself: a described feature the iOS build did not have, and a privacy label that under-declared audio collection."
       ],
       "business": "Free tier gives every registered user a monthly AI processing allowance. The limit is set from measured cost per episode, not guessed — which is why the free tier can be generous without becoming unbounded.",
@@ -115,7 +115,7 @@
       "what": "Two iOS and web apps on one engine. Dutch: 2,000 high-frequency words levelled A1/A2/B1 against the official exam syllabus. Japanese: 10,000 words across JLPT N5–N1 plus grammar cards, on the same spaced-repetition scheduler.",
       "hard": "Deciding what to teach, and proving the engine generalised. Frequency lists alone give function words; syllabus lists give words nobody says. And the only honest way to prove a system is reusable is to ship the second one.",
       "highlights": [
-        "Japanese levelling rebuilt against a 44,000-word frequency corpus after finding advanced kanji compounds filed as intermediate — N1 leakage into lower levels dropped to zero and the N3 bucket shrank from 39% to 21%.",
+        "Japanese levelling rebuilt against a 44,000-word frequency corpus after finding advanced kanji compounds filed as intermediate. Re-scored against that corpus, no N1-frequency word remained in a lower band and the N3 bucket shrank from 39% to 21% of the deck.",
         "Concrete nouns auto-illustrated with generated images: roughly 300 images for about US$2, applied only where illustration actually helps.",
         "Second language shipped with 95% of the code shared — the reuse claim was tested by shipping, not argued."
       ],
