@@ -5,9 +5,8 @@
   "owner": {
     "name": "QQ Chen",
     "role": "AI Project Lead",
-    "headline": "I deliver enterprise projects by day. At night I ship AI products — eleven this year, three through App Store review.",
-    "blurb": "Twelve products shipped solo in a year — three through App Store review, eight live on the web. The one I am proudest of is the Dutch exam platform: I built it to pass that exam myself, I passed, and 7,000 other candidates have used it in the last 90 days. Below is how I run this work — what I measure, what I refuse to ship, and how a second AI agent caught mistakes I had made.",
-    "why": "Everything below was built outside working hours. That constraint is the point: with a few hours a night you cannot afford to guess, so every decision here had to be measured, cut, or justified. The habits that produced it are the ones I would bring to leading AI projects.",
+    "headline": "I lead enterprise delivery by day. At night I take AI ideas all the way to users.",
+    "blurb": "The proof, not the CV. Live products, real usage, and one project written up end to end.",
     "github": "https://github.com/QQJasonChen"
   },
   "products": [
@@ -54,7 +53,8 @@
         "posters/g/tingzhai-3.jpg",
         "posters/g/tingzhai-4.jpg"
       ],
-      "video": ""
+      "video": "",
+      "card": "Hands busy? Say \"note\" out loud and the last 60 seconds is captured, transcribed and filed."
     },
     {
       "id": "woordjes",
@@ -91,7 +91,8 @@
         "posters/g/woordjes-3.jpg",
         "posters/g/woordjes-4.jpg"
       ],
-      "video": ""
+      "video": "",
+      "card": "2,000 high-frequency Dutch words, levelled A1/A2/B1, with spaced repetition."
     },
     {
       "id": "tango",
@@ -127,7 +128,8 @@
         "posters/g/tango-3.jpg",
         "posters/g/tango-4.jpg"
       ],
-      "video": ""
+      "video": "",
+      "card": "10,000 words levelled by corpus frequency instead of by intuition."
     },
     {
       "id": "examace",
@@ -171,7 +173,8 @@
       "gallery": [
         "posters/examace.jpg"
       ],
-      "video": ""
+      "video": "",
+      "card": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since."
     },
     {
       "id": "playphrase",
@@ -206,41 +209,8 @@
       "gallery": [
         "posters/playphrase.jpg"
       ],
-      "video": ""
-    },
-    {
-      "id": "mailuo",
-      "name": "MaiLuo",
-      "subtitle": "Turns an article into the argument behind it",
-      "tier": "beta",
-      "status": "Invite-only beta",
-      "tagline": "Not a summary — a map of how the author actually got from premise to conclusion.",
-      "role": "Solo — product, backend",
-      "problem": "Summaries tell you what a piece said. They do not tell you why the author believed it, which is the part you need in order to disagree with it, build on it, or remember it a month later.",
-      "what": "Paste a Markdown document or a YouTube link. It splits the content into claim cards and draws edges between them — but an edge is only drawn when the system can state the reason for it. The output is the reasoning path, plus a short and a long reading track and generated audio.",
-      "hard": "Making the model refuse to connect things. The easy version draws a pretty graph where everything relates to everything, which is worthless. Requiring a stated justification per edge is what makes the output trustworthy.",
-      "highlights": [
-        "Every edge carries its reason. Connections the model cannot justify are not drawn at all.",
-        "Two reading depths generated in one pass, plus text-to-speech for commute listening.",
-        "Four follow-up actions on any card: enrich it, health-check it, borrow it into another board, or diagram it."
-      ],
-      "business": "Invite-only while the edge-justification quality is tuned. Built as a research tool rather than a consumer app.",
-      "stack": [
-        "TypeScript",
-        "Railway",
-        "TTS"
-      ],
-      "links": [
-        {
-          "label": "Live demo",
-          "href": "https://mailuo-production.up.railway.app"
-        }
-      ],
-      "cover": "posters/mailuo.jpg",
-      "gallery": [
-        "posters/mailuo.jpg"
-      ],
-      "video": ""
+      "video": "",
+      "card": "Search 700,000 real Dutch subtitle lines and hear each one spoken in context."
     },
     {
       "id": "lph",
@@ -273,7 +243,8 @@
       "gallery": [
         "posters/lph.jpg"
       ],
-      "video": ""
+      "video": "",
+      "card": "Seventeen worked past papers for an exam almost nobody publishes material for."
     },
     {
       "id": "yike",
@@ -307,40 +278,8 @@
       "gallery": [
         "posters/yike.jpg"
       ],
-      "video": ""
-    },
-    {
-      "id": "huisheng",
-      "name": "Miraa",
-      "subtitle": "Pronunciation practice by echo drilling",
-      "tier": "beta",
-      "status": "Invite-only beta",
-      "tagline": "Listen three seconds, say it back, get scored word by word — not sentence by sentence.",
-      "role": "Solo — product, backend, iOS",
-      "problem": "Speaking apps score a whole sentence and return one number. That tells a learner they were wrong but not which syllable, so they repeat the same mistake with more confidence.",
-      "what": "A drill that plays a three-second span, records the learner repeating it, and scores each word individually against the reference. Adds dictation mode, spaced repetition and Japanese furigana annotation.",
-      "hard": "Mobile web audio. Recording and playback in the same session on iOS fails in ways that look like bugs in your code but are platform behaviour.",
-      "highlights": [
-        "Per-word scoring rather than one number per sentence, so the learner knows exactly what to fix.",
-        "Solved two iOS web-audio traps that silently break recording: reusing a gesture-unlocked audio element stops working after the first playback, and MediaRecorder returns empty blobs unless started with a timeslice.",
-        "Twenty build iterations before the drill felt right — the interaction, not the model, was the hard part."
-      ],
-      "business": "Invite-gated while scoring accuracy is validated with real learners.",
-      "stack": [
-        "TypeScript",
-        "Railway",
-        "SwiftUI",
-        "Whisper"
-      ],
-      "links": [
-        {
-          "label": "Live demo (invite code)",
-          "href": "https://huisheng-production.up.railway.app"
-        }
-      ],
-      "cover": "",
-      "gallery": [],
-      "video": ""
+      "video": "",
+      "card": "One entry a day. Each one grows a tree; the forest is the evidence you showed up."
     },
     {
       "id": "yicheng",
@@ -372,7 +311,8 @@
       "gallery": [
         "posters/yicheng.jpg"
       ],
-      "video": ""
+      "video": "",
+      "card": "Projects, tasks, and the thing the work taught you — the third axis most logs drop."
     },
     {
       "id": "gongdu",
@@ -404,53 +344,13 @@
       "gallery": [
         "posters/gongdu.jpg"
       ],
-      "video": ""
-    },
-    {
-      "id": "yuqiao",
-      "name": "YuQiao",
-      "subtitle": "AI-assisted language exchange",
-      "tier": "beta",
-      "status": "Experimental",
-      "tagline": "The AI feeds you words until you no longer need it, then gets out of the way.",
-      "role": "Solo — product, backend. Built in one night.",
-      "problem": "The hard part of language exchange is not vocabulary, it is the silence in the first ten minutes. Most people quit before they ever get past it.",
-      "what": "A real-time voice room for two learners with an AI in the middle supplying words, prompts and topics — and stepping back automatically once the humans find their rhythm.",
-      "hard": "Defining success backwards. The AI is working when its own usage declines, which means the product has to measure its own irrelevance.",
-      "highlights": [
-        "Success metric is inverted: fewer AI interventions per session over time means the bridge worked.",
-        "Real-time voice rooms with sub-second turn handoff.",
-        "Built end to end in a single night as a test of whether the premise held at all."
-      ],
-      "business": "Experimental. Kept live because the premise is worth testing with real pairs, not because it is a business yet.",
-      "stack": [
-        "TypeScript",
-        "Railway",
-        "Daily.co"
-      ],
-      "links": [
-        {
-          "label": "Live demo",
-          "href": "https://yuqiao-production.up.railway.app"
-        }
-      ],
-      "cover": "posters/yuqiao.jpg",
-      "gallery": [
-        "posters/yuqiao.jpg"
-      ],
-      "video": ""
+      "video": "",
+      "card": "You can see whether your group is up yet. That turns out to be the entire mechanism."
     }
   ],
   "approach": [
     {
       "n": "01",
-      "title": "The tool that mattered most is the one my colleagues actually adopted",
-      "body": "At work I kept watching issues fall through the gaps between sites — everyone reported differently, so nobody could see what was actually critical. Nobody asked me to fix it. I built the tracking tool myself, alongside the delivery work.",
-      "evidence": "It is now used department-wide by 20+ engineers at ASML. Shipping software that colleagues choose to keep using is a harder test than shipping to strangers on an app store — they can simply go back to email.",
-      "proof": []
-    },
-    {
-      "n": "02",
       "title": "I make AI agents review each other, and I verify before I trust them",
       "body": "I run Claude and Codex on the same repository under one written protocol: reviewer is never the author, and only the reviewer can close a ticket. Before trusting the second agent I ran a four-stage validation on it — including a deliberate trap asking it to close its own ticket with a plausible excuse.",
       "evidence": "It refused, citing the rule by line number. That result told me the document-level constraint was sufficient and saved me from building an enforcement layer I had already scoped.",
@@ -459,25 +359,7 @@
       ]
     },
     {
-      "n": "03",
-      "title": "The most valuable review is the one that catches me",
-      "body": "On the submission before App Store review, the second agent audited work I had written myself.",
-      "evidence": "It found two real rejection risks: a feature described in the store listing that the iOS build did not actually have, and a privacy label declaring no audio collection while a paid feature uploaded recordings. Both were mine. Both were caught before submission.",
-      "proof": [
-        "tingzhai"
-      ]
-    },
-    {
-      "n": "04",
-      "title": "AI cost is an architecture decision, not a billing surprise",
-      "body": "Per-user AI processing does not survive contact with growth. I keyed a cross-tenant cache on content identity rather than user identity, so an episode costs money once no matter how many people process it.",
-      "evidence": "86% cache hit rate, 7.07× reuse, US$0.82 all-in per episode — measured over production traffic, not estimated.",
-      "proof": [
-        "tingzhai"
-      ]
-    },
-    {
-      "n": "05",
+      "n": "02",
       "title": "I measure the thing I am afraid of, on real data",
       "body": "A voice trigger that fires during normal speech is worse than no voice trigger. Rather than tuning by feel, I replayed 127,000 characters of real podcast transcripts through the matcher.",
       "evidence": "First run: 38 false triggers. After removing single-character matches and adding a debounce, zero — on the same corpus. The same discipline re-levelled a 10,000-word JLPT deck against a 44,000-word frequency corpus.",
@@ -487,22 +369,12 @@
       ]
     },
     {
-      "n": "06",
+      "n": "03",
       "title": "Deciding not to build is part of the job",
       "body": "Keeping a voice mode alive on a locked screen was technically possible and I had the design ready. I worked through who would actually use it and what it cost in battery.",
       "evidence": "Two existing paths already covered both real scenarios, so I did not build it and wrote down why. The same call killed an agent-enforcement layer after testing showed it was unnecessary.",
       "proof": [
         "tingzhai"
-      ]
-    },
-    {
-      "n": "07",
-      "title": "Claims get verified against reality, including my own",
-      "body": "Every status on this page was checked against a live endpoint or the App Store API on the day it was published — not written from memory.",
-      "evidence": "That habit exists because a status board I maintained once said four features were shipped when the branch had never been merged. A board that lies is worse than no board, because you act on it.",
-      "proof": [
-        "tingzhai",
-        "playphrase"
       ]
     }
   ],
@@ -512,38 +384,5 @@
     "title": "Grading speech the model could not hear",
     "blurb": "An AI scoring feature was confidently reporting pronunciation errors it had no structural way to detect. Finding that changed the product copy, the prompt, the audio pipeline, the free tier and the error messages — in that order.",
     "cta": "Read the full case study"
-  },
-  "work": {
-    "kicker": "At work",
-    "title": "The other half: programme delivery at scale",
-    "lede": "Everything above I built alone. This is the part that is not solo — eight years delivering new-product introduction inside a semiconductor equipment manufacturer, where nothing ships because one person decided it should.",
-    "items": [
-      {
-        "h": "Coordination without authority is most of the job",
-        "p": "New-product introduction for the latest DUV system meant working across a cross-functional community of 100+ engineers spanning multiple sites, none of whom report to me. The programme delivered roughly a 20% reduction in production labour hours and parts cost.",
-        "note": "Most of that work is not technical. It is getting people who have their own priorities to sequence theirs against yours, and being right often enough that they keep doing it."
-      },
-      {
-        "h": "Leading a team through qualification",
-        "p": "Led seven engineers through software and hardware performance qualification for the newest scanner — owning scope, sequencing and escalation, including the calls about what does not make this release.",
-        "note": "The hard decisions here were the same shape as the ones in my own products: what to cut, and how to say so early enough that it is a decision rather than a slip."
-      },
-      {
-        "h": "Turning scattered reporting into one prioritised view",
-        "p": "Each site reported issues its own way, so nobody could see what was actually critical across the programme. I defined the metrics and critical-issue framework used to compare NPI performance between sites.",
-        "note": "Making the comparison possible was the whole job. Once every site reported the same way, prioritisation stopped being an argument."
-      },
-      {
-        "h": "I build the tool rather than file the complaint",
-        "p": "As a design engineer I kept watching the team lose hours to manual lithography imaging analysis, so I built Python tooling with a proper GUI on top — 50% less analysis time, adopted by 20+ engineers, still in use. It was not the first and it was not the last: issue tracking, NPI analysis, whatever the current team was doing by hand.",
-        "note": "Shipping software to colleagues is a harder test than shipping to strangers. Strangers churn quietly; colleagues can walk to your desk, tell you it is worse than the spreadsheet, and go back to it. That is the test I care about passing."
-      },
-      {
-        "h": "Deploying across cultures, not just across sites",
-        "p": "Before Eindhoven I spent three and a half years in Japan putting European lithography technology into Japanese high-volume manufacturing, adapting it to how those sites actually run, and mentoring the local engineers who would own it afterwards.",
-        "note": "Technology transfer fails on the human side far more often than the technical one. That is the experience I would bring to rolling AI tooling into an organisation that has its own way of working."
-      }
-    ],
-    "footnote": "Described at the level already on my CV. Specifics stay inside."
   }
 }

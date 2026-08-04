@@ -35,7 +35,7 @@
   .rule{height:1px;background:var(--line);margin:0}
 
   /* ── hero ── */
-  .hero{padding:var(--s6) 0 var(--s5)}
+  .hero{padding:var(--s5) 0 var(--s4)}
   .kicker{display:flex;align-items:center;gap:9px;margin-bottom:22px;
     font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
   .kicker i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:p 2.4s infinite}
@@ -88,7 +88,7 @@
   .cs .go{font-size:13.5px;font-weight:700;color:var(--accent)}
 
   /* ── work ── */
-  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+  .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
     overflow:hidden;cursor:pointer;text-align:left;padding:0;color:inherit;font:inherit;
     display:flex;flex-direction:column;transition:.18s}
@@ -100,7 +100,7 @@
   .pill{position:absolute;top:11px;left:11px;z-index:2;font-size:10.5px;font-weight:800;
     padding:4px 10px;border-radius:999px;background:rgba(6,7,10,.74);color:#fff;backdrop-filter:blur(10px);letter-spacing:.03em}
   .pill.shipped{background:var(--ok)}
-  .cb{padding:18px 20px 20px;display:flex;flex-direction:column;gap:9px;flex:1}
+  .cb{padding:16px 20px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
   .cn{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
   .cn h3{margin:0;font-size:19px;font-weight:800;letter-spacing:-.018em}
   .cn small{font-size:12px;color:var(--ink-3);font-weight:600}
@@ -187,19 +187,9 @@
 
   <div class="rule"></div>
 
-  <section class="band" id="worksec">
-    <div class="sh"><h2 id="wk-kick"></h2><p id="wk-lede2"></p></div>
-    <p class="lead-in" id="wk-title"></p>
-    <p class="wk-lede" id="wk-lede"></p>
-    <div class="princ" id="wk"></div>
-    <p class="wk-foot" id="wk-foot"></p>
-  </section>
-
-  <div class="rule"></div>
-
   <section class="band">
-    <div class="sh"><h2>How I run AI projects</h2><p>Seven decisions, each with what it actually produced</p></div>
-    <p class="lead-in">Shipping AI is mostly judgment under uncertainty: what to measure, what to refuse, and when the answer is not to build it.</p>
+    <div class="sh"><h2>How I run AI projects</h2><p>Three that are hard to put on a CV</p></div>
+    
     <div class="princ" id="princ"></div>
   </section>
 
@@ -230,9 +220,7 @@ function card(p) {
     <div class="cb">
       <div class="cn"><h3>${esc(p.name)}</h3><small>${esc(p.subtitle)}</small></div>
       <p class="ctag">${esc(p.tagline)}</p>
-      <p class="kv"><b>Hardest part</b>${esc(p.hard)}</p>
-      <div class="cs">${(p.stack || []).slice(0, 5).map(s => `<span class="t">${esc(s)}</span>`).join('')}</div>
-      <span class="more">Problem, numbers and screens →</span>
+      <div class="cs">${(p.stack || []).slice(0, 4).map(s => `<span class="t">${esc(s)}</span>`).join('')}</div>
     </div>
   </button>`;
 }
@@ -289,20 +277,6 @@ fetch('products.json').then(r => r.json()).then(d => {
     el.querySelector('p').textContent = cs.blurb;
     el.querySelector('.go').textContent = cs.cta + ' →';
   } else { $('#cs')?.remove(); }
-
-  const w = d.work;
-  if (w) {
-    $('#wk-kick').textContent = w.kicker;
-    $('#wk-lede2').textContent = 'Not solo';
-    $('#wk-title').textContent = w.title;
-    $('#wk-lede').textContent = w.lede;
-    $('#wk-foot').textContent = w.footnote || '';
-    $('#wk').innerHTML = w.items.map((it, k) => `<article class="pr">
-        <div class="n">${String(k + 1).padStart(2, '0')}</div>
-        <div><h3>${esc(it.h)}</h3><p class="body">${esc(it.p)}</p>
-        <p class="note">${esc(it.note)}</p></div>
-      </article>`).join('');
-  } else { $('#worksec')?.remove(); }
 
   $('#princ').innerHTML = (d.approach || []).map(a => `<article class="pr">
       <div class="n">${esc(a.n)}</div>
