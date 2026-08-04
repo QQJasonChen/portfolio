@@ -5,8 +5,8 @@
   "owner": {
     "name": "QQ Chen",
     "role": "AI Project Lead",
-    "headline": "I take AI ideas all the way to users — five AI products live, three through App Store review.",
-    "blurb": "Built on evenings and weekends. Live links, real usage, and one project written up end to end.",
+    "headline": "I start from a pain point and use AI to ship the thing that fixes it.",
+    "blurb": "Eight products in a year, built on evenings and weekends. Every one started as a problem I or someone near me actually had — then AI-assisted development took it from idea to something people use. I own the vision, the roadmap and the release, not every line of code.",
     "github": "https://github.com/QQJasonChen"
   },
   "products": [
@@ -53,7 +53,8 @@
         "posters/examace.jpg"
       ],
       "video": "",
-      "card": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since."
+      "card": "I built it to pass the Dutch integration exam myself. I passed. 7,000 other candidates have used it since.",
+      "journey": "I could not find Dutch exam material in my own language → built the platform → passed the exam → 7,000 candidates followed."
     },
     {
       "id": "tingzhai",
@@ -99,34 +100,40 @@
         "posters/g/tingzhai-4.jpg"
       ],
       "video": "",
-      "card": "Hands busy? Say \"note\" out loud and the last 60 seconds is captured, transcribed and filed."
+      "card": "Hands busy? Say \"note\" out loud and the last 60 seconds is captured, transcribed and filed.",
+      "journey": "I kept losing the one good idea per episode because my hands were busy → built voice capture that never interrupts playback → three App Store releases."
     },
     {
-      "id": "woordjes",
-      "name": "Woordjes",
-      "subtitle": "Dutch vocabulary for exam candidates",
+      "id": "vocab",
+      "name": "Woordjes & Tango",
+      "subtitle": "One vocabulary engine, two languages, both on the App Store",
       "tier": "ai",
-      "status": "App Store · v1.12",
-      "tagline": "2,000 high-frequency Dutch words, levelled A1/A2/B1, with spaced repetition.",
+      "status": "App Store · Dutch v1.12 · Japanese v1.3",
+      "tagline": "I built the Dutch one for my own exam. Shipping the Japanese one was content work, not a rewrite — 95% of the code is shared.",
       "role": "Solo — product, backend, iOS, App Store submission",
-      "problem": "Dutch integration-exam candidates are mostly adults studying around a job. Generic vocabulary apps teach words they will never be tested on, and Dutch-specific material for Chinese speakers barely exists.",
-      "what": "An iOS and web app with an original 2,000-word deck built from frequency data and the official exam syllabus, illustrated where illustration helps, scheduled by spaced repetition.",
-      "hard": "Deciding what to teach. Frequency lists alone give you function words; syllabus lists alone give you words nobody says. The deck is the intersection, levelled so a beginner never meets a rare word early.",
+      "problem": "Vocabulary apps teach words you will never be tested on. Exam candidates and language learners need the intersection of what is frequent and what is examinable — and for Dutch aimed at Chinese speakers, that barely existed.",
+      "what": "Two iOS and web apps on one engine. Dutch: 2,000 high-frequency words levelled A1/A2/B1 against the official exam syllabus. Japanese: 10,000 words across JLPT N5–N1 plus grammar cards, on the same spaced-repetition scheduler.",
+      "hard": "Deciding what to teach, and proving the engine generalised. Frequency lists alone give function words; syllabus lists give words nobody says. And the only honest way to prove a system is reusable is to ship the second one.",
       "highlights": [
-        "Concrete nouns are auto-illustrated with generated images — roughly 300 images for about US$2, because abstract words are the ones illustration cannot help.",
-        "Frequency-based levelling so the first 200 words carry the most conversational weight.",
-        "The engine was later reused for a Japanese app with 95% code shared — only the content layer differs. Proving that took shipping the second app, not arguing about it."
+        "Japanese levelling rebuilt against a 44,000-word frequency corpus after finding advanced kanji compounds filed as intermediate — N1 leakage into lower levels dropped to zero and the N3 bucket shrank from 39% to 21%.",
+        "Concrete nouns auto-illustrated with generated images: roughly 300 images for about US$2, applied only where illustration actually helps.",
+        "Second language shipped with 95% of the code shared — the reuse claim was tested by shipping, not argued."
       ],
-      "business": "Free, no ads, no tracking. Built as a tool for my own exam; the App Store listing exists so other candidates can find it.",
+      "business": "Both free, no ads, no tracking. Built for my own exam first.",
       "stack": [
         "JavaScript",
         "SwiftUI",
-        "OpenAI"
+        "OpenAI",
+        "Frequency corpora"
       ],
       "links": [
         {
-          "label": "App Store",
+          "label": "Woordjes (Dutch)",
           "href": "https://apps.apple.com/tw/app/id6782196904"
+        },
+        {
+          "label": "Tango (Japanese)",
+          "href": "https://apps.apple.com/tw/app/id6784779535"
         }
       ],
       "cover": "posters/woordjes.jpg",
@@ -134,82 +141,14 @@
         "posters/g/woordjes-1.jpg",
         "posters/g/woordjes-2.jpg",
         "posters/g/woordjes-3.jpg",
-        "posters/g/woordjes-4.jpg"
-      ],
-      "video": "",
-      "card": "2,000 high-frequency Dutch words, levelled A1/A2/B1, with spaced repetition."
-    },
-    {
-      "id": "tango",
-      "name": "Tango",
-      "subtitle": "Japanese vocabulary, JLPT N5–N1",
-      "tier": "ai",
-      "status": "App Store · v1.3",
-      "tagline": "10,000 words levelled by corpus frequency instead of by intuition.",
-      "role": "Solo — product, backend, iOS, App Store submission",
-      "problem": "JLPT decks are usually levelled by hand or inherited from old lists. The failure mode is invisible: advanced compounds get filed as intermediate, so learners hit words they cannot possibly know and conclude they are bad at Japanese.",
-      "what": "An iOS and web app covering N5 through N1 vocabulary plus grammar cards, on one spaced-repetition scheduler.",
-      "hard": "This was a data problem, not an app problem. An earlier heuristic had quietly pushed advanced kanji compounds down into N3. I rebuilt levelling against a 44,000-word frequency corpus so that how common a word is decides its level.",
-      "highlights": [
-        "Full deck re-levelled against corpus frequency; leakage of N1 vocabulary into lower levels dropped to zero, and the N3 bucket shrank from 39% to 21% of the deck.",
-        "Grammar and vocabulary share one scheduler, so a review session mixes both the way a real exam does.",
-        "Second product off the same engine as Woordjes — shipping it was content work, not a rewrite."
-      ],
-      "business": "Free. Serves as the proof that the vocabulary engine generalises across languages.",
-      "stack": [
-        "JavaScript",
-        "SwiftUI"
-      ],
-      "links": [
-        {
-          "label": "App Store",
-          "href": "https://apps.apple.com/tw/app/id6784779535"
-        }
-      ],
-      "cover": "posters/tango.jpg",
-      "gallery": [
+        "posters/g/woordjes-4.jpg",
         "posters/g/tango-1.jpg",
         "posters/g/tango-2.jpg",
         "posters/g/tango-3.jpg",
         "posters/g/tango-4.jpg"
       ],
       "video": "",
-      "card": "10,000 words levelled by corpus frequency instead of by intuition."
-    },
-    {
-      "id": "yike",
-      "name": "Yike",
-      "subtitle": "AI journal that reads you back",
-      "tier": "ai",
-      "status": "Live · web and iOS",
-      "tagline": "One entry a day, then AI reads the whole run back to you — patterns you cannot see from inside a single day.",
-      "role": "Solo — product, backend, iOS",
-      "problem": "Journalling apps store what you wrote and never do anything with it. The value of a journal is not in the entry, it is in the pattern across months — which is exactly the thing you cannot see while you are living it.",
-      "what": "A journal with room for exactly one thing a day. AI analyses the accumulated entries and reflects patterns back: what keeps recurring, what shifted, what you keep saying you will do. Each entry grows a tree; the forest is the record of showing up.",
-      "hard": "Making the analysis worth reading rather than a horoscope. Generic reflection sounds insightful and helps nobody. The output has to quote your own words back with enough specificity that you cannot dismiss it.",
-      "highlights": [
-        "AI analysis over the accumulated journal rather than per-entry — the useful signal only exists across time.",
-        "The tree is proof of depth, not a reward loop — a deliberate call after studying how Forest uses the same visual as bait.",
-        "Ships as an installable PWA and a native iOS build from one codebase; upgrades activate automatically with no manual step."
-      ],
-      "business": "Free to use. Cross-device sync is an optional upgrade, activated automatically.",
-      "stack": [
-        "JavaScript",
-        "Supabase",
-        "PWA",
-        "LLM analysis"
-      ],
-      "links": [
-        {
-          "label": "Open app",
-          "href": "https://qqjasonchen.github.io/yike/"
-        }
-      ],
-      "cover": "posters/yike.jpg",
-      "gallery": [
-        "posters/yike.jpg"
-      ],
-      "video": ""
+      "journey": "I was failing my own Dutch vocabulary → built the deck I needed → then proved the engine generalised by shipping it again in Japanese."
     }
   ],
   "approach": [
@@ -251,8 +190,13 @@
   },
   "also": {
     "kicker": "Also shipped",
-    "note": "Same pattern, no AI involved — included because shipping is the habit, not the exception.",
+    "note": "Same loop, smaller scope — listed rather than explained.",
     "items": [
+      {
+        "name": "Yike",
+        "what": "AI journal analysis over months of entries — patterns you cannot see from inside one day",
+        "href": "https://qqjasonchen.github.io/yike/"
+      },
       {
         "name": "Dutch PlayPhrase",
         "what": "700,000 real Dutch subtitle lines, searchable and playable in context",
