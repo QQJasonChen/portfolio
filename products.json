@@ -160,37 +160,44 @@
   "approach": [
     {
       "n": "01",
-      "title": "I let the test overrule me",
-      "body": "The readable transcript view drifted out of sync with the audio. I diagnosed it, wrote the fix, and wrote a test to prove the fix worked. The test said my fix was worse than the bug — 40 seconds off where the old code was 22.",
-      "evidence": "I had been mapping paragraphs by character count. A forty-second pause contains almost no characters, so the character axis could not see it at all. The second attempt anchored on the words themselves and the same test passed nine cases. Measurement is only worth the cost if you let it change what you ship.",
+      "title": "Adoption is the only test that counts",
+      "body": "At work I kept watching the team lose hours to a manual analysis step nobody had questioned. Nobody asked me to fix it and I had no authority to make anyone change how they worked. I built the tool and let it compete with the spreadsheet on its own merits.",
+      "evidence": "Twenty-plus engineers moved to it and stayed. That is a harder test than shipping to strangers: a colleague can walk to your desk, tell you it is worse than what they had, and go back. Rollout is not a launch date, it is the point where people stop doing it the old way.",
+      "proof": []
+    },
+    {
+      "n": "02",
+      "title": "The feature I was proudest of was the one real use proved wrong",
+      "body": "The hands-free wake word was the product's own name — obvious choice, and it demoed perfectly. In real kitchens it kept failing: the name is an invented word, so the speech model had never learned it and kept hearing a common word that sounds similar.",
+      "evidence": "I replaced it with ordinary words people already say — note, record, highlight — which felt like giving up the brand and was the right call. Same with Bluetooth support: it only surfaced when someone cooked with a speaker instead of the phone. Neither was findable at a desk, which is the argument for piloting with real users early rather than reviewing a demo.",
       "proof": [
         "tingzhai"
       ]
     },
     {
-      "n": "02",
-      "title": "I make two AI agents review each other, and I check the reviewer before I trust it",
-      "body": "Claude and Codex work the same repository under one written rule: the reviewer is never the author, and only the reviewer closes a ticket. Before relying on that I tested the second agent with a deliberate trap — asking it to close its own ticket, with a plausible excuse about being short of time.",
-      "evidence": "It refused and cited the rule by line number. That told me the written constraint was enough and saved me building the enforcement layer I had already designed. The same pairing later caught two App Store rejection risks in copy I had written myself.",
-      "proof": [
-        "tingzhai",
-        "examace"
-      ]
-    },
-    {
       "n": "03",
-      "title": "The feature I was proudest of was the one real use proved wrong",
-      "body": "The hands-free wake word was the product's own name — obvious choice, and it demoed perfectly. In real kitchens it kept failing: the name is an invented word, so the speech model had never learned it and kept hearing a common word that sounds similar.",
-      "evidence": "I replaced it with ordinary words people already say — note, record, highlight — which felt like giving up the brand and was the right call. Same pattern with Bluetooth: it only surfaced when someone cooked with a speaker instead of the phone. Neither problem was findable at a desk.",
+      "title": "I let the test overrule me",
+      "body": "The readable transcript view drifted out of sync with the audio. I diagnosed it, wrote the fix, and wrote a test to prove the fix worked. The test said my fix was worse than the bug — 40 seconds off where the old code was 22.",
+      "evidence": "I had been mapping paragraphs by character count, and a forty-second pause contains almost no characters, so the character axis could not see it. The second attempt anchored on the words themselves and passed nine cases. AI features are unusually good at looking correct; measurement is only worth its cost if you let it change what ships.",
       "proof": [
         "tingzhai"
       ]
     },
     {
       "n": "04",
+      "title": "I direct AI work rather than only doing it",
+      "body": "Claude and Codex work the same repository under one written rule: the reviewer is never the author, and only the reviewer closes a ticket. Before relying on that I tested the second agent with a deliberate trap — asking it to close its own ticket, with a plausible excuse about being short of time.",
+      "evidence": "It refused and cited the rule by line number, which told me the written constraint was enough and saved me building the enforcement layer I had already designed. The same pairing later caught two App Store rejection risks in copy I had written myself. Setting the standard and verifying against it is the same job whether the engineer is a person or a model.",
+      "proof": [
+        "tingzhai",
+        "examace"
+      ]
+    },
+    {
+      "n": "05",
       "title": "Deciding not to build is part of the job",
       "body": "Keeping the voice mode alive on a locked screen was possible and I had the design ready. I worked through who would actually be in that situation and what it cost in battery.",
-      "evidence": "Two paths already covered both real cases, so I did not build it and wrote down why. The same call killed a planned enforcement layer once testing showed it was unnecessary. Scope you do not build is scope you never have to maintain.",
+      "evidence": "Two existing paths already covered both real cases, so I did not build it and wrote down why. The same call killed a planned enforcement layer once testing showed it unnecessary. Scope you do not build is scope nobody has to maintain, support, or explain.",
       "proof": [
         "tingzhai"
       ]
