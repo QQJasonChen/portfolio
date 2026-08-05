@@ -179,11 +179,11 @@
     },
     {
       "n": "03",
-      "title": "I would rather the product look weaker than have it mislead someone",
-      "body": "My speaking scorer reported pronunciation errors. It could not hear pronunciation — the pipeline transcribes to text first, and transcription normalises spelling, so the model was inventing plausible mistakes. The label also implied an official marking scheme it is not.",
-      "evidence": "I relabelled both as AI inference and dropped the official framing, which made the feature look less impressive than the day before. Candidates use that score to decide whether to book a real exam. A confident wrong score costs them a booking, a wait, and a failure.",
+      "title": "The feature I was proudest of was the one real use proved wrong",
+      "body": "The hands-free wake word was the product's own name — obvious choice, and it demoed perfectly. In real kitchens it kept failing: the name is an invented word, so the speech model had never learned it and kept hearing a common word that sounds similar.",
+      "evidence": "I replaced it with ordinary words people already say — note, record, highlight — which felt like giving up the brand and was the right call. Same pattern with Bluetooth: it only surfaced when someone cooked with a speaker instead of the phone. Neither problem was findable at a desk.",
       "proof": [
-        "examace"
+        "tingzhai"
       ]
     },
     {
