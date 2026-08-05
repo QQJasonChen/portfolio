@@ -160,28 +160,37 @@
   "approach": [
     {
       "n": "01",
-      "title": "I make AI agents review each other, and I verify before I trust them",
-      "body": "I run Claude and Codex on the same repository under one written protocol: reviewer is never the author, and only the reviewer can close a ticket. Before trusting the second agent I ran a four-stage validation on it — including a deliberate trap asking it to close its own ticket with a plausible excuse.",
-      "evidence": "It refused, citing the rule by line number. That result told me the document-level constraint was sufficient and saved me from building an enforcement layer I had already scoped.",
+      "title": "I let the test overrule me",
+      "body": "The readable transcript view drifted out of sync with the audio. I diagnosed it, wrote the fix, and wrote a test to prove the fix worked. The test said my fix was worse than the bug — 40 seconds off where the old code was 22.",
+      "evidence": "I had been mapping paragraphs by character count. A forty-second pause contains almost no characters, so the character axis could not see it at all. The second attempt anchored on the words themselves and the same test passed nine cases. Measurement is only worth the cost if you let it change what you ship.",
       "proof": [
         "tingzhai"
       ]
     },
     {
       "n": "02",
-      "title": "I measure the thing I am afraid of, on real data",
-      "body": "A voice trigger that fires during normal speech is worse than no voice trigger. Rather than tuning by feel, I replayed 127,000 characters of real podcast transcripts through the matcher.",
-      "evidence": "First run: 38 false triggers. After removing single-character matches and adding a debounce, zero — on the same corpus. The same discipline re-levelled a 10,000-word JLPT deck against a 44,000-word frequency corpus.",
+      "title": "I make two AI agents review each other, and I check the reviewer before I trust it",
+      "body": "Claude and Codex work the same repository under one written rule: the reviewer is never the author, and only the reviewer closes a ticket. Before relying on that I tested the second agent with a deliberate trap — asking it to close its own ticket, with a plausible excuse about being short of time.",
+      "evidence": "It refused and cited the rule by line number. That told me the written constraint was enough and saved me building the enforcement layer I had already designed. The same pairing later caught two App Store rejection risks in copy I had written myself.",
       "proof": [
         "tingzhai",
-        "tango"
+        "examace"
       ]
     },
     {
       "n": "03",
+      "title": "I would rather the product look weaker than have it mislead someone",
+      "body": "My speaking scorer reported pronunciation errors. It could not hear pronunciation — the pipeline transcribes to text first, and transcription normalises spelling, so the model was inventing plausible mistakes. The label also implied an official marking scheme it is not.",
+      "evidence": "I relabelled both as AI inference and dropped the official framing, which made the feature look less impressive than the day before. Candidates use that score to decide whether to book a real exam. A confident wrong score costs them a booking, a wait, and a failure.",
+      "proof": [
+        "examace"
+      ]
+    },
+    {
+      "n": "04",
       "title": "Deciding not to build is part of the job",
-      "body": "Keeping a voice mode alive on a locked screen was technically possible and I had the design ready. I worked through who would actually use it and what it cost in battery.",
-      "evidence": "Two existing paths already covered both real scenarios, so I did not build it and wrote down why. The same call killed an agent-enforcement layer after testing showed it was unnecessary.",
+      "body": "Keeping the voice mode alive on a locked screen was possible and I had the design ready. I worked through who would actually be in that situation and what it cost in battery.",
+      "evidence": "Two paths already covered both real cases, so I did not build it and wrote down why. The same call killed a planned enforcement layer once testing showed it was unnecessary. Scope you do not build is scope you never have to maintain.",
       "proof": [
         "tingzhai"
       ]
